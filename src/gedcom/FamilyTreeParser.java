@@ -17,6 +17,7 @@ public class FamilyTreeParser {
 	HashMap<String,Integer> validTags = new HashMap<String,Integer>();
 	HashMap<String,Individual> individualMap;
 	ArrayList<Family> familyList;
+	
 	public void setValidTags() throws IOException {
 		File file = new File("resources//validTags.txt");
 		BufferedReader br = null;
@@ -53,7 +54,7 @@ public class FamilyTreeParser {
 
 
 		try {
-				br = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
+				br = new BufferedReader(new FileReader(file));
 				int level;
 				String tag=null;
 				String currentIndividualId=null;
@@ -67,7 +68,6 @@ public class FamilyTreeParser {
 					String arguements="";
 					String[] splittedData = line.split("\\s+",3);
 					level=Integer.parseInt(splittedData[0]);
-					//System.out.println(splittedData[2]);
 					if(splittedData.length==2) {
 						tag=splittedData[1];
 					}
@@ -116,7 +116,7 @@ public class FamilyTreeParser {
 							individualMap.get(currentIndividualId).setFamilySpouseId(arguements);
 						}
 						if(tag.equals("FAM")) {
-							family =  new Family();
+							family = new Family();
 							currentFamilyId=arguements;
 							family.setId(currentFamilyId);
 							familyList.add(family);

@@ -12,6 +12,10 @@ public class Family {
 	private LocalDate marriageDate;
 	private LocalDate divroceDate;
 	String[] month= {"JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"};	
+	public Family()
+	{
+		this.childId=new ArrayList<String>();
+	}
 	public void setId(String id)
 	{
 		this.id=id;
@@ -34,7 +38,7 @@ public class Family {
 	{
 		String[] divorcedDateSplitted = divorcedDate.split("\\s");
 		LocalDate ddate = LocalDate.of(Integer.parseInt(divorcedDateSplitted[2]), Arrays.asList(month).indexOf(divorcedDateSplitted[1])+1, Integer.parseInt(divorcedDateSplitted[0]));
-		this.marriageDate=ddate;
+		this.divroceDate=ddate;
 	}
 	public LocalDate getDivorcedDate()
 	{

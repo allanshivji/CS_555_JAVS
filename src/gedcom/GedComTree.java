@@ -17,7 +17,6 @@ public class GedComTree
 		}
 	public static void printFamilyList(FamilyTreeParser Ftp) {
 		System.out.println("-----------------------------FAMILY-------------------");
-		
 		for(int i=0;i<Ftp.familyList.size();i++)
 		{
 			Family fam = Ftp.familyList.get(i);
