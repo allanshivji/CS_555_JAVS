@@ -76,7 +76,7 @@ public class Individual {
 	public int getAge()
 	{
 		LocalDate today = LocalDate.now();
-		return Period.between(this.birthDate, today).getYears();
+		return this.deathDate==null?Period.between(this.birthDate, today).getYears():Period.between(this.birthDate, this.deathDate).getYears();
 	}
 	public String isAlive()
 	{
