@@ -39,6 +39,9 @@ public class Individual {
 	}
 	public void setBirthDate(String birthDate)
 	{
+
+	// Getting birthdate
+
 		String[] birthDateSplitted = birthDate.split("\\s");
 		LocalDate bdate = LocalDate.of(Integer.parseInt(birthDateSplitted[2]), Arrays.asList(month).indexOf(birthDateSplitted[1])+1, Integer.parseInt(birthDateSplitted[0]));
 		this.birthDate=bdate;
@@ -49,12 +52,17 @@ public class Individual {
 	}
 	public void setDeathDate(String deathDate)
 	{
+	
+	//Setting Death Date
+
 		String[] deathDateSplitted = deathDate.split("\\s");
 		LocalDate ddate = LocalDate.of(Integer.parseInt(deathDateSplitted[2]), Arrays.asList(month).indexOf(deathDateSplitted[1])+1, Integer.parseInt(deathDateSplitted[0]));
 		this.deathDate=ddate;
 	}
 	public LocalDate getDeathDate()
 	{
+	// For death date
+
 		return this.deathDate;
 	}
 	public void setFamilyChildId(String familyChildId)
@@ -75,6 +83,9 @@ public class Individual {
 	}
 	public int getAge()
 	{
+
+	//calculating age based on birthdate and death date using Period
+
 		LocalDate today = LocalDate.now();
 		return this.deathDate==null?Period.between(this.birthDate, today).getYears():Period.between(this.birthDate, this.deathDate).getYears();
 	}

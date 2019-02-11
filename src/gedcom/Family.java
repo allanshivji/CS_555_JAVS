@@ -26,6 +26,9 @@ public class Family {
 	}
 	public void setMarriageDate(String marriageDate)
 	{
+
+	//Getting Marriage date using LocalDate
+
 		String[] marriageDateSplitted = marriageDate.split("\\s");
 		LocalDate mdate = LocalDate.of(Integer.parseInt(marriageDateSplitted[2]), Arrays.asList(month).indexOf(marriageDateSplitted[1])+1, Integer.parseInt(marriageDateSplitted[0]));
 		this.marriageDate=mdate;

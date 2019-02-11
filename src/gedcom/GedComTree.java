@@ -8,6 +8,8 @@ public class GedComTree
 {
 	private static void printIndividualList(FamilyTreeParser Ftp) {
 		Map<String,Individual> treeMap = new TreeMap<String,Individual>(Ftp.individualMap);
+
+		//For individuals
 		System.out.println("Individuals");
 		String individualOutputFormat = "|%1$-6s|%2$-20s|%3$-10s|%4$-12s|%5$-7s|%6$-9s|%7$-12s|%8$-10s|%9$-10s|%n";
 		System.out.format("+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
@@ -22,6 +24,8 @@ public class GedComTree
 			System.out.format("+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
 		}
 	private static void printFamilyList(FamilyTreeParser Ftp) {
+
+		//For Families
 		System.out.println("Families");
 		String familyOutputFormat = "|%1$-6s|%2$-16s|%3$-16s|%4$-14s|%5$-23s|%6$-14s|%7$-23s|%8$-23s|%n";
 		System.out.format("+------+----------------+----------------+--------------+-----------------------+--------------+-----------------------+-----------------------+%n");
