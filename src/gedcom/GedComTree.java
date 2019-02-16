@@ -1,6 +1,7 @@
 package gedcom;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -40,6 +41,15 @@ public class GedComTree
 		}
 		System.out.format("+------+----------------+----------------+--------------+-----------------------+--------------+-----------------------+-----------------------+%n");
 	}
+	
+	private static void printErrorDetails(FamilyTreeParser Ftp) {
+		ArrayList<ErrorData> allErrors = new ArrayList<ErrorData>();
+		allErrors.addAll(MultiIndividualFamilyData.US_Marriage_Before_Death(Ftp));
+		for(int i=0;i<MultiIndividualFamilyData.errorList.size();i++) {
+			ErrorData error = MultiIndividualFamilyData.errorList.get(i);
+			System.out.println(error.getErrorType()+":"+error.getRecordType()+":"+error.getUserStroyNumber()+":"+error.getIndividualId()+":"+error.getErrorDetails());
+		}
+	}
 	public static void main(String[] args) throws IOException
 	{
 		FamilyTreeParser Ftp = new FamilyTreeParser();
@@ -47,5 +57,6 @@ public class GedComTree
 		Ftp.FamilyTreeParserCheck();
 		printIndividualList(Ftp);
 		printFamilyList(Ftp);
+		printErrorDetails(Ftp);
 	}
 }

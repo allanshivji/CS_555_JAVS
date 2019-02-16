@@ -18,6 +18,14 @@ public class FamilyTreeParser {
 	HashMap<String,Individual> individualMap;
 	ArrayList<Family> familyList;
 	
+	public FamilyTreeParser() {
+		
+	}
+	public FamilyTreeParser(HashMap<String,Individual> testIndividualMap, ArrayList<Family> testFamilyList) {
+		this.individualMap=testIndividualMap;
+		this.familyList=testFamilyList;
+	}
+		
 	public void setValidTags() throws IOException {
 		File file = new File("resources//validTags.txt");
 		BufferedReader br = null;
