@@ -43,7 +43,9 @@ public class GedComTree
 	}
 
 	private static void printErrorDetails(FamilyTreeParser Ftp) {
+		//The arralyist allErrors contains list of all ERROR records 
 		ArrayList<ErrorData> allErrors = new ArrayList<ErrorData>();
+		//Adding list of ERROR records to allErrors from US05 class
 		allErrors.addAll(MultiIndividualFamilyData.US_Marriage_Before_Death(Ftp));
 		for(int i=0;i<MultiIndividualFamilyData.errorList.size();i++) {
 			ErrorData error = MultiIndividualFamilyData.errorList.get(i);
