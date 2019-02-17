@@ -1,5 +1,10 @@
 package gedcom;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -38,4 +43,18 @@ public class CheckValidity {
 		else
 			return true;
 	}
+	//Shreesh Chavan: Sprint1 US01 valid date
+	public static boolean checkDatesBeforeCurrentDate(LocalDate p_dateToBeChecked) throws ParseException
+	{
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date input = new Date();
+        String formattedDate= sdf.format(input);
+        Date date1 = sdf.parse(formattedDate);
+        Date date2 = Date.from(p_dateToBeChecked.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        if (date1.compareTo(date2) > 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }
