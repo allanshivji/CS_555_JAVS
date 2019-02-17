@@ -20,7 +20,7 @@ public class GedComTree
 			{
 				Individual indi = entry.getValue();
 				System.out.format(individualOutputFormat, indi.getId(),indi.getName(),indi.getGender(),indi.getBirthDate(),indi.getAge(),indi.isAlive(),indi.getDeathDate()==null?"NA":indi.getDeathDate(),indi.getFamilyChildId()==null?"NA":"{'"+ indi.getFamilyChildId()+"'}",indi.getFamilySpouseId()==null?"NA":"{'"+indi.getFamilySpouseId()+"'}");
-				
+
 			}
 			System.out.format("+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
 		}
@@ -41,7 +41,7 @@ public class GedComTree
 		}
 		System.out.format("+------+----------------+----------------+--------------+-----------------------+--------------+-----------------------+-----------------------+%n");
 	}
-	
+
 	private static void printErrorDetails(FamilyTreeParser Ftp) {
 		ArrayList<ErrorData> allErrors = new ArrayList<ErrorData>();
 		allErrors.addAll(MultiIndividualFamilyData.US_Marriage_Before_Death(Ftp));
@@ -58,5 +58,8 @@ public class GedComTree
 		printIndividualList(Ftp);
 		printFamilyList(Ftp);
 		printErrorDetails(Ftp);
+		//Jiayuan Liu
+		CheckValidity CV = new CheckValidity();
+		CV.check(Ftp);
 	}
 }
