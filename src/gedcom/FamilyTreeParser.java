@@ -53,7 +53,7 @@ public class FamilyTreeParser {
 		return false;
 	}
 	public void FamilyTreeParserCheck() {
-		File file = new File("resources\\GedComTest.ged");
+		File file = new File("resources/GedComTest.ged");
 		//File file = new File("C:\\Stevens\\Courses\\CS-555-Agile Methods for SW Eng\\Project\\NewGedCom\\proj02test.ged");
 		BufferedReader br = null;
 		String line;
