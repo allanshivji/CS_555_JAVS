@@ -3,6 +3,10 @@ package gedcom;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 
 public class MultiIndividualFamilyData {
 	public static ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
@@ -32,9 +36,9 @@ public class MultiIndividualFamilyData {
 		}
 		return errorList;
 	  }
+	
+	//Shreesh Chavan: Sprint1 US01 valid date
 	public static ArrayList<ErrorData> testCheckDatesBeforeCurrentDate(FamilyTreeParser ftp) throws ParseException {
-//			LocalDate birthdate;
-//			LocalDate deathdate;
 			LocalDate marriageDate;
 			String husbandId;
 			String wifeId;
@@ -45,7 +49,8 @@ public class MultiIndividualFamilyData {
 					wifeId=familyRecord.getWifeId();
 					String[] famIds = {husbandId,wifeId};
 					for(String id : famIds) {
-						if (!CheckValidity.checkDatesBeforeCurrentDate(marriageDate)) {
+						System.out.println(CheckValidity.checkDatesBeforeCurrentDate(marriageDate));
+						if (CheckValidity.checkDatesBeforeCurrentDate(marriageDate)) {
 							ErrorData error = new ErrorData();
 							error.setErrorType("ERROR");
 							error.setRecordType("INDIVIDUAL");
@@ -54,38 +59,41 @@ public class MultiIndividualFamilyData {
 							error.setErrorDetails("MarriageDate "+marriageDate+" for "+id+" is after today's date. This is not acceptable. You are not god to predict the future.");
 							errorList.add(error);
 						}
-						if ((familyRecord.getDivorcedDate()!=null) && !(CheckValidity.checkDatesBeforeCurrentDate(familyRecord.getDivorcedDate()))) {
+						if ((familyRecord.getDivorcedDate()!=null) && (CheckValidity.checkDatesBeforeCurrentDate(familyRecord.getDivorcedDate()))) {
 							ErrorData error = new ErrorData();
 							error.setErrorType("ERROR");
 							error.setRecordType("INDIVIDUAL");
 							error.setIndividualId(id);
 							error.setUserStoryNumber("US01");
-							error.setErrorDetails("Divorce Date "+familyRecord.getDivorcedDate()+" for "+id+" is after today's date. This is not acceptable. You are not god to predict the future.");
+							error.setErrorDetails("DivorceDate "+familyRecord.getDivorcedDate()+" for "+id+" is after today's date. This is not acceptable. You are not god to predict the future.");
 							errorList.add(error);
 						}
 					}
-//					for (individualMap entry : entry.entrySet()) {
-//						if(!CheckValidity.checkDatesBeforeCurrentDate(entry.getBirthDate())) {
-//							ErrorData error = new ErrorData();
-//							error.setErrorType("ERROR");
-//							error.setRecordType("INDIVIDUAL");
-//							error.setIndividualId(id);
-//							error.setUserStoryNumber("US01");
-//							error.setErrorDetails("BirthDate "+entry.getBirthDate()+" for "+entry.getId()+" is after today's date. This is not acceptable. You are not god to predict the future.");
-//							errorList.add(error);
-//						}
-//						if ((entry.getDeathDate()!=null) && !(CheckValidity.checkDatesBeforeCurrentDate(entry.getDeathDate()))) {
-//							ErrorData error = new ErrorData();
-//							error.setErrorType("ERROR");
-//							error.setRecordType("INDIVIDUAL");
-//							error.setIndividualId(id);
-//							error.setUserStoryNumber("US01");
-//							error.setErrorDetails("DeathDate "+entry.getDeathDate()+" for "+entry.getId()+" is after today's date. This is not acceptable. You are not god to predict the future.");
-//							errorList.add(error);
-//						}
-//					}
-			   }
-		  }
-		return errorList;
-   }
+				}
+			}
+			
+				HashMap<String,Individual> enter = ftp.individualMap;
+				for (Entry<String, Individual> entry : enter.entrySet()) {
+				    if(CheckValidity.checkDatesBeforeCurrentDate(entry.getValue().getBirthDate())) {
+							ErrorData error = new ErrorData();
+							error.setErrorType("ERROR");
+							error.setRecordType("INDIVIDUAL");
+							error.setIndividualId((entry.getValue().getId()));
+							error.setUserStoryNumber("US01");
+							error.setErrorDetails("BirthDate "+entry.getValue().getBirthDate()+" for "+entry.getValue().getId()+" is after today's date. This is not acceptable. You are not god to predict the future.");
+							errorList.add(error);
+					}
+				    if((entry.getValue().getDeathDate()!=null) && (CheckValidity.checkDatesBeforeCurrentDate(entry.getValue().getDeathDate()))) {
+				    	
+						ErrorData error = new ErrorData();
+						error.setErrorType("ERROR");
+						error.setRecordType("INDIVIDUAL");
+						error.setIndividualId(entry.getValue().getId());
+						error.setUserStoryNumber("US01");
+						error.setErrorDetails("DeathDate "+entry.getValue().getDeathDate()+" for "+entry.getValue().getId()+" is after today's date. This is not acceptable. You are not god to predict the future.");
+						errorList.add(error);
+				    }
+				} 
+        return errorList;
+    }	
 }
