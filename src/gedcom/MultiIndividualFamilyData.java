@@ -49,14 +49,13 @@ public class MultiIndividualFamilyData {
 					wifeId=familyRecord.getWifeId();
 					String[] famIds = {husbandId,wifeId};
 					for(String id : famIds) {
-						System.out.println(CheckValidity.checkDatesBeforeCurrentDate(marriageDate));
 						if (CheckValidity.checkDatesBeforeCurrentDate(marriageDate)) {
 							ErrorData error = new ErrorData();
 							error.setErrorType("ERROR");
 							error.setRecordType("INDIVIDUAL");
 							error.setIndividualId(id);
 							error.setUserStoryNumber("US01");
-							error.setErrorDetails("MarriageDate "+marriageDate+" for "+id+" is after today's date. This is not acceptable. You are not god to predict the future.");
+							error.setErrorDetails("MarriageDate "+marriageDate+" for "+id+" is after today's date.");
 							errorList.add(error);
 						}
 						if ((familyRecord.getDivorcedDate()!=null) && (CheckValidity.checkDatesBeforeCurrentDate(familyRecord.getDivorcedDate()))) {
@@ -65,7 +64,7 @@ public class MultiIndividualFamilyData {
 							error.setRecordType("INDIVIDUAL");
 							error.setIndividualId(id);
 							error.setUserStoryNumber("US01");
-							error.setErrorDetails("DivorceDate "+familyRecord.getDivorcedDate()+" for "+id+" is after today's date. This is not acceptable. You are not god to predict the future.");
+							error.setErrorDetails("DivorceDate "+familyRecord.getDivorcedDate()+" for "+id+" is after today's date.");
 							errorList.add(error);
 						}
 					}
@@ -80,7 +79,7 @@ public class MultiIndividualFamilyData {
 							error.setRecordType("INDIVIDUAL");
 							error.setIndividualId((entry.getValue().getId()));
 							error.setUserStoryNumber("US01");
-							error.setErrorDetails("BirthDate "+entry.getValue().getBirthDate()+" for "+entry.getValue().getId()+" is after today's date. This is not acceptable. You are not god to predict the future.");
+							error.setErrorDetails("BirthDate "+entry.getValue().getBirthDate()+" for "+entry.getValue().getId()+" is after today's date.");
 							errorList.add(error);
 					}
 				    if((entry.getValue().getDeathDate()!=null) && (CheckValidity.checkDatesBeforeCurrentDate(entry.getValue().getDeathDate()))) {
@@ -90,7 +89,7 @@ public class MultiIndividualFamilyData {
 						error.setRecordType("INDIVIDUAL");
 						error.setIndividualId(entry.getValue().getId());
 						error.setUserStoryNumber("US01");
-						error.setErrorDetails("DeathDate "+entry.getValue().getDeathDate()+" for "+entry.getValue().getId()+" is after today's date. This is not acceptable. You are not god to predict the future.");
+						error.setErrorDetails("DeathDate "+entry.getValue().getDeathDate()+" for "+entry.getValue().getId()+" is after today's date.");
 						errorList.add(error);
 				    }
 				} 

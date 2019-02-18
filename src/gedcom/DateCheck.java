@@ -36,14 +36,10 @@ public class DateCheck {
 		
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I100");
-		error.setErrorDetails("BirthDate 2020-04-12 for I100 is after today's date. This is not acceptable. You are not god to predict the future.");
-//		System.out.println(error.getErrorDetails());
+		error.setErrorDetails("BirthDate 2020-04-12 for I100 is after today's date.");
 //		System.out.println(recordError.get(0).getErrorDetails());
 		assertEquals(error.getErrorDetails(),recordError.get(0).getErrorDetails());
-//		for(ErrorData record : recordError) {
-//			assertNotEquals("I100", record.getIndividualId());
-//		}
-//		System.out.print("hi");
+
 	}
 	@Test
 	public void testCheckDeathDatesAfterCurrentDate() throws Exception {
@@ -60,7 +56,8 @@ public class DateCheck {
 		
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I200");
-		error.setErrorDetails("DeathDate 2020-04-12 for I200 is after today's date. This is not acceptable. You are not god to predict the future.");
+		error.setErrorDetails("DeathDate 2020-04-12 for I200 is after today's date.");
+//		System.out.println(recordError.get(1).getErrorDetails());
 		assertEquals(error.getErrorDetails(),recordError.get(1).getErrorDetails());
 	}
 	@Test
@@ -87,11 +84,13 @@ public class DateCheck {
 		
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I300");
-		error.setErrorDetails("MarriageDate 2096-12-25 for I300 is after today's date. This is not acceptable. You are not god to predict the future.");
+		error.setErrorDetails("MarriageDate 2096-12-25 for I300 is after today's date.");
+//		System.out.println(recordError.get(4).getErrorDetails());
 		assertEquals(error.getErrorDetails(),recordError.get(4).getErrorDetails());		
 		error = new ErrorData();
 		error.setIndividualId("I301");
-		error.setErrorDetails("MarriageDate 2096-12-25 for I301 is after today's date. This is not acceptable. You are not god to predict the future.");
+		error.setErrorDetails("MarriageDate 2096-12-25 for I301 is after today's date.");
+//		System.out.println(recordError.get(5).getErrorDetails());
 		assertEquals(error.getErrorDetails(),recordError.get(5).getErrorDetails());
 	}
 	@Test
@@ -119,12 +118,12 @@ public class DateCheck {
 		
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I400");
-		error.setErrorDetails("DivorceDate 2019-12-25 for I400 is after today's date. This is not acceptable. You are not god to predict the future.");
-		
+		error.setErrorDetails("DivorceDate 2019-12-25 for I400 is after today's date.");
+//		System.out.println(recordError.get(2).getErrorDetails());
 		assertEquals(error.getErrorDetails(),recordError.get(2).getErrorDetails());
 		error.setIndividualId("I401");
-		error.setErrorDetails("DivorceDate 2019-12-25 for I401 is after today's date. This is not acceptable. You are not god to predict the future.");
-		
+		error.setErrorDetails("DivorceDate 2019-12-25 for I401 is after today's date.");
+//		System.out.println(recordError.get(3).getErrorDetails());
 		assertEquals(error.getErrorDetails(),recordError.get(3).getErrorDetails());
 	}
 	@Test
@@ -141,10 +140,10 @@ public class DateCheck {
 		
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I500");
-		error.setErrorDetails("BirthDate 2010-04-12 for I500 is after today's date. This is not acceptable. You are not god to predict the future.");
-		for(int i=0;i<recordError.size();i++) {
-			System.out.println(recordError.get(i).getErrorDetails());
-		}
+		error.setErrorDetails("BirthDate 2010-04-12 for I500 is after today's date.");
+//		for(int i=0;i<recordError.size();i++) {
+//			System.out.println(recordError.get(i).getErrorDetails());
+//		}
 		for(ErrorData record : recordError) {
 			assertNotEquals("I500", record.getIndividualId());
 		}
@@ -164,7 +163,7 @@ public class DateCheck {
 		
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I600");
-		error.setErrorDetails("DeathDate 2018-04-12 for I600 is after today's date. This is not acceptable. You are not god to predict the future.");
+		error.setErrorDetails("DeathDate 2018-04-12 for I600 is after today's date.");
 		for(ErrorData record : recordError) {
 			assertNotEquals("I600", record.getIndividualId());
 		}
@@ -193,7 +192,7 @@ public class DateCheck {
 		
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I700");
-		error.setErrorDetails("MarriageDate 2016-12-25 for I700 is after today's date. This is not acceptable. You are not god to predict the future.");
+		error.setErrorDetails("MarriageDate 2016-12-25 for I700 is after today's date.");
 		for(ErrorData record : recordError) {
 			assertNotEquals("I700", record.getIndividualId());
 			assertNotEquals("I701", record.getIndividualId());
@@ -224,7 +223,7 @@ public class DateCheck {
 		
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I800");
-		error.setErrorDetails("DivorceDate 2018-12-25 for I800 is after today's date. This is not acceptable. You are not god to predict the future.");
+		error.setErrorDetails("DivorceDate 2018-12-25 for I800 is after today's date.");
 		for(ErrorData record : recordError) {
 			assertNotEquals("I800", record.getIndividualId());
 			assertNotEquals("I801", record.getIndividualId());
