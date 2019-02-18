@@ -1,5 +1,6 @@
 package gedcom;
 
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -28,7 +29,63 @@ public class MultiIndividualFamilyData {
 					}
 				}
 		   }
+		}
+		return errorList;
 	  }
+	public static ArrayList<ErrorData> testCheckDatesBeforeCurrentDate(FamilyTreeParser ftp) throws ParseException {
+//			LocalDate birthdate;
+//			LocalDate deathdate;
+			LocalDate marriageDate;
+			String husbandId;
+			String wifeId;
+			for(Family familyRecord : ftp.familyList) {
+				if(familyRecord.getMarriageDate()!=null) {
+					marriageDate=familyRecord.getMarriageDate();	
+					husbandId=familyRecord.getHusbandId();
+					wifeId=familyRecord.getWifeId();
+					String[] famIds = {husbandId,wifeId};
+					for(String id : famIds) {
+						if (!CheckValidity.checkDatesBeforeCurrentDate(marriageDate)) {
+							ErrorData error = new ErrorData();
+							error.setErrorType("ERROR");
+							error.setRecordType("INDIVIDUAL");
+							error.setIndividualId(id);
+							error.setUserStoryNumber("US01");
+							error.setErrorDetails("MarriageDate "+marriageDate+" for "+id+" is after today's date. This is not acceptable. You are not god to predict the future.");
+							errorList.add(error);
+						}
+						if ((familyRecord.getDivorcedDate()!=null) && !(CheckValidity.checkDatesBeforeCurrentDate(familyRecord.getDivorcedDate()))) {
+							ErrorData error = new ErrorData();
+							error.setErrorType("ERROR");
+							error.setRecordType("INDIVIDUAL");
+							error.setIndividualId(id);
+							error.setUserStoryNumber("US01");
+							error.setErrorDetails("Divorce Date "+familyRecord.getDivorcedDate()+" for "+id+" is after today's date. This is not acceptable. You are not god to predict the future.");
+							errorList.add(error);
+						}
+					}
+//					for (individualMap entry : entry.entrySet()) {
+//						if(!CheckValidity.checkDatesBeforeCurrentDate(entry.getBirthDate())) {
+//							ErrorData error = new ErrorData();
+//							error.setErrorType("ERROR");
+//							error.setRecordType("INDIVIDUAL");
+//							error.setIndividualId(id);
+//							error.setUserStoryNumber("US01");
+//							error.setErrorDetails("BirthDate "+entry.getBirthDate()+" for "+entry.getId()+" is after today's date. This is not acceptable. You are not god to predict the future.");
+//							errorList.add(error);
+//						}
+//						if ((entry.getDeathDate()!=null) && !(CheckValidity.checkDatesBeforeCurrentDate(entry.getDeathDate()))) {
+//							ErrorData error = new ErrorData();
+//							error.setErrorType("ERROR");
+//							error.setRecordType("INDIVIDUAL");
+//							error.setIndividualId(id);
+//							error.setUserStoryNumber("US01");
+//							error.setErrorDetails("DeathDate "+entry.getDeathDate()+" for "+entry.getId()+" is after today's date. This is not acceptable. You are not god to predict the future.");
+//							errorList.add(error);
+//						}
+//					}
+			   }
+		  }
 		return errorList;
    }
 }

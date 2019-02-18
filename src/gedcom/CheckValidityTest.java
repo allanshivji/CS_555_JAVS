@@ -1,10 +1,9 @@
 package gedcom;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
+import org.junit.*;
 
-import org.junit.jupiter.api.Test;
-
-class CheckValidityTest {
+public class CheckValidityTest {
 
 	int Age1 = 151;
 	int Age2 = 13;
@@ -16,7 +15,7 @@ class CheckValidityTest {
 	String SpouseID2 = "F1";
 	
 	@Test
-	void testCheckAge() {
+	public void testCheckAge() {
 		//fail("Not yet implemented");
 		assertFalse(CheckValidity.checkAge(Age1));
 		assertTrue(CheckValidity.checkAge(Age2));
@@ -26,7 +25,7 @@ class CheckValidityTest {
 	}
 
 	@Test
-	void testCheckMarriageAge() {
+	public void testCheckMarriageAge() {
 		//fail("Not yet implemented");
 		assertTrue(CheckValidity.checkMarriageAge(SpouseID1, Age2));
 		assertTrue(CheckValidity.checkMarriageAge(SpouseID1, Age3));

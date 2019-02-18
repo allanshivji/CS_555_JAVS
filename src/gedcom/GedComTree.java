@@ -1,6 +1,7 @@
 package gedcom;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
@@ -42,15 +43,18 @@ public class GedComTree
 		System.out.format("+------+----------------+----------------+--------------+-----------------------+--------------+-----------------------+-----------------------+%n");
 	}
 
-	private static void printErrorDetails(FamilyTreeParser Ftp) {
+	private static void printErrorDetails(FamilyTreeParser Ftp) throws ParseException {
+		//The arralyist allErrors contains list of all ERROR records 
 		ArrayList<ErrorData> allErrors = new ArrayList<ErrorData>();
+		//Adding list of ERROR records to allErrors from US05 class
 		allErrors.addAll(MultiIndividualFamilyData.US_Marriage_Before_Death(Ftp));
+		allErrors.addAll(MultiIndividualFamilyData.testCheckDatesBeforeCurrentDate(Ftp));
 		for(int i=0;i<MultiIndividualFamilyData.errorList.size();i++) {
 			ErrorData error = MultiIndividualFamilyData.errorList.get(i);
 			System.out.println(error.getErrorType()+":"+error.getRecordType()+":"+error.getUserStroyNumber()+":"+error.getIndividualId()+":"+error.getErrorDetails());
 		}
 	}
-	public static void main(String[] args) throws IOException
+	public static void main(String[] args) throws IOException, ParseException
 	{
 		FamilyTreeParser Ftp = new FamilyTreeParser();
 		Ftp.setValidTags();
