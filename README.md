@@ -1,4 +1,4 @@
-# CS_555_JAVS
+# CS_555_JAVS Project
 
 ## All Files for CS-555 Project
 
