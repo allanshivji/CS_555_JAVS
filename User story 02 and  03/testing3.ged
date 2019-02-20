@@ -1,0 +1,29 @@
+0 HEAD
+1 SOUR Family Echo
+2 WWW http://www.familyecho.com/
+0 @I1@ INDI
+1 NAME Allan /Shivji/
+1 SEX M
+1 BIRT
+2 DATE 22 NOV 1991
+1 FAMC @F1@
+0 @I2@ INDI
+1 NAME Michael /Shivji/
+1 SEX M
+1 BIRT
+2 DATE 12 MAR 1962
+1 FAMS @F1@
+0 @I3@ INDI
+1 NAME Rita /Shivji/
+1 SEX F
+1 BIRT
+2 DATE 6 JUL 1970
+1 FAMS @F1@
+0 @F1@ FAM
+1 HUSB @I2@
+1 WIFE @I3@
+1 CHIL @I1@
+1 MARR
+2 DATE 15 JAN 19
+1 _CURRENT Y
+0 TRLR
