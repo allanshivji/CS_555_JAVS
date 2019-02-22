@@ -4,8 +4,6 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 import java.util.Map.Entry;
 
 public class MultiIndividualFamilyData {
@@ -13,14 +11,12 @@ public class MultiIndividualFamilyData {
 	
 	//Vidya Maiya: Sprint01 : US05: Marriage before death
 	public static ArrayList<ErrorData> US05_Marriage_Before_Death(FamilyTreeParser Ftp) {
-		String husbandId = null;
-		String wifeId = null;
-		LocalDate marriageDate;
+
 		for (Family familyRecord : Ftp.familyList) {
 			if (familyRecord.getMarriageDate() != null) {
-				marriageDate = familyRecord.getMarriageDate();
-				husbandId = familyRecord.getHusbandId();
-				wifeId = familyRecord.getWifeId();
+				LocalDate marriageDate = familyRecord.getMarriageDate();
+				String husbandId = familyRecord.getHusbandId();
+				String wifeId = familyRecord.getWifeId();
 				String[] famIds = { husbandId, wifeId };
 				for (String id : famIds) {
 					if (id != null && Ftp.individualMap.get(id).getDeathDate() != null
