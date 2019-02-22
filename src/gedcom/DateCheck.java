@@ -230,4 +230,47 @@ public class DateCheck {
 		}
 		
 	}
+	@Test
+	public void checkbigamybro() throws Exception {
+		Individual individual = new Individual();
+		individual.setId("I900");
+		individual.setBirthDate("12 APR 2001");
+		testIndividualMap.put("I900",individual);
+		
+		individual = new Individual();
+		individual.setId("I901");
+		individual.setBirthDate("12 APR 2011");
+		testIndividualMap.put("I901",individual);
+		
+		individual = new Individual();
+		individual.setId("I902");
+		individual.setBirthDate("12 APR 2011");
+		testIndividualMap.put("I902",individual);
+		
+		Family family = new Family();
+		family.setId("F901");
+		family.setHusbandId("I900");
+		family.setWifeId("I901");
+		family.setMarriageDate("25 DEC 2016");
+		family.setDivorceDate("25 DEC 2018");
+		testFamilyList.add(family);
+		
+		Family family1 = new Family();
+		family1.setId("F902");
+		family1.setHusbandId("I900");
+		family1.setWifeId("I902");
+		family1.setMarriageDate("25 DEC 2017");
+		testFamilyList.add(family1);
+		
+		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
+		ArrayList<ErrorData> recordError = MultiIndividualFamilyData.checkBigamy(Ftp);
+		ErrorData error = new ErrorData();
+		error.setIndividualId("I900");
+		error.setErrorDetails("I900 has married without seperation from previous spouse");
+		for(int i=0;i<recordError.size();i++) {
+			System.out.println(recordError.get(i).getErrorDetails());
+		}
+		assertEquals(error.getErrorDetails(),recordError.get(0).getErrorDetails());
+		
+	}
 }

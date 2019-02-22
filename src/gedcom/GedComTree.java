@@ -48,8 +48,9 @@ public class GedComTree
 		ArrayList<ErrorData> allErrors = new ArrayList<ErrorData>();
 		//Adding list of ERROR records to allErrors from US05 class
 		allErrors.addAll(MultiIndividualFamilyData.US_Marriage_Before_Death(Ftp));
-		//Shreesh Chavan: Sprint1 US01 valid date------------------------------------------------
+		//Shreesh Chavan: Sprint1 US01 valid date and US11 check bigamy--------------------------
 		allErrors.addAll(MultiIndividualFamilyData.testCheckDatesBeforeCurrentDate(Ftp));
+		allErrors.addAll(MultiIndividualFamilyData.checkBigamy(Ftp));
 		//---------------------------------------------------------------------------------------
 		for(int i=0;i<MultiIndividualFamilyData.errorList.size();i++) {
 			ErrorData error = MultiIndividualFamilyData.errorList.get(i);
