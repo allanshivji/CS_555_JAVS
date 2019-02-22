@@ -5,9 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.junit.*;
-import org.junit.runners.MethodSorters;
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestUS05MarriageBeforeDeath {
 	HashMap<String,Individual> testIndividualMap;
 	ArrayList<Family> testFamilyList;
@@ -72,12 +70,12 @@ public class TestUS05MarriageBeforeDeath {
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I400");
 		error.setErrorDetails("MarriageDate 2001-12-25 for I400 is after the death date 1998-03-12");
-		assertEquals(error.getErrorDetails(),recordError.get(1).getErrorDetails());
+		assertEquals(error.getErrorDetails(),recordError.get(0).getErrorDetails());
 		
 		error = new ErrorData();
 		error.setIndividualId("I401");
 		error.setErrorDetails("MarriageDate 2001-12-25 for I401 is after the death date 1999-11-22");
-		assertEquals(error.getErrorDetails(),recordError.get(2).getErrorDetails());
+		assertEquals(error.getErrorDetails(),recordError.get(1).getErrorDetails());
 		
 	}
 	
@@ -107,7 +105,7 @@ public class TestUS05MarriageBeforeDeath {
 		error.setIndividualId("I201");
 		error.setErrorDetails("MarriageDate 2006-12-25 for I201 is after the death date 2001-04-12");
 		
-		assertEquals(error.getErrorDetails(),recordError.get(3).getErrorDetails());
+		assertEquals(error.getErrorDetails(),recordError.get(0).getErrorDetails());
 	}
 
 	@Test
@@ -131,10 +129,8 @@ public class TestUS05MarriageBeforeDeath {
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
 		ArrayList<ErrorData> recordError = MultiIndividualFamilyData.US05_Marriage_Before_Death(Ftp);
-		for(ErrorData record : recordError) {
-			assertNotEquals("I300", record.getIndividualId());
-			assertNotEquals("I301", record.getIndividualId());
-		}
+
+		assertTrue(recordError.size()==0);
 	}
 	
 	@Test
@@ -157,9 +153,7 @@ public class TestUS05MarriageBeforeDeath {
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
 		ArrayList<ErrorData> recordError = MultiIndividualFamilyData.US05_Marriage_Before_Death(Ftp);
-		for(ErrorData record : recordError) {
-			assertNotEquals("I500", record.getIndividualId());
-			assertNotEquals("I501", record.getIndividualId());
-		}
+
+		assertTrue(recordError.size()==0);
 	}
 }

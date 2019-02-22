@@ -7,10 +7,11 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 
 public class MultiIndividualFamilyData {
-	public static ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
 	
 	//Vidya Maiya: Sprint01 : US05: Marriage before death
 	public static ArrayList<ErrorData> US05_Marriage_Before_Death(FamilyTreeParser Ftp) {
+		
+		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
 
 		for (Family familyRecord : Ftp.familyList) {
 			if (familyRecord.getMarriageDate() != null) {
@@ -38,6 +39,8 @@ public class MultiIndividualFamilyData {
 
 	//Vidya Maiya: Sprint01: US08: Birth Before Marriage of Parents
 	public static ArrayList<ErrorData> US08_Birth_Before_Marriage_Of_Parents(FamilyTreeParser Ftp) {
+		
+		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
 		
 		for(Family family : Ftp.familyList) {
 			LocalDate marriageDate = family.getMarriageDate();
@@ -70,6 +73,7 @@ public class MultiIndividualFamilyData {
 	}
 	// Shreesh Chavan: Sprint1 US01 valid date
 	public static ArrayList<ErrorData> testCheckDatesBeforeCurrentDate(FamilyTreeParser ftp) throws ParseException {
+		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
 		LocalDate marriageDate;
 		String husbandId;
 		String wifeId;
@@ -132,10 +136,13 @@ public class MultiIndividualFamilyData {
 		}
 		return errorList;
 	}
+	
+	
 	// Shreesh Chavan: Sprint1 US11 check bigamy
-	public static ArrayList<Family> fam = new ArrayList<Family>();
-	public static ArrayList<Family> faultyfam = new ArrayList<Family>();
 	public static ArrayList<ErrorData> checkBigamy(FamilyTreeParser ftp) {
+		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
+		ArrayList<Family> fam = new ArrayList<Family>();
+		ArrayList<Family> faultyfam = new ArrayList<Family>();
 		boolean flag;
 		fam.add(ftp.familyList.get(0));
 		for (Family familyRecord : ftp.familyList.subList(1, ftp.familyList.size())) {

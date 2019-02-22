@@ -55,8 +55,8 @@ public class GedComTree
 		allErrors.addAll(MultiIndividualFamilyData.checkBigamy(Ftp));
 		allErrors.addAll(MultiIndividualFamilyData.US08_Birth_Before_Marriage_Of_Parents(Ftp));
 		//---------------------------------------------------------------------------------------//
-		for(int i=0;i<MultiIndividualFamilyData.errorList.size();i++) {
-			ErrorData error = MultiIndividualFamilyData.errorList.get(i);
+		for(int i=0;i<allErrors.size();i++) {
+			ErrorData error = allErrors.get(i);
 			System.out.println(error.getErrorType()+":"+error.getRecordType()+":"+error.getUserStroyNumber()+":"+error.getIndividualId()+":"+error.getErrorDetails());
 		}
 	}
