@@ -44,14 +44,17 @@ public class GedComTree
 	}
 
 	private static void printErrorDetails(FamilyTreeParser Ftp) throws ParseException {
-		//The arralyist allErrors contains list of all ERROR records 
+		
+		//The arralyist allErrors contains list of all ERROR records if present in gedcom test input file.
+		
 		ArrayList<ErrorData> allErrors = new ArrayList<ErrorData>();
-		//Adding list of ERROR records to allErrors from US05 class
-		allErrors.addAll(MultiIndividualFamilyData.US_Marriage_Before_Death(Ftp));
-		//Shreesh Chavan: Sprint1 US01 valid date and US11 check bigamy--------------------------
+		
+		// --------------------------------Sprint01-----------------------------------------------//
+		allErrors.addAll(MultiIndividualFamilyData.US05_Marriage_Before_Death(Ftp));
 		allErrors.addAll(MultiIndividualFamilyData.testCheckDatesBeforeCurrentDate(Ftp));
 		allErrors.addAll(MultiIndividualFamilyData.checkBigamy(Ftp));
-		//---------------------------------------------------------------------------------------
+		allErrors.addAll(MultiIndividualFamilyData.US08_Birth_Before_Marriage_Of_Parents(Ftp));
+		//---------------------------------------------------------------------------------------//
 		for(int i=0;i<MultiIndividualFamilyData.errorList.size();i++) {
 			ErrorData error = MultiIndividualFamilyData.errorList.get(i);
 			System.out.println(error.getErrorType()+":"+error.getRecordType()+":"+error.getUserStroyNumber()+":"+error.getIndividualId()+":"+error.getErrorDetails());

@@ -10,8 +10,9 @@ import java.util.Map.Entry;
 
 public class MultiIndividualFamilyData {
 	public static ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
-
-	public static ArrayList<ErrorData> US_Marriage_Before_Death(FamilyTreeParser Ftp) {
+	
+	//Vidya Maiya: Sprint01 : US05: Marriage before death
+	public static ArrayList<ErrorData> US05_Marriage_Before_Death(FamilyTreeParser Ftp) {
 		String husbandId = null;
 		String wifeId = null;
 		LocalDate marriageDate;
@@ -39,6 +40,38 @@ public class MultiIndividualFamilyData {
 		return errorList;
 	}
 
+	//Vidya Maiya: Sprint01: US08: Birth Before Marriage of Parents
+	public static ArrayList<ErrorData> US08_Birth_Before_Marriage_Of_Parents(FamilyTreeParser Ftp) {
+		
+		for(Family family : Ftp.familyList) {
+			LocalDate marriageDate = family.getMarriageDate();
+			LocalDate divorcedDate = family.getDivorcedDate();
+			ArrayList<String> childrenList = family.getChildId();
+			
+			for(String childId: childrenList) {
+				LocalDate birthDate = Ftp.individualMap.get(childId).getBirthDate();
+				if(birthDate!=null && marriageDate!= null && birthDate.isBefore(marriageDate)) {
+					ErrorData error = new ErrorData();
+					error.setErrorType("ERROR");
+					error.setRecordType("FAMILY");
+					error.setUserStoryNumber("US08");
+					error.setIndividualId(childId);
+					error.setErrorDetails("The child "+childId+" having birth date "+birthDate+" was born before the marriage date "+marriageDate+" of parents");
+					errorList.add(error);
+				}
+				if(birthDate!=null && divorcedDate!=null && birthDate.isAfter(divorcedDate.plusMonths(9))) {
+					ErrorData error = new ErrorData();
+					error.setErrorType("ERROR");
+					error.setRecordType("FAMILY");
+					error.setUserStoryNumber("US08");
+					error.setIndividualId(childId);
+					error.setErrorDetails("The child "+childId+" having birth date "+birthDate+" was born 9 months after the divorce date "+divorcedDate+" of parents");
+					errorList.add(error);
+				}
+			}
+		}
+		return errorList;
+	}
 	// Shreesh Chavan: Sprint1 US01 valid date
 	public static ArrayList<ErrorData> testCheckDatesBeforeCurrentDate(FamilyTreeParser ftp) throws ParseException {
 		LocalDate marriageDate;
@@ -208,7 +241,7 @@ public class MultiIndividualFamilyData {
 
 				} else {
 					fam.add(familyRecord);
-					System.out.println(fam.size());
+					//System.out.println(fam.size());
 					counter++;
 					break;
 				}
