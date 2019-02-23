@@ -18,21 +18,30 @@ public class MultiIndividualFamilyData {
 				LocalDate marriageDate = familyRecord.getMarriageDate();
 				String husbandId = familyRecord.getHusbandId();
 				String wifeId = familyRecord.getWifeId();
-				String[] famIds = { husbandId, wifeId };
-				for (String id : famIds) {
-					if (id != null && Ftp.individualMap.get(id).getDeathDate() != null
-							&& marriageDate.isAfter(Ftp.individualMap.get(id).getDeathDate())) {
+				LocalDate husbandDeathDate = Ftp.individualMap.get(husbandId).getDeathDate();
+				LocalDate wifeDeathDate = Ftp.individualMap.get(wifeId).getDeathDate();
+				if(husbandId!=null && wifeDeathDate!=null && marriageDate.isAfter(wifeDeathDate)) {
 						ErrorData error = new ErrorData();
 						error.setErrorType("ERROR");
-						error.setRecordType("INDIVIDUAL");
-						error.setIndividualId(id);
+						error.setRecordType("FAMILY");
+						error.setIndividualId(husbandId);
 						error.setUserStoryNumber("US05");
-						error.setErrorDetails("MarriageDate " + marriageDate + " for " + id
-								+ " is after the death date " + Ftp.individualMap.get(id).getDeathDate());
+						error.setErrorDetails("MarriageDate " + marriageDate + " for " + husbandId
+								+ " is after his wife's ("+wifeId+") death date " + wifeDeathDate);
+						errorList.add(error);
+					}
+								
+				if(wifeId!=null && husbandDeathDate!=null && marriageDate.isAfter(husbandDeathDate)) {
+						ErrorData error = new ErrorData();
+						error.setErrorType("ERROR");
+						error.setRecordType("FAMILY");
+						error.setIndividualId(wifeId);
+						error.setUserStoryNumber("US05");
+						error.setErrorDetails("MarriageDate " + marriageDate + " for " + wifeId
+								+ " is after her husband's ("+husbandId+") death date " + husbandDeathDate);
 						errorList.add(error);
 					}
 				}
-			}
 		}
 		return errorList;
 	}

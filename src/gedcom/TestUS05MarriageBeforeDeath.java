@@ -20,12 +20,12 @@ public class TestUS05MarriageBeforeDeath {
 	public void testMarrigeAfterDeathforHusband() {
 		Individual individual = new Individual();
 		individual.setId("I100");
-		individual.setDeathDate("12 APR 2001");
+		individual.setDeathDate("12 APR 2019");
 		testIndividualMap.put("I100",individual);
 		
 		individual = new Individual();
 		individual.setId("I101");
-		individual.setDeathDate("12 APR 2011");
+		individual.setDeathDate("12 APR 2005");
 		testIndividualMap.put("I101",individual);
 		
 		Family family = new Family();
@@ -40,7 +40,7 @@ public class TestUS05MarriageBeforeDeath {
 		
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I100");
-		error.setErrorDetails("MarriageDate 2006-12-25 for I100 is after the death date 2001-04-12");
+		error.setErrorDetails("MarriageDate 2006-12-25 for I100 is after his wife's (I101) death date 2005-04-12");
 		
 		assertEquals(error.getErrorDetails(),recordError.get(0).getErrorDetails());
 	}
@@ -69,12 +69,12 @@ public class TestUS05MarriageBeforeDeath {
 		
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I400");
-		error.setErrorDetails("MarriageDate 2001-12-25 for I400 is after the death date 1998-03-12");
+		error.setErrorDetails("MarriageDate 2001-12-25 for I400 is after his wife's (I401) death date 1999-11-22");
 		assertEquals(error.getErrorDetails(),recordError.get(0).getErrorDetails());
 		
 		error = new ErrorData();
 		error.setIndividualId("I401");
-		error.setErrorDetails("MarriageDate 2001-12-25 for I401 is after the death date 1999-11-22");
+		error.setErrorDetails("MarriageDate 2001-12-25 for I401 is after her husband's (I400) death date 1998-03-12");
 		assertEquals(error.getErrorDetails(),recordError.get(1).getErrorDetails());
 		
 	}
@@ -83,12 +83,12 @@ public class TestUS05MarriageBeforeDeath {
 	public void testMarrigeAfterDeathforWife() {
 		Individual individual = new Individual();
 		individual.setId("I200");
-		individual.setDeathDate("12 APR 2011");
+		individual.setDeathDate("22 MAR 2005");
 		testIndividualMap.put("I200",individual);
 		
 		individual = new Individual();
 		individual.setId("I201");
-		individual.setDeathDate("12 APR 2001");
+		individual.setDeathDate("12 APR 2018");
 		testIndividualMap.put("I201",individual);
 		
 		Family family = new Family();
@@ -103,7 +103,7 @@ public class TestUS05MarriageBeforeDeath {
 		
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I201");
-		error.setErrorDetails("MarriageDate 2006-12-25 for I201 is after the death date 2001-04-12");
+		error.setErrorDetails("MarriageDate 2006-12-25 for I201 is after her husband's (I200) death date 2005-03-22");
 		
 		assertEquals(error.getErrorDetails(),recordError.get(0).getErrorDetails());
 	}
@@ -149,6 +149,29 @@ public class TestUS05MarriageBeforeDeath {
 		family.setHusbandId("I500");
 		family.setWifeId("I501");
 		family.setMarriageDate("25 FEB 1982");
+		testFamilyList.add(family);
+		
+		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
+		ArrayList<ErrorData> recordError = MultiIndividualFamilyData.US05_Marriage_Before_Death(Ftp);
+
+		assertTrue(recordError.size()==0);
+	}
+	
+	public void testMarrigeBeforeDeathWhenMarriageDateIsNull() {
+		Individual individual = new Individual();
+		individual.setId("I600");
+		individual.setDeathDate("18 JUN 1980");
+		testIndividualMap.put("I600",individual);
+		
+		individual = new Individual();
+		individual.setId("I601");
+		individual.setDeathDate("18 JAN 1990");
+		testIndividualMap.put("I501",individual);
+		
+		Family family = new Family();
+		family.setId("F600");
+		family.setHusbandId("I600");
+		family.setWifeId("I601");
 		testFamilyList.add(family);
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
