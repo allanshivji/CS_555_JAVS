@@ -50,10 +50,18 @@ public class GedComTree
 		ArrayList<ErrorData> allErrors = new ArrayList<ErrorData>();
 		
 		// --------------------------------Sprint01-----------------------------------------------//
+		System.out.println();
 		allErrors.addAll(MultiIndividualFamilyData.US05_Marriage_Before_Death(Ftp));
+		
 		allErrors.addAll(MultiIndividualFamilyData.testCheckDatesBeforeCurrentDate(Ftp));
+		
 		allErrors.addAll(MultiIndividualFamilyData.checkBigamy(Ftp));
+		
 		allErrors.addAll(MultiIndividualFamilyData.US08_Birth_Before_Marriage_Of_Parents(Ftp));
+		
+		allErrors.addAll(MultiIndividualFamilyData.US03_check_Birth_Before_Death(Ftp));
+		
+		allErrors.addAll(MultiIndividualFamilyData.US02_check_Birth_Before_Marriage(Ftp));
 		//---------------------------------------------------------------------------------------//
 		for(int i=0;i<allErrors.size();i++) {
 			ErrorData error = allErrors.get(i);

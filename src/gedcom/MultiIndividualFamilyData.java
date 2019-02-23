@@ -7,10 +7,10 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 
 public class MultiIndividualFamilyData {
-	
-	//Vidya Maiya: Sprint01 : US05: Marriage before death
+
+	// Vidya Maiya: Sprint01 : US05: Marriage before death
 	public static ArrayList<ErrorData> US05_Marriage_Before_Death(FamilyTreeParser Ftp) {
-		
+
 		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
 
 		for (Family familyRecord : Ftp.familyList) {
@@ -18,68 +18,62 @@ public class MultiIndividualFamilyData {
 				LocalDate marriageDate = familyRecord.getMarriageDate();
 				String husbandId = familyRecord.getHusbandId();
 				String wifeId = familyRecord.getWifeId();
-				LocalDate husbandDeathDate = Ftp.individualMap.get(husbandId).getDeathDate();
-				LocalDate wifeDeathDate = Ftp.individualMap.get(wifeId).getDeathDate();
-				if(husbandId!=null && wifeDeathDate!=null && marriageDate.isAfter(wifeDeathDate)) {
+				String[] famIds = { husbandId, wifeId };
+				for (String id : famIds) {
+					if (id != null && Ftp.individualMap.get(id).getDeathDate() != null
+							&& marriageDate.isAfter(Ftp.individualMap.get(id).getDeathDate())) {
 						ErrorData error = new ErrorData();
 						error.setErrorType("ERROR");
-						error.setRecordType("FAMILY");
-						error.setIndividualId(husbandId);
-						error.setUserStoryNumber("US05");
-						error.setErrorDetails("MarriageDate " + marriageDate + " for " + husbandId
-								+ " is after his wife's ("+wifeId+") death date " + wifeDeathDate);
-						errorList.add(error);
-					}
-								
-				if(wifeId!=null && husbandDeathDate!=null && marriageDate.isAfter(husbandDeathDate)) {
-						ErrorData error = new ErrorData();
-						error.setErrorType("ERROR");
-						error.setRecordType("FAMILY");
-						error.setIndividualId(wifeId);
-						error.setUserStoryNumber("US05");
-						error.setErrorDetails("MarriageDate " + marriageDate + " for " + wifeId
-								+ " is after her husband's ("+husbandId+") death date " + husbandDeathDate);
+						error.setRecordType(" INDIVIDUAL");
+						error.setIndividualId(" "+id);
+						error.setUserStoryNumber(" US05");
+						error.setErrorDetails(" MarriageDate " + marriageDate + " of " + Ftp.individualMap.get(id).getName() + " (" +id
+								+ ") is after the death date " + Ftp.individualMap.get(id).getDeathDate());
 						errorList.add(error);
 					}
 				}
+			}
 		}
 		return errorList;
 	}
 
-	//Vidya Maiya: Sprint01: US08: Birth Before Marriage of Parents
+	// Vidya Maiya: Sprint01: US08: Birth Before Marriage of Parents
 	public static ArrayList<ErrorData> US08_Birth_Before_Marriage_Of_Parents(FamilyTreeParser Ftp) {
-		
+
 		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
-		
-		for(Family family : Ftp.familyList) {
+
+		for (Family family : Ftp.familyList) {
 			LocalDate marriageDate = family.getMarriageDate();
 			LocalDate divorcedDate = family.getDivorcedDate();
 			ArrayList<String> childrenList = family.getChildId();
-			
-			for(String childId: childrenList) {
+
+			for (String childId : childrenList) {
 				LocalDate birthDate = Ftp.individualMap.get(childId).getBirthDate();
-				if(birthDate!=null && marriageDate!= null && birthDate.isBefore(marriageDate)) {
+				if (birthDate != null && marriageDate != null && birthDate.isBefore(marriageDate)) {
 					ErrorData error = new ErrorData();
 					error.setErrorType("ERROR");
-					error.setRecordType("FAMILY");
-					error.setUserStoryNumber("US08");
-					error.setIndividualId(childId);
-					error.setErrorDetails("The child "+childId+" having birth date "+birthDate+" was born before the marriage date "+marriageDate+" of parents");
+					error.setRecordType(" FAMILY");
+					error.setUserStoryNumber(" US08");
+					error.setIndividualId(" "+childId);
+					error.setErrorDetails(" The child " + childId + " having birth date " + birthDate
+							+ " was born before the marriage date " + marriageDate + " of parents");
 					errorList.add(error);
 				}
-				if(birthDate!=null && divorcedDate!=null && birthDate.isAfter(divorcedDate.plusMonths(9))) {
+				if (birthDate != null && divorcedDate != null && birthDate.isAfter(divorcedDate.plusMonths(9))) {
 					ErrorData error = new ErrorData();
 					error.setErrorType("ERROR");
-					error.setRecordType("FAMILY");
-					error.setUserStoryNumber("US08");
-					error.setIndividualId(childId);
-					error.setErrorDetails("The child "+childId+" having birth date "+birthDate+" was born 9 months after the divorce date "+divorcedDate+" of parents");
+					error.setRecordType(" FAMILY");
+					error.setUserStoryNumber(" US08");
+					error.setIndividualId(" "+childId);
+					error.setErrorDetails(" The child " + childId + " having birth date " + birthDate
+							+ " was born 9 months after the divorce date " + divorcedDate + " of parents");
 					errorList.add(error);
 				}
 			}
 		}
 		return errorList;
 	}
+
 	// Shreesh Chavan: Sprint1 US01 valid date
 	public static ArrayList<ErrorData> testCheckDatesBeforeCurrentDate(FamilyTreeParser ftp) throws ParseException {
 		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
@@ -145,8 +139,7 @@ public class MultiIndividualFamilyData {
 		}
 		return errorList;
 	}
-	
-	
+
 	// Shreesh Chavan: Sprint1 US11 check bigamy
 	public static ArrayList<ErrorData> checkBigamy(FamilyTreeParser ftp) {
 		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
@@ -194,13 +187,14 @@ public class MultiIndividualFamilyData {
 						flag = true;
 						faultyfam.add(familyRecord);
 					}
-					if(flag) {
+					if (flag) {
 						ErrorData error = new ErrorData();
 						error.setErrorType("ERROR");
 						error.setRecordType("INDIVIDUAL");
 						error.setIndividualId(familyRecord.getHusbandId());
 						error.setUserStoryNumber("US11");
-						error.setErrorDetails(familyRecord.getHusbandId() + " has married without seperation from previous spouse");
+						error.setErrorDetails(
+								familyRecord.getHusbandId() + " has married without seperation from previous spouse");
 						errorList.add(error);
 					}
 
@@ -218,7 +212,7 @@ public class MultiIndividualFamilyData {
 							faultyfam.add(famrec);
 							counter++;
 							break;
-							
+
 						}
 					} else if (ftp.individualMap.get(familyRecord.getHusbandId()).getDeathDate() != null) {
 						if (ftp.individualMap.get(familyRecord.getHusbandId()).getDeathDate()
@@ -241,26 +235,104 @@ public class MultiIndividualFamilyData {
 						flag = true;
 						faultyfam.add(familyRecord);
 					}
-					if(flag) {
+					if (flag) {
 						ErrorData error = new ErrorData();
 						error.setErrorType("ERROR");
 						error.setRecordType("INDIVIDUAL");
 						error.setIndividualId(familyRecord.getWifeId());
 						error.setUserStoryNumber("US11");
-						error.setErrorDetails(familyRecord.getWifeId() + " has married without seperation from previous spouse");
+						error.setErrorDetails(
+								familyRecord.getWifeId() + " has married without seperation from previous spouse");
 						errorList.add(error);
 					}
 
 				} else {
 					fam.add(familyRecord);
-					//System.out.println(fam.size());
+					// System.out.println(fam.size());
 					counter++;
 					break;
 				}
-				
+
 			}
 //			fam.add(familyRecord);
 		}
 		return errorList;
 	}
+
+	
+	
+	// Allan: Sprint 1 US03 - Birth before Death date
+
+	public static ArrayList<ErrorData> US03_check_Birth_Before_Death(FamilyTreeParser Ftp) {
+		
+		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
+		
+		HashMap<String, Individual> individualDetails = Ftp.individualMap;
+		
+		for(Entry<String, Individual> entry : individualDetails.entrySet()) {
+			
+			if(entry.getValue().getDeathDate() != null) {
+				
+				if(entry.getValue().getBirthDate().isAfter(entry.getValue().getDeathDate())) {
+					
+					ErrorData error = new ErrorData();
+							
+							error.setErrorType("ERROR");
+							error.setRecordType(" Individual");
+							error.setIndividualId(" "+entry.getValue().getId());
+							error.setUserStoryNumber(" US03");
+							error.setErrorDetails(" Birthdate " + entry.getValue().getBirthDate() + " of " + entry.getValue().getName() + " (" + entry.getValue().getId() + ") is after Death Date "+entry.getValue().getDeathDate());
+							errorList.add(error);	
+				}	
+			}	
+		}
+		return errorList;
+	}
+	
+	
+	// Allan: Sprint 1 US02 - Birth before Marriage date
+	
+	public static ArrayList<ErrorData> US02_check_Birth_Before_Marriage(FamilyTreeParser Ftp){
+		
+		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
+		
+		HashMap<String, Individual> individualDetails = Ftp.individualMap;
+		
+		for (Family familyRecord : Ftp.familyList) {
+			
+			if(familyRecord.getMarriageDate() != null) {
+				
+				LocalDate marriagedate = familyRecord.getMarriageDate();
+				String husbId = familyRecord.getHusbandId();
+				String wifeId = familyRecord.getWifeId();
+				
+				String[] famId = {husbId, wifeId};
+				
+				for(String id: famId) {
+					
+					if(id != null && marriagedate != null && Ftp.individualMap.get(id).getBirthDate().isAfter(marriagedate)) {
+						
+						ErrorData error = new ErrorData();
+						
+						error.setErrorType("ERROR");
+						error.setRecordType(" INDIVIDUAL");
+						error.setIndividualId(" "+id);
+						error.setUserStoryNumber(" US02");
+						error.setErrorDetails(" MarriageDate " + marriagedate + " of " + Ftp.individualMap.get(id).getName() + " (" + id
+								+ ") is after the Birth date " + Ftp.individualMap.get(id).getBirthDate());
+						errorList.add(error);
+					}
+					
+				}
+				
+			}
+			
+		}
+	
+		return errorList;
+	}
 }
+
+
+
+
