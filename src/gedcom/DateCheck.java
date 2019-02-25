@@ -58,7 +58,7 @@ public class DateCheck {
 		error.setIndividualId("I200");
 		error.setErrorDetails("DeathDate 2020-04-12 for I200 is after today's date.");
 //		System.out.println(recordError.get(1).getErrorDetails());
-		assertEquals(error.getErrorDetails(),recordError.get(1).getErrorDetails());
+		assertEquals(error.getErrorDetails(),recordError.get(0).getErrorDetails());
 	}
 	@Test
 	public void testCheckMarriageDateAfterCurrentDate() throws Exception {
@@ -86,12 +86,12 @@ public class DateCheck {
 		error.setIndividualId("I300");
 		error.setErrorDetails("MarriageDate 2096-12-25 for I300 is after today's date.");
 //		System.out.println(recordError.get(4).getErrorDetails());
-		assertEquals(error.getErrorDetails(),recordError.get(4).getErrorDetails());		
+		assertEquals(error.getErrorDetails(),recordError.get(0).getErrorDetails());		
 		error = new ErrorData();
 		error.setIndividualId("I301");
 		error.setErrorDetails("MarriageDate 2096-12-25 for I301 is after today's date.");
 //		System.out.println(recordError.get(5).getErrorDetails());
-		assertEquals(error.getErrorDetails(),recordError.get(5).getErrorDetails());
+		assertEquals(error.getErrorDetails(),recordError.get(1).getErrorDetails());
 	}
 	@Test
 	public void testCheckDivorceDateAfterCurrentDate() throws Exception {
@@ -120,11 +120,11 @@ public class DateCheck {
 		error.setIndividualId("I400");
 		error.setErrorDetails("DivorceDate 2019-12-25 for I400 is after today's date.");
 //		System.out.println(recordError.get(2).getErrorDetails());
-		assertEquals(error.getErrorDetails(),recordError.get(2).getErrorDetails());
+		assertEquals(error.getErrorDetails(),recordError.get(0).getErrorDetails());
 		error.setIndividualId("I401");
 		error.setErrorDetails("DivorceDate 2019-12-25 for I401 is after today's date.");
 //		System.out.println(recordError.get(3).getErrorDetails());
-		assertEquals(error.getErrorDetails(),recordError.get(3).getErrorDetails());
+		assertEquals(error.getErrorDetails(),recordError.get(1).getErrorDetails());
 	}
 	@Test
 	public void testCheckBirthDatesBeforeCurrentDate() throws Exception {
@@ -266,7 +266,7 @@ public class DateCheck {
 		ArrayList<ErrorData> recordError = MultiIndividualFamilyData.checkBigamy(Ftp);
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I900");
-		error.setErrorDetails("I900 has married without seperation from previous spouse");
+		error.setErrorDetails("I900 has married without seperation from previous spouse.");
 		for(int i=0;i<recordError.size();i++) {
 			System.out.println(recordError.get(i).getErrorDetails());
 		}
