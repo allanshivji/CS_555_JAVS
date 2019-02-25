@@ -324,14 +324,10 @@ public class MultiIndividualFamilyData {
 						error.setErrorDetails(" MarriageDate " + marriagedate + " of " + Ftp.individualMap.get(id).getName() + " (" + id
 								+ ") is after Birth date " + Ftp.individualMap.get(id).getBirthDate());
 						errorList.add(error);
-					}
-					
-				}
-				
+					}	
+				}	
 			}
-			
 		}
-	
 		return errorList;
 	}
 }

@@ -35,8 +35,6 @@ public class TestUS02_US03Test {
 		error.setErrorDetails("Birthdate 1995-11-22 of Jony /Doe/ (I0022) is after Death Date 1994-11-21");
 		
 		assertEquals(error.getErrorDetails(),recordError.get(0).getErrorDetails());
-
-
 	}
 
 	 //Allan: US02 - Birth Before Marriage Test case
@@ -103,7 +101,6 @@ public class TestUS02_US03Test {
 		error.setErrorDetails(" MarriageDate 1969-10-12 of Nikki /Smiths/ (I1110) is after Birth date 1970-03-11");
 
 		assertEquals(error.getErrorDetails(),recordError.get(0).getErrorDetails());
-		
 	}
 	
 	@Test
@@ -130,7 +127,6 @@ public class TestUS02_US03Test {
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
 		ArrayList<ErrorData> recordError = MultiIndividualFamilyData.US02_check_Birth_Before_Marriage(Ftp);
-		assertTrue(recordError.size()!=0);
-		
+		assertTrue(recordError.size()!=0);	
 	}
 }
