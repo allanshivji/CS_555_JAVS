@@ -322,7 +322,7 @@ public class MultiIndividualFamilyData {
 						error.setIndividualId(" "+id);
 						error.setUserStoryNumber(" US02");
 						error.setErrorDetails(" MarriageDate " + marriagedate + " of " + Ftp.individualMap.get(id).getName() + " (" + id
-								+ ") is after the Birth date " + Ftp.individualMap.get(id).getBirthDate());
+								+ ") is after Birth date " + Ftp.individualMap.get(id).getBirthDate());
 						errorList.add(error);
 					}
 					
