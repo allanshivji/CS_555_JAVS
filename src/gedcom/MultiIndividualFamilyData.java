@@ -154,33 +154,33 @@ public class MultiIndividualFamilyData {
 		boolean flag;
 		fam.add(ftp.familyList.get(0));
 		for (Family familyRecord : ftp.familyList.subList(1, ftp.familyList.size())) {
-			int counter = 1;
-			for (Family famrec : fam) {
-				flag = false;
-				if (familyRecord.getHusbandId() == famrec.getHusbandId()) {
+            int counter = 1;
+            fam.add(familyRecord);
+            counter++;
+			for (Family famrec : fam.subList(0, fam.size()-1)) {
+                flag = false;
+				if (familyRecord.getHusbandId().equals(famrec.getHusbandId())) {
+					
 					if (famrec.getDivorcedDate() != null) {
+						
 						if (famrec.getDivorcedDate().compareTo(familyRecord.getMarriageDate()) > 0) {
 							flag = true;
 							faultyfam.add(familyRecord);
 						}
 					} else if (familyRecord.getDivorcedDate() != null) {
-						if (familyRecord.getDivorcedDate().compareTo(famrec.getMarriageDate()) > 0) {
+						
+						if (familyRecord.getDivorcedDate().compareTo(famrec.getMarriageDate()) > 0) {		
 							flag = true;
-							fam.remove(counter);
-							fam.add(familyRecord);
 							faultyfam.add(famrec);
 							counter++;
-							break;
 						}
 					} else if (ftp.individualMap.get(familyRecord.getWifeId()).getDeathDate() != null) {
 						if (ftp.individualMap.get(familyRecord.getWifeId()).getDeathDate()
 								.compareTo(famrec.getMarriageDate()) > 0) {
 							flag = true;
-							fam.remove(counter);
-							fam.add(familyRecord);
 							faultyfam.add(famrec);
 							counter++;
-							break;
+//							break;
 						}
 
 					} else if (ftp.individualMap.get(famrec.getWifeId()).getDeathDate() != null) {
@@ -200,11 +200,11 @@ public class MultiIndividualFamilyData {
 						error.setIndividualId(familyRecord.getHusbandId());
 						error.setUserStoryNumber("US11");
 						error.setErrorDetails(
-								familyRecord.getHusbandId() + " has married without seperation from previous spouse");
+								familyRecord.getHusbandId() + " has married without seperation from previous spouse.");
 						errorList.add(error);
 					}
 
-				} else if (familyRecord.getWifeId() == famrec.getWifeId()) {
+				} else if (familyRecord.getWifeId().equals(famrec.getWifeId())) {
 					if (famrec.getDivorcedDate() != null) {
 						if (famrec.getDivorcedDate().compareTo(familyRecord.getMarriageDate()) > 0) {
 							flag = true;
@@ -213,8 +213,6 @@ public class MultiIndividualFamilyData {
 					} else if (familyRecord.getDivorcedDate() != null) {
 						if (familyRecord.getDivorcedDate().compareTo(famrec.getMarriageDate()) > 0) {
 							flag = true;
-							fam.remove(counter);
-							fam.add(familyRecord);
 							faultyfam.add(famrec);
 							counter++;
 							break;
@@ -224,8 +222,6 @@ public class MultiIndividualFamilyData {
 						if (ftp.individualMap.get(familyRecord.getHusbandId()).getDeathDate()
 								.compareTo(famrec.getMarriageDate()) > 0) {
 							flag = true;
-							fam.remove(counter);
-							fam.add(familyRecord);
 							faultyfam.add(famrec);
 							counter++;
 							break;
@@ -248,18 +244,19 @@ public class MultiIndividualFamilyData {
 						error.setIndividualId(familyRecord.getWifeId());
 						error.setUserStoryNumber("US11");
 						error.setErrorDetails(
-								familyRecord.getWifeId() + " has married without seperation from previous spouse");
+								familyRecord.getWifeId() + " has married without seperation from previous spouse.");
 						errorList.add(error);
 					}
 
 				} else {
-					fam.add(familyRecord);
-					// System.out.println(fam.size());
-					counter++;
-					break;
+//					if(fam.get(fam.size()-1).getId()!=familyRecord.getId())
+//					fam.add(familyRecord);
+//					 System.out.println(familyRecord.getId());
+					
+//					break;
 				}
 
-			}
+            }
 //			fam.add(familyRecord);
 		}
 		return errorList;
