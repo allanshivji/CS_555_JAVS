@@ -23,19 +23,19 @@ public class MultiIndividualFamilyData {
 				if(husbandId!=null && wifeDeathDate!=null && marriageDate.isAfter(wifeDeathDate)) {
 						ErrorData error = new ErrorData();
 						error.setErrorType("ERROR");
-						error.setRecordType(" FAMILY");
-						error.setIndividualId(" "+husbandId);
-						error.setUserStoryNumber(" US05");
-						error.setErrorDetails(" MarriageDate " + marriageDate + " for " + husbandId+ " is after his wife's ("+wifeId+") death date " + wifeDeathDate);
+						error.setRecordType("FAMILY");
+						error.setIndividualId(husbandId);
+						error.setUserStoryNumber("US05");
+						error.setErrorDetails("MarriageDate " + marriageDate + " for " + husbandId+ " is after his wife's ("+wifeId+") death date " + wifeDeathDate);
 						errorList.add(error);
 				}
 				if(wifeId!=null && husbandDeathDate!=null && marriageDate.isAfter(husbandDeathDate)) {
 					ErrorData error = new ErrorData();
 					error.setErrorType("ERROR");
-					error.setRecordType(" FAMILY");
-					error.setIndividualId(" "+wifeId);
-					error.setUserStoryNumber(" US05");
-					error.setErrorDetails(" MarriageDate " + marriageDate + " for " + wifeId+ " is after her husband's ("+husbandId+") death date " + husbandDeathDate);
+					error.setRecordType("FAMILY");
+					error.setIndividualId(wifeId);
+					error.setUserStoryNumber("US05");
+					error.setErrorDetails("MarriageDate " + marriageDate + " for " + wifeId+ " is after her husband's ("+husbandId+") death date " + husbandDeathDate);
 					errorList.add(error);
 				}
 			}
@@ -58,20 +58,20 @@ public class MultiIndividualFamilyData {
 				if (birthDate != null && marriageDate != null && birthDate.isBefore(marriageDate)) {
 					ErrorData error = new ErrorData();
 					error.setErrorType("ERROR");
-					error.setRecordType(" FAMILY");
-					error.setUserStoryNumber(" US08");
-					error.setIndividualId(" "+childId);
-					error.setErrorDetails(" The child " + childId + " having birth date " + birthDate
+					error.setRecordType("FAMILY");
+					error.setUserStoryNumber("US08");
+					error.setIndividualId(childId);
+					error.setErrorDetails("The child " + childId + " having birth date " + birthDate
 							+ " was born before the marriage date " + marriageDate + " of parents");
 					errorList.add(error);
 				}
 				if (birthDate != null && divorcedDate != null && birthDate.isAfter(divorcedDate.plusMonths(9))) {
 					ErrorData error = new ErrorData();
 					error.setErrorType("ERROR");
-					error.setRecordType(" FAMILY");
-					error.setUserStoryNumber(" US08");
-					error.setIndividualId(" "+childId);
-					error.setErrorDetails(" The child " + childId + " having birth date " + birthDate
+					error.setRecordType("FAMILY");
+					error.setUserStoryNumber("US08");
+					error.setIndividualId(childId);
+					error.setErrorDetails("The child " + childId + " having birth date " + birthDate
 							+ " was born 9 months after the divorce date " + divorcedDate + " of parents");
 					errorList.add(error);
 				}
@@ -281,10 +281,10 @@ public class MultiIndividualFamilyData {
 					ErrorData error = new ErrorData();
 							
 							error.setErrorType("ERROR");
-							error.setRecordType(" Individual");
-							error.setIndividualId(" "+entry.getValue().getId());
-							error.setUserStoryNumber(" US03");
-							error.setErrorDetails(" Birthdate " + entry.getValue().getBirthDate() + " of " + entry.getValue().getName() + " (" + entry.getValue().getId() + ") is after Death Date "+entry.getValue().getDeathDate());
+							error.setRecordType("INDIVIDUAL");
+							error.setIndividualId(entry.getValue().getId());
+							error.setUserStoryNumber("US03");
+							error.setErrorDetails("Birthdate " + entry.getValue().getBirthDate() + " of " + entry.getValue().getName() + " (" + entry.getValue().getId() + ") is after Death Date "+entry.getValue().getDeathDate());
 							errorList.add(error);	
 				}	
 			}	

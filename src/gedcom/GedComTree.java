@@ -65,7 +65,7 @@ public class GedComTree
 		//---------------------------------------------------------------------------------------//
 		for(int i=0;i<allErrors.size();i++) {
 			ErrorData error = allErrors.get(i);
-			System.out.println(error.getErrorType()+":"+error.getRecordType()+":"+error.getUserStroyNumber()+":"+error.getIndividualId()+":"+error.getErrorDetails());
+			System.out.println(error.getErrorType()+" : "+error.getRecordType()+" : "+error.getUserStroyNumber()+" : "+error.getIndividualId()+" : "+error.getErrorDetails());
 		}
 	}
 	public static void main(String[] args) throws IOException, ParseException
