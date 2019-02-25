@@ -267,9 +267,46 @@ public class DateCheck {
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I900");
 		error.setErrorDetails("I900 has married without seperation from previous spouse.");
-		for(int i=0;i<recordError.size();i++) {
-			System.out.println(recordError.get(i).getErrorDetails());
-		}
+		assertEquals(error.getErrorDetails(),recordError.get(0).getErrorDetails());
+		
+	}
+
+	public void checkbigamybeforedeath() throws Exception {
+		Individual individual = new Individual();
+		individual.setId("I1000");
+		individual.setBirthDate("12 APR 2001");
+		testIndividualMap.put("I1000",individual);
+		
+		individual = new Individual();
+		individual.setId("I1001");
+		individual.setBirthDate("12 APR 2011");
+		individual.setDeathDate("25 DEC 2018");
+		testIndividualMap.put("I1001",individual);
+		
+		individual = new Individual();
+		individual.setId("I1002");
+		individual.setBirthDate("12 APR 2011");
+		testIndividualMap.put("I1002",individual);
+		
+		Family family = new Family();
+		family.setId("F1001");
+		family.setHusbandId("I1000");
+		family.setWifeId("I1001");
+		family.setMarriageDate("25 DEC 2016");
+		testFamilyList.add(family);
+		
+		Family family1 = new Family();
+		family1.setId("F1002");
+		family1.setHusbandId("I1000");
+		family1.setWifeId("I1002");
+		family1.setMarriageDate("25 DEC 2017");
+		testFamilyList.add(family1);
+		
+		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
+		ArrayList<ErrorData> recordError = MultiIndividualFamilyData.checkBigamy(Ftp);
+		ErrorData error = new ErrorData();
+		error.setIndividualId("I1000");
+		error.setErrorDetails("I1000 has married without seperation from previous spouse.");
 		assertEquals(error.getErrorDetails(),recordError.get(0).getErrorDetails());
 		
 	}
