@@ -318,10 +318,10 @@ public class MultiIndividualFamilyData {
 						ErrorData error = new ErrorData();
 						
 						error.setErrorType("ERROR");
-						error.setRecordType(" INDIVIDUAL");
-						error.setIndividualId(" "+id);
-						error.setUserStoryNumber(" US02");
-						error.setErrorDetails(" MarriageDate " + marriagedate + " of " + Ftp.individualMap.get(id).getName() + " (" + id
+						error.setRecordType("INDIVIDUAL");
+						error.setIndividualId(id);
+						error.setUserStoryNumber("US02");
+						error.setErrorDetails("MarriageDate " + marriagedate + " of " + Ftp.individualMap.get(id).getName() + " (" + id
 								+ ") is after Birth date " + Ftp.individualMap.get(id).getBirthDate());
 						errorList.add(error);
 					}	

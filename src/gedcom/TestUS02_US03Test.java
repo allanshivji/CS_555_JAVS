@@ -67,7 +67,7 @@ public class TestUS02_US03Test {
 		
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I1111");
-		error.setErrorDetails(" MarriageDate 1969-10-12 of Jack /Smiths/ (I1111) is after Birth date 1970-10-13");
+		error.setErrorDetails("MarriageDate 1969-10-12 of Jack /Smiths/ (I1111) is after Birth date 1970-10-13");
 
 		assertEquals(error.getErrorDetails(),recordError.get(0).getErrorDetails());
 	}
@@ -99,7 +99,7 @@ public class TestUS02_US03Test {
 		
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I1111");
-		error.setErrorDetails(" MarriageDate 1969-10-12 of Nikki /Smiths/ (I1110) is after Birth date 1970-03-11");
+		error.setErrorDetails("MarriageDate 1969-10-12 of Nikki /Smiths/ (I1110) is after Birth date 1970-03-11");
 
 		assertEquals(error.getErrorDetails(),recordError.get(0).getErrorDetails());
 	}
