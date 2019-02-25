@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class TestUS02_US03Test {
+	
 	HashMap<String, Individual> testIndividualMap;
 	ArrayList<Family> testFamilyList;
 
