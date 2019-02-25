@@ -21,9 +21,9 @@ public class CheckValidity {
 			String SpouseId = indi.getFamilySpouseId();
 			
 			if(!checkAge(Age))
-				System.out.println("Error US07: Age of "+ Name + "(" + ID + ")" +" is more then 150 years old.");
+				System.out.println("ERROR: US07: Age of "+ Name + "(" + ID + ")" +" is more then 150 years old.");
 			if(!checkMarriageAge(SpouseId, Age))
-				System.out.println("Error US10: "+ Name + "(" + ID + ")" +" got married before 14 years old.");			
+				System.out.println("ERROR: US10: "+ Name + "(" + ID + ")" +" got married before 14 years old.");			
 
 		}
 	}
