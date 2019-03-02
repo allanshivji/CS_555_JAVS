@@ -65,6 +65,13 @@ public class GedComTree
 		
 		allErrors.addAll(CheckValidity.check(Ftp)); //Jiayuan Liu
 		//---------------------------------------------------------------------------------------//
+		
+		
+		// --------------------------------Sprint02-----------------------------------------------//
+		allErrors.addAll(MultiIndividualFamilyData.US21_check_Gender_Role(Ftp));
+		
+		
+		//---------------------------------------------------------------------------------------//
 		for(int i=0;i<allErrors.size();i++) {
 			ErrorData error = allErrors.get(i);
 			System.out.println(error.getErrorType()+" : "+error.getRecordType()+" : "+error.getUserStroyNumber()+" : "+error.getIndividualId()+" : "+error.getErrorDetails());
