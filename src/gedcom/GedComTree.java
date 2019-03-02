@@ -66,7 +66,6 @@ public class GedComTree
 		allErrors.addAll(CheckValidity.check(Ftp)); //Jiayuan Liu
 		//---------------------------------------------------------------------------------------//
 		
-		
 		// --------------------------------Sprint02-----------------------------------------------//
 		allErrors.addAll(MultiIndividualFamilyData.US21_check_Gender_Role(Ftp));
 		
