@@ -352,17 +352,17 @@ public class MultiIndividualFamilyData {
 				String wifeGender = Ftp.individualMap.get(wifeId).getGender();
 				String name = "";
 
-				
 				String[] famId = { husbId, wifeId };
 				if (husbGender.equals(wifeGender)) {
 					int i = 0;
 					for (String id : famId) {
-						ErrorData error = new ErrorData();
 						
+						ErrorData error = new ErrorData();
 						error.setErrorType("ERROR");
-						error.setRecordType("FAMILY...");
+						error.setRecordType("FAMILY");
 						error.setIndividualId(id);
 						error.setUserStoryNumber("US21");
+						
 						if(i == 0) {
 							name = "Husband";
 						} else {
@@ -378,5 +378,4 @@ public class MultiIndividualFamilyData {
 		}
 		return errorList;
 	}
-
 }
