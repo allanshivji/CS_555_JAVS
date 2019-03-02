@@ -41,7 +41,7 @@ public class CheckValidity {
 				error.setRecordType("INDIVIDUAL");
 				error.setUserStoryNumber("US10");
 				error.setIndividualId(ID);
-				error.setErrorDetails("ERROR: US10: "+ Name + "(" + ID + ")" +" got married before 14 years old.");			
+				error.setErrorDetails( Name + "(" + ID + ")" +" got married before 14 years old.");			
 				errorList.add(error);
 			}			
 		}
