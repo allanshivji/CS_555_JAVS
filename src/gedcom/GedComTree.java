@@ -62,6 +62,8 @@ public class GedComTree
 		allErrors.addAll(MultiIndividualFamilyData.US03_check_Birth_Before_Death(Ftp));
 		
 		allErrors.addAll(MultiIndividualFamilyData.US02_check_Birth_Before_Marriage(Ftp));
+		
+		allErrors.addAll(CheckValidity.check(Ftp)); //Jiayuan Liu
 		//---------------------------------------------------------------------------------------//
 		for(int i=0;i<allErrors.size();i++) {
 			ErrorData error = allErrors.get(i);
@@ -76,8 +78,5 @@ public class GedComTree
 		printIndividualList(Ftp);
 		printFamilyList(Ftp);
 		printErrorDetails(Ftp);
-		//Jiayuan Liu
-		CheckValidity CV = new CheckValidity();
-		CV.check(Ftp);
 	}
 }
