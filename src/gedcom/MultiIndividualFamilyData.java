@@ -124,76 +124,6 @@ public class MultiIndividualFamilyData {
 		return errorList;
 	}
 
-	// Allan: Sprint 1 US03 - Birth before Death date
-
-	public static ArrayList<ErrorData> US03_check_Birth_Before_Death(FamilyTreeParser Ftp) {
-
-		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
-
-		HashMap<String, Individual> individualDetails = Ftp.individualMap;
-
-		for (Entry<String, Individual> entry : individualDetails.entrySet()) {
-
-			if (entry.getValue().getDeathDate() != null) {
-
-				if (entry.getValue().getBirthDate().isAfter(entry.getValue().getDeathDate())) {
-
-					ErrorData error = new ErrorData();
-
-					error.setErrorType("ERROR");
-					error.setRecordType("INDIVIDUAL");
-					error.setIndividualId(entry.getValue().getId());
-					error.setUserStoryNumber("US03");
-					error.setErrorDetails("Birthdate " + entry.getValue().getBirthDate() + " of "
-							+ entry.getValue().getName() + " (" + entry.getValue().getId() + ") is after Death Date "
-							+ entry.getValue().getDeathDate());
-					errorList.add(error);
-				}
-			}
-		}
-		return errorList;
-	}
-
-	// Allan: Sprint 1 US02 - Birth before Marriage date
-
-	public static ArrayList<ErrorData> US02_check_Birth_Before_Marriage(FamilyTreeParser Ftp) {
-
-		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
-
-		HashMap<String, Individual> individualDetails = Ftp.individualMap;
-
-		for (Family familyRecord : Ftp.familyList) {
-
-			if (familyRecord.getMarriageDate() != null) {
-
-				LocalDate marriagedate = familyRecord.getMarriageDate();
-				String husbId = familyRecord.getHusbandId();
-				String wifeId = familyRecord.getWifeId();
-
-				String[] famId = { husbId, wifeId };
-
-				for (String id : famId) {
-
-					if (id != null && marriagedate != null
-							&& Ftp.individualMap.get(id).getBirthDate().isAfter(marriagedate)) {
-
-						ErrorData error = new ErrorData();
-
-						error.setErrorType("ERROR");
-						error.setRecordType("INDIVIDUAL");
-						error.setIndividualId(id);
-						error.setUserStoryNumber("US02");
-						error.setErrorDetails(
-								"MarriageDate " + marriagedate + " of " + Ftp.individualMap.get(id).getName() + " ("
-										+ id + ") is after Birth date " + Ftp.individualMap.get(id).getBirthDate());
-						errorList.add(error);
-					}
-				}
-			}
-		}
-		return errorList;
-	}
-
 	// Allan: Sprint 2 US21 - Correct gender of Husband and Wife
 
 	public static Collection<? extends ErrorData> US21_check_Gender_Role(FamilyTreeParser Ftp) {
@@ -215,20 +145,21 @@ public class MultiIndividualFamilyData {
 				if (husbGender.equals(wifeGender)) {
 					int i = 0;
 					for (String id : famId) {
-						
+
 						ErrorData error = new ErrorData();
 						error.setErrorType("ERROR");
 						error.setRecordType("FAMILY");
 						error.setIndividualId(id);
 						error.setUserStoryNumber("US21");
-						
-						if(i == 0) {
+
+						if (i == 0) {
 							name = "Husband";
 						} else {
 							name = "Wife";
 						}
-						error.setErrorDetails("Gender of "+ name + " " + Ftp.individualMap.get(id).getName() + " of family "
-								+ familyRecord.getId() + " is " + Ftp.individualMap.get(id).getGender());
+						error.setErrorDetails(
+								"Gender of " + name + " " + Ftp.individualMap.get(id).getName() + " of family "
+										+ familyRecord.getId() + " is " + Ftp.individualMap.get(id).getGender());
 						errorList.add(error);
 						i++;
 					}

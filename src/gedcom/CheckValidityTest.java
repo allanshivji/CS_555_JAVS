@@ -13,7 +13,7 @@ public class CheckValidityTest {
 	int Age6 = 14;
 	String SpouseID1 = null;
 	String SpouseID2 = "F1";
-	
+
 	int fatherAge1 = 100;
 	int fatherAge2 = 90;
 	int motherAge1 = 80;
@@ -22,17 +22,17 @@ public class CheckValidityTest {
 	int childAge2 = 10;
 	int childAge3 = 20;
 	int childAge4 = 40;
-	
+
 	String fatherId1 = "bi00";
 	String fatherId2 = "bi01";
 	String motherId1 = "bi10";
 	String motherId2 = "bi11";
 	String childId1 = "bi00";
 	String childId2 = "bi11";
-	
+
 	@Test
 	public void test_check_age() {
-		//fail("Not yet implemented");
+		// fail("Not yet implemented");
 		assertFalse(CheckValidity.check_age(Age1));
 		assertTrue(CheckValidity.check_age(Age2));
 		assertTrue(CheckValidity.check_age(Age3));
@@ -42,7 +42,7 @@ public class CheckValidityTest {
 
 	@Test
 	public void test_check_marriage_age() {
-		//fail("Not yet implemented");
+		// fail("Not yet implemented");
 		assertTrue(CheckValidity.check_marriage_age(SpouseID1, Age2));
 		assertTrue(CheckValidity.check_marriage_age(SpouseID1, Age3));
 		assertTrue(CheckValidity.check_marriage_age(SpouseID1, Age6));
@@ -62,7 +62,7 @@ public class CheckValidityTest {
 		assertTrue(CheckValidity.check_father_not_too_old(fatherAge2, childAge3));
 		assertTrue(CheckValidity.check_father_not_too_old(fatherAge2, childAge4));
 	}
-	
+
 	@Test
 	public void test_check_mother_not_too_old() {
 		assertFalse(CheckValidity.check_mother_not_too_old(motherAge1, childAge1));
@@ -74,7 +74,7 @@ public class CheckValidityTest {
 		assertTrue(CheckValidity.check_mother_not_too_old(motherAge2, childAge3));
 		assertTrue(CheckValidity.check_mother_not_too_old(motherAge2, childAge4));
 	}
-	
+
 	@Test
 	public void test_check_father_no_marriages_to_children() {
 		assertTrue(CheckValidity.check_father_no_marriages_to_children(motherId1, childId1));
@@ -82,7 +82,7 @@ public class CheckValidityTest {
 		assertTrue(CheckValidity.check_father_no_marriages_to_children(motherId2, childId1));
 		assertFalse(CheckValidity.check_father_no_marriages_to_children(motherId2, childId2));
 	}
-	
+
 	@Test
 	public void test_check_mother_no_marriages_to_children() {
 		assertFalse(CheckValidity.check_mother_no_marriages_to_children(fatherId1, childId1));
