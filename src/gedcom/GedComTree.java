@@ -68,6 +68,7 @@ public class GedComTree
 		
 		// --------------------------------Sprint02-----------------------------------------------//
 		allErrors.addAll(MultiIndividualFamilyData.US21_check_Gender_Role(Ftp));
+		allErrors.addAll(DatesCheckInFamily.us04MarriageBeforeDivorce(Ftp));
 		
 		
 		//---------------------------------------------------------------------------------------//
