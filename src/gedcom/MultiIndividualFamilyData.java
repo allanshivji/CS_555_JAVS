@@ -168,4 +168,21 @@ public class MultiIndividualFamilyData {
 		}
 		return errorList;
 	}
+	
+	// Vidya Maiya: Sprint02 : US15: Fewer than 15 siblings
+	public static ArrayList<ErrorData> us15FewerThanFifteenSiblings(FamilyTreeParser Ftp) {
+		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
+		for(Family familyRecord : Ftp.familyList) {
+			if(familyRecord.getChildId().size()>15) {
+				ErrorData error = new ErrorData();
+				error.setErrorType("ANOMALY");
+				error.setRecordType("FAMILY");
+				error.setIndividualId(familyRecord.getId());
+				error.setUserStoryNumber("US15");
+				error.setErrorDetails("The child "+familyRecord.getChildId().get(0)+" has more than 15 siblings");
+				errorList.add(error);
+			}
+		}
+		return errorList;
+	}
 }
