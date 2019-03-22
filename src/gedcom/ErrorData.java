@@ -7,6 +7,21 @@ public class ErrorData {
 	private String individualId;
 	private String errorDetails;
 
+	ErrorData(){}
+	
+	ErrorData(
+			String errorType, 
+			String recordType,	
+			String userStoryNumber,
+			String individualId,
+			String errorDetails){
+		this.errorType = errorType;
+		this.recordType = recordType;
+		this.userStoryNumber = userStoryNumber;
+		this.individualId = individualId;
+		this.errorDetails = errorDetails;
+	}
+	
 	public void setErrorType(String errorType) {
 		this.errorType = errorType;
 	}
@@ -27,7 +42,7 @@ public class ErrorData {
 		this.userStoryNumber = userStoryNumber;
 	}
 
-	public String getUserStroyNumber() {
+	public String getUserStoryNumber() {
 		return this.userStoryNumber;
 	}
 
