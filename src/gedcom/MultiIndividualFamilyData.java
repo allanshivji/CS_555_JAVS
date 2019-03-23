@@ -19,17 +19,49 @@ public class MultiIndividualFamilyData {
 		}
 		return deceasedArray;
 	}
-	// Shreesh Chavan: Sprint2 US29 check list of deceased
-//		public static ArrayList<Individual> listOfDeceased(FamilyTreeParser ftp){
-//			ArrayList<Individual> deceasedArray = new ArrayList<Individual>();
-//			HashMap<String, Individual> enter = ftp.individualMap;
-//			for (Entry<String, Individual> entry : enter.entrySet()) {
-//				if (entry.getValue().isAlive()=="False") {
-//				deceasedArray.add(entry.getValue());
-//				}
-//			}
-//			return deceasedArray;
-//		}
+	// Shreesh Chavan: Sprint2 US18 siblings shouldn't marry
+		public static ArrayList<ErrorData> checkSiblingMarraige(FamilyTreeParser ftp){
+			ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
+			ArrayList <String> temp = new ArrayList<String>();
+			ArrayList<ArrayList> checkHalfSiblings = new ArrayList<ArrayList>();
+			for(Family familyRecord:ftp.familyList) {
+				for (Family famrec:ftp.familyList) {
+
+					if (familyRecord.getChildId().contains(famrec.getHusbandId())&&familyRecord.getChildId().contains(famrec.getWifeId())) {
+						ErrorData error = new ErrorData();
+						error.setErrorType("ERROR");
+						error.setRecordType("FAMILY");
+						error.setIndividualId(famrec.getId());
+						error.setUserStoryNumber("US18");
+						error.setErrorDetails(famrec.getHusbandId() +" and "+ famrec.getWifeId()+" are married siblings.");
+						errorList.add(error);
+					}
+					if((familyRecord.getId()!=famrec.getId())&&((familyRecord.getHusbandId() == famrec.getHusbandId()))) {
+//						||familyRecord.getWifeId() == famrec.getWifeId())
+						System.out.println("hi");
+						temp.addAll(familyRecord.getChildId());
+						temp.addAll(famrec.getChildId());
+						checkHalfSiblings.add(temp);
+						temp.clear();
+					}
+				}
+			}
+			for(ArrayList halfsiblings:checkHalfSiblings) {
+				for(Family familyRecord:ftp.familyList) {
+					if (halfsiblings.contains(familyRecord.getHusbandId())&&halfsiblings.contains(familyRecord.getWifeId())) {
+						System.out.println("hi");
+						ErrorData error = new ErrorData();
+						error.setErrorType("ERROR");
+						error.setRecordType("FAMILY");
+						error.setIndividualId(familyRecord.getId());
+						error.setUserStoryNumber("US18");
+						error.setErrorDetails(familyRecord.getHusbandId() +" and "+ familyRecord.getWifeId()+" are married siblings.");
+						errorList.add(error);
+					}
+				}
+			}
+			return errorList;
+		}
 	// Shreesh Chavan: Sprint1 US11 check bigamy
 	public static ArrayList<ErrorData> checkBigamy(FamilyTreeParser ftp) {
 		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();

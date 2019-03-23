@@ -90,6 +90,8 @@ public class GedComTree {
 		allErrors.addAll(MultiIndividualFamilyData.US21_check_Gender_Role(Ftp));
 		allErrors.addAll(DatesCheckInFamily.us04MarriageBeforeDivorce(Ftp));
 		allErrors.addAll(MultiIndividualFamilyData.us15FewerThanFifteenSiblings(Ftp));
+		allErrors.addAll(MultiIndividualFamilyData.checkSiblingMarraige(Ftp));
+		
 		//allErrors.addAll(UniqueFamilyBySpouses.US_24_Method_To_Find_Unique_Family_By_Spouse_In_Given_Family_Gedcom_Data(Ftp));
 		//allErrors.addAll(UniqueFamilyBySpouses.findDuplicateSpousedetails(Ftp));
 
