@@ -125,18 +125,21 @@ public class CheckValidity {
 	}
 
 	// Shreesh Chavan: Sprint1 US01 valid date
-	public static boolean checkDatesBeforeCurrentDate(LocalDate p_dateToBeChecked) throws ParseException {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date input = new Date();
-		String formattedDate = sdf.format(input);
-		Date date1 = sdf.parse(formattedDate);
-		Date date2 = Date.from(p_dateToBeChecked.atStartOfDay(ZoneId.systemDefault()).toInstant());
-		if (date1.compareTo(date2) > 0) {
-			return false;
-		} else {
-			return true;
-		}
-	}
+//	public static boolean checkDatesBeforeCurrentDate(LocalDate p_dateToBeChecked) throws ParseException {
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//		Date input = new Date();
+//		if(LocalDate.now().isBefore(p_dateToBeChecked)) {
+//			System.out.print("hi");
+//		}
+//		String formattedDate = sdf.format(input);
+//		Date date1 = sdf.parse(formattedDate);
+//		Date date2 = Date.from(p_dateToBeChecked.atStartOfDay(ZoneId.systemDefault()).toInstant());
+//		if (date1.compareTo(date2) > 0) {
+//			return false;
+//		} else {
+//			return true;
+//		}
+//	}
 
 	// Jiayuan Liu: Sprint2 US12 Parents not too old
 	// Mother should be less than 60 years older than her children

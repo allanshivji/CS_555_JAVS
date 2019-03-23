@@ -8,6 +8,28 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 
 public class MultiIndividualFamilyData {
+	// Shreesh Chavan: Sprint2 US29 check list of deceased
+	public static ArrayList<Individual> listOfDeceased(FamilyTreeParser ftp){
+		ArrayList<Individual> deceasedArray = new ArrayList<Individual>();
+		HashMap<String, Individual> enter = ftp.individualMap;
+		for (Entry<String, Individual> entry : enter.entrySet()) {
+			if (entry.getValue().isAlive()=="False") {
+			deceasedArray.add(entry.getValue());
+			}
+		}
+		return deceasedArray;
+	}
+	// Shreesh Chavan: Sprint2 US29 check list of deceased
+//		public static ArrayList<Individual> listOfDeceased(FamilyTreeParser ftp){
+//			ArrayList<Individual> deceasedArray = new ArrayList<Individual>();
+//			HashMap<String, Individual> enter = ftp.individualMap;
+//			for (Entry<String, Individual> entry : enter.entrySet()) {
+//				if (entry.getValue().isAlive()=="False") {
+//				deceasedArray.add(entry.getValue());
+//				}
+//			}
+//			return deceasedArray;
+//		}
 	// Shreesh Chavan: Sprint1 US11 check bigamy
 	public static ArrayList<ErrorData> checkBigamy(FamilyTreeParser ftp) {
 		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
