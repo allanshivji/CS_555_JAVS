@@ -159,8 +159,8 @@ public class MultiIndividualFamilyData {
 
 				String husbId = familyRecord.getHusbandId();
 				String wifeId = familyRecord.getWifeId();
-				String husbGender = Ftp.individualMap.get(husbId).getGender();
-				String wifeGender = Ftp.individualMap.get(wifeId).getGender();
+				String husbGender = (Ftp.individualMap.get(husbId) == null? "NULL":Ftp.individualMap.get(husbId).getGender());
+				String wifeGender = (Ftp.individualMap.get(wifeId) == null? "NULL": Ftp.individualMap.get(wifeId).getGender());
 				String name = "";
 
 				String[] famId = { husbId, wifeId };

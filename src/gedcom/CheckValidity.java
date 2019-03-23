@@ -17,111 +17,73 @@ public class CheckValidity {
 		// check Individual
 		for (Map.Entry<String, Individual> entry : treeMap.entrySet()) {
 			Individual indi = entry.getValue();
-			String ID = indi.getId();
-			String Name = indi.getName();
-			int Age = indi.getAge();
-			String SpouseId = indi.getFamilySpouseId();
-
 			// US05
-			if (!check_age(Age)) {
-				ErrorData error = new ErrorData();
-				error.setErrorType("ERROR");
-				error.setRecordType("INDIVIDUAL");
-				error.setUserStoryNumber("US05");
-				error.setIndividualId(ID);
-				error.setErrorDetails("Age of " + Name + "(" + ID + ")" + " is more then 150 years old.");
-				errorList.add(error);
-			}
+			if (check_age(indi)!=null)
+				errorList.add(check_age(indi));
 			// US10
-			if (!check_marriage_age(SpouseId, Age)) {
-				ErrorData error = new ErrorData();
-				error.setErrorType("ERROR");
-				error.setRecordType("INDIVIDUAL");
-				error.setUserStoryNumber("US10");
-				error.setIndividualId(ID);
-				error.setErrorDetails(Name + "(" + ID + ")" + " got married before 14 years old.");
-				errorList.add(error);
-			}
+			if (check_marriage_age(indi)!=null)
+				errorList.add(check_marriage_age(indi));
 		}
+		
 		// check Family
 		for (Family familyRecord : Ftp.familyList) {
 			if (familyRecord.getMarriageDate() != null) {
-				String familyId = familyRecord.getId();
-				String husbandId = familyRecord.getHusbandId();
-				int husbandAge = Ftp.individualMap.get(husbandId).getAge();
-				String husbandName = Ftp.individualMap.get(husbandId).getName();
-
-				String wifeId = familyRecord.getWifeId();
-				int wifeAge = Ftp.individualMap.get(wifeId).getAge();
-				String wifeName = Ftp.individualMap.get(wifeId).getName();
-
+				//Individual husband
+				Individual husband = Ftp.individualMap.get(familyRecord.getHusbandId());
+				//Individual wife
+				Individual wife = Ftp.individualMap.get(familyRecord.getWifeId());
+				
 				ArrayList<String> childrenList = familyRecord.getChildId();
 				for (String childId : childrenList) {
-					int childAge = Ftp.individualMap.get(childId).getAge();
-					String childName = Ftp.individualMap.get(childId).getName();
+					//Individual child
+					Individual child = Ftp.individualMap.get(childId);
+					
+					ArrayList<ErrorData> tmp_list  = new ArrayList<ErrorData>();
 					// US12
-					if (!check_father_not_too_old(husbandAge, childAge)) {
-						ErrorData error = new ErrorData();
-						error.setErrorType("ERROR");
-						error.setRecordType("FAMILY");
-						error.setIndividualId(familyId);
-						error.setUserStoryNumber("US12");
-						error.setErrorDetails("father " + husbandId + " " + husbandName
-								+ "is more than 80 years older than his children" + childId + " " + childName);
-						errorList.add(error);
-					}
-					if (!check_mother_not_too_old(wifeAge, childAge)) {
-						ErrorData error = new ErrorData();
-						error.setErrorType("ERROR");
-						error.setRecordType("FAMILY");
-						error.setIndividualId(familyId);
-						error.setUserStoryNumber("US12");
-						error.setErrorDetails("mother " + wifeId + " " + wifeName
-								+ "is more than 60 years older than his child" + childId + " " + childName);
-						errorList.add(error);
-					}
+					tmp_list.addAll(check_parents_not_too_old(husband, wife, child));
 					// US17
-					if (!check_father_no_marriages_to_children(wifeId, childId)) {
-						ErrorData error = new ErrorData();
-						error.setErrorType("ERROR");
-						error.setRecordType("FAMILY");
-						error.setIndividualId(familyId);
-						error.setUserStoryNumber("US17");
-						error.setErrorDetails("father " + husbandId + " " + husbandName + "married with his child"
-								+ childId + " " + childName);
-						errorList.add(error);
+					tmp_list.addAll(check_parents_no_marriages_to_children(husband, wife, child));
+					
+					for (ErrorData error : tmp_list) {
+						error.setUserStoryNumber(familyRecord.getId());
 					}
-					if (!check_mother_no_marriages_to_children(husbandId, childId)) {
-						ErrorData error = new ErrorData();
-						error.setErrorType("ERROR");
-						error.setRecordType("FAMILY");
-						error.setIndividualId(familyId);
-						error.setUserStoryNumber("US17");
-						error.setErrorDetails("mother " + wifeId + " " + wifeName + "married with her child" + childId
-								+ " " + childName);
-						errorList.add(error);
-					}
+					errorList.addAll(tmp_list);
 				}
-
 			}
 		}
 		return errorList;
 	}
 
 	// Jiayuan Liu: Sprint1 US07 Less then 150 years old
-	public static boolean check_age(int Age) {
-		if (Age >= 150)
-			return false;
+	public static ErrorData check_age(Individual indi) {
+		if (indi.getAge() >= 150) {
+			ErrorData error = new ErrorData(
+				"ERROR", 
+				"INDIVIDUAL",
+				"US05",
+				indi.getId(),
+				"Age of " + indi.getName() + "(" + indi.getId() + ")" + " is more then 150 years old."
+				);
+			return error;
+		}
 		else
-			return true;
+			return null;
 	}
 
 	// Jiayuan Liu: Sprint1 US10 Marriage after 14
-	public static boolean check_marriage_age(String SpouseId, int Age) {
-		if (SpouseId != null && Age <= 14)
-			return false;
+	public static ErrorData check_marriage_age(Individual indi) {
+		if (indi.getFamilySpouseId() != null && indi.getAge() <= 14) {
+			ErrorData error = new ErrorData(
+					"ERROR",
+					"INDIVIDUAL",
+					"US10",
+					indi.getId(),
+					indi.getName() + "(" + indi.getId() + ")" + " got married before 14 years old."
+					);
+			return error;
+		}
 		else
-			return true;
+			return null;
 	}
 
 	// Shreesh Chavan: Sprint1 US01 valid date
@@ -144,33 +106,88 @@ public class CheckValidity {
 	// Jiayuan Liu: Sprint2 US12 Parents not too old
 	// Mother should be less than 60 years older than her children
 	// and father should be less than 80 years older than his children
-	public static boolean check_father_not_too_old(int husbandAge, int childAge) {
-		if ((husbandAge - childAge) > 80) {
-			return false;
+	
+	public static ArrayList<ErrorData> check_parents_not_too_old(Individual husband, Individual wife, Individual child){
+		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
+		//check_father_not_too_old
+		if(husband!=null && child!=null&& husband.getAge()-child.getAge() > 80 ) {
+			ErrorData error = new ErrorData(
+					"ERROR",
+					"FAMILY",
+					"",
+					"US12",
+					"father " + husband.getId() + " " + husband.getName() + "is more than 80 years older than his children" + child.getId() + " " + child.getName()
+					);
+			errorList.add(error);
 		}
-		return true;
-	}
-
-	public static boolean check_mother_not_too_old(int wifeAge, int childAge) {
-		if ((wifeAge - childAge) > 60) {
-			return false;
+		//check_mother_not_too_old
+		if( wife!=null && child!=null&& wife.getAge()!=0 && child.getAge()!=0 && wife.getAge()-child.getAge() > 60 ) {
+			ErrorData error = new ErrorData(
+					"ERROR",
+					"FAMILY",
+					"",
+					"US12",
+					"mother " + wife.getId() + " " + wife.getName() + "is more than 60 years older than his child" + child.getId() + " " + child.getName()
+					);
+			errorList.add(error);
 		}
-		return true;
+		return errorList;
 	}
+	
+//	public static boolean check_father_not_too_old(int husbandAge, int childAge) {
+//		if ((husbandAge - childAge) > 80) {
+//			return false;
+//		}
+//		return true;
+//	}
+//
+//	public static boolean check_mother_not_too_old(int wifeAge, int childAge) {
+//		if ((wifeAge - childAge) > 60) {
+//			return false;
+//		}
+//		return true;
+//	}
 
 	// Jiayuan Liu: Sprint2 US17 No marriages to children
 	// Parents should not marry any of their children
-	public static boolean check_father_no_marriages_to_children(String wifeId, String childId) {
-		if (wifeId.equals(childId)) {
-			return false;
+	public static ArrayList<ErrorData> check_parents_no_marriages_to_children(Individual husband, Individual wife, Individual child){
+		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
+		//check father no marriages to children
+		if (wife!=null && child!=null&& wife.getId().equals(child.getId())) {
+			ErrorData error = new ErrorData(
+					"ERROR",
+					"FAMILY",
+					"",
+					"US17",
+					"father " + husband.getId() + " " + husband.getName() + "married with his child" + child.getId() + " " + child.getName()
+					);
+			errorList.add(error);
 		}
-		return true;
-	}
-
-	public static boolean check_mother_no_marriages_to_children(String husbandId, String childId) {
-		if (husbandId.equals(childId)) {
-			return false;
+		//check mother no marriages to children
+		if (husband!=null && child!=null &&husband.getId().equals(child.getId())) {
+			ErrorData error = new ErrorData(
+					"ERROR",
+					"FAMILY",
+					"",
+					"US17",
+					"mother " + wife.getId() + " " + wife.getName() + "married with her child" + child.getId() + " " + child.getName()
+					);
+			errorList.add(error);
 		}
-		return true;
+		return errorList;
 	}
+	
+//	public static boolean check_father_no_marriages_to_children(String wifeId, String childId) {
+//		if (wifeId.equals(childId)) {
+//			return false;
+//		}
+//		return true;
+//	}
+//
+//	public static boolean check_mother_no_marriages_to_children(String husbandId, String childId) {
+//		if (husbandId.equals(childId)) {
+//			return false;
+//		}
+//		return true;
+//	}
 }

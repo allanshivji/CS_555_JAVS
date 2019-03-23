@@ -18,8 +18,8 @@ public class DatesCheckInFamily {
 				LocalDate marriageDate = familyRecord.getMarriageDate();
 				String husbandId = familyRecord.getHusbandId();
 				String wifeId = familyRecord.getWifeId();
-				LocalDate husbandDeathDate = Ftp.individualMap.get(husbandId).getDeathDate();
-				LocalDate wifeDeathDate = Ftp.individualMap.get(wifeId).getDeathDate();
+				LocalDate husbandDeathDate = (Ftp.individualMap.get(husbandId) == null? null:Ftp.individualMap.get(husbandId).getDeathDate());
+				LocalDate wifeDeathDate = (Ftp.individualMap.get(wifeId) == null? null: Ftp.individualMap.get(wifeId).getDeathDate());
 				if (husbandId != null && wifeDeathDate != null && marriageDate.isAfter(wifeDeathDate)) {
 					ErrorData error = new ErrorData();
 					error.setErrorType("ERROR");
@@ -56,7 +56,7 @@ public class DatesCheckInFamily {
 			ArrayList<String> childrenList = family.getChildId();
 
 			for (String childId : childrenList) {
-				LocalDate birthDate = Ftp.individualMap.get(childId).getBirthDate();
+				LocalDate birthDate = (Ftp.individualMap.get(childId) == null? null : Ftp.individualMap.get(childId).getBirthDate());
 				if (birthDate != null && marriageDate != null && birthDate.isBefore(marriageDate)) {
 					ErrorData error = new ErrorData();
 					error.setErrorType("ERROR");
@@ -198,9 +198,9 @@ public class DatesCheckInFamily {
 				String[] famId = { husbId, wifeId };
 
 				for (String id : famId) {
+					LocalDate birthDate = (Ftp.individualMap.get(id) == null? null : (Ftp.individualMap.get(id).getBirthDate() == null?null:Ftp.individualMap.get(id).getBirthDate()));
 
-					if (id != null && marriagedate != null
-							&& Ftp.individualMap.get(id).getBirthDate().isAfter(marriagedate)) {
+					if (id != null && marriagedate != null && birthDate!=null && birthDate.isAfter(marriagedate)) {
 
 						ErrorData error = new ErrorData();
 
