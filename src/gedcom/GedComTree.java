@@ -93,6 +93,11 @@ public class GedComTree {
 		
 		allErrors.addAll(DatesCheckInFamily.us04MarriageBeforeDivorce(Ftp));
 		allErrors.addAll(MultiIndividualFamilyData.us15FewerThanFifteenSiblings(Ftp));
+<<<<<<< HEAD
+=======
+		allErrors.addAll(MultiIndividualFamilyData.checkSiblingMarraige(Ftp));
+		
+>>>>>>> 00ccb32b5f0583888592303a65a7bd5b52c5f51d
 		//allErrors.addAll(UniqueFamilyBySpouses.US_24_Method_To_Find_Unique_Family_By_Spouse_In_Given_Family_Gedcom_Data(Ftp));
 		//allErrors.addAll(UniqueFamilyBySpouses.findDuplicateSpousedetails(Ftp));
 

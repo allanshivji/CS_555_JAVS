@@ -95,7 +95,7 @@ public class DatesCheckInFamily {
 				wifeId = familyRecord.getWifeId();
 				String[] famIds = { husbandId, wifeId };
 				for (String id : famIds) {
-					if (CheckValidity.checkDatesBeforeCurrentDate(marriageDate)) {
+					if (LocalDate.now().isBefore(marriageDate)) {
 						ErrorData error = new ErrorData();
 						error.setErrorType("ERROR");
 						error.setRecordType("INDIVIDUAL");
@@ -106,7 +106,7 @@ public class DatesCheckInFamily {
 						errorList.add(error);
 					}
 					if ((familyRecord.getDivorcedDate() != null)
-							&& (CheckValidity.checkDatesBeforeCurrentDate(familyRecord.getDivorcedDate()))) {
+							&& (LocalDate.now().isBefore(familyRecord.getDivorcedDate()))) {
 						ErrorData error = new ErrorData();
 						error.setErrorType("ERROR");
 						error.setRecordType("INDIVIDUAL");
@@ -121,8 +121,9 @@ public class DatesCheckInFamily {
 		}
 
 		HashMap<String, Individual> enter = ftp.individualMap;
+//		LocalDate today = LocalDate.now();
 		for (Entry<String, Individual> entry : enter.entrySet()) {
-			if (CheckValidity.checkDatesBeforeCurrentDate(entry.getValue().getBirthDate())) {
+			if (LocalDate.now().isBefore(entry.getValue().getBirthDate())) {
 				ErrorData error = new ErrorData();
 				error.setErrorType("ERROR");
 				error.setRecordType("INDIVIDUAL");
@@ -133,7 +134,7 @@ public class DatesCheckInFamily {
 				errorList.add(error);
 			}
 			if ((entry.getValue().getDeathDate() != null)
-					&& (CheckValidity.checkDatesBeforeCurrentDate(entry.getValue().getDeathDate()))) {
+					&& (LocalDate.now().isBefore(entry.getValue().getDeathDate()))) {
 
 				ErrorData error = new ErrorData();
 				error.setErrorType("ERROR");
