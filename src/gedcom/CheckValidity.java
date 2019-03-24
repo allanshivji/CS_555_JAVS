@@ -107,7 +107,7 @@ public class CheckValidity {
 	public static ArrayList<ErrorData> check_parents_not_too_old(Individual husband, Individual wife, Individual child){
 		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
 		//check_father_not_too_old
-		if( husband.getAge()-child.getAge() > 80 ) {
+		if(husband!=null && child!=null&& husband.getAge()-child.getAge() > 80 ) {
 			ErrorData error = new ErrorData(
 					"ERROR",
 					"FAMILY",
@@ -118,7 +118,7 @@ public class CheckValidity {
 			errorList.add(error);
 		}
 		//check_mother_not_too_old
-		if( wife.getAge()-child.getAge() > 60 ) {
+		if( wife!=null && child!=null&& wife.getAge()!=0 && child.getAge()!=0 && wife.getAge()-child.getAge() > 60 ) {
 			ErrorData error = new ErrorData(
 					"ERROR",
 					"FAMILY",
@@ -150,7 +150,7 @@ public class CheckValidity {
 	public static ArrayList<ErrorData> check_parents_no_marriages_to_children(Individual husband, Individual wife, Individual child){
 		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
 		//check father no marriages to children
-		if (wife.getId().equals(child.getId())) {
+		if (wife!=null && child!=null&& wife.getId().equals(child.getId())) {
 			ErrorData error = new ErrorData(
 					"ERROR",
 					"FAMILY",
@@ -161,7 +161,7 @@ public class CheckValidity {
 			errorList.add(error);
 		}
 		//check mother no marriages to children
-		if (husband.getId().equals(child.getId())) {
+		if (husband!=null && child!=null &&husband.getId().equals(child.getId())) {
 			ErrorData error = new ErrorData(
 					"ERROR",
 					"FAMILY",

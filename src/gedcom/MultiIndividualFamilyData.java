@@ -126,7 +126,7 @@ public class MultiIndividualFamilyData {
 
 	// Allan: Sprint 2 US21 - Correct gender of Husband and Wife
 
-	public static Collection<? extends ErrorData> US21_check_Gender_Role(FamilyTreeParser Ftp) {
+	public static ArrayList<ErrorData> US21_check_Gender_Role(FamilyTreeParser Ftp) {
 		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
 
 		HashMap<String, Individual> individualDetails = Ftp.individualMap;
@@ -137,8 +137,8 @@ public class MultiIndividualFamilyData {
 
 				String husbId = familyRecord.getHusbandId();
 				String wifeId = familyRecord.getWifeId();
-				String husbGender = Ftp.individualMap.get(husbId).getGender();
-				String wifeGender = Ftp.individualMap.get(wifeId).getGender();
+				String husbGender = (Ftp.individualMap.get(husbId) == null? "NULL":Ftp.individualMap.get(husbId).getGender());
+				String wifeGender = (Ftp.individualMap.get(wifeId) == null? "NULL": Ftp.individualMap.get(wifeId).getGender());
 				String name = "";
 
 				String[] famId = { husbId, wifeId };
@@ -168,6 +168,38 @@ public class MultiIndividualFamilyData {
 		}
 		return errorList;
 	}
+	
+	
+	// Allan: Sprint 2 US22 - Check individual unique ids - Built in function in FamilyTreeParser.java
+	
+	// Allan: Sprint 2 US22 - Check unique family ids
+	
+	public static ArrayList<ErrorData> US22_check_Unique_FamilyId(FamilyTreeParser Ftp){
+		
+		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
+		
+		ArrayList<String> uniqueids = new ArrayList<String>();
+		
+		for (Family familyRecord : Ftp.familyList) {
+			
+			if(uniqueids.contains(familyRecord.getId())){
+				
+				ErrorData error = new ErrorData();
+				error.setErrorType("ERROR");
+				error.setRecordType("FAMILY");
+				error.setIndividualId(familyRecord.getId());
+				error.setUserStoryNumber("US22");
+				error.setErrorDetails("Family id "+familyRecord.getId()+" is duplicated.");
+				errorList.add(error);
+				
+			}
+			uniqueids.add(familyRecord.getId());
+		}
+		return errorList;
+	}
+	
+	
+	
 	
 	// Vidya Maiya: Sprint02 : US15: Fewer than 15 siblings
 	public static ArrayList<ErrorData> us15FewerThanFifteenSiblings(FamilyTreeParser Ftp) {

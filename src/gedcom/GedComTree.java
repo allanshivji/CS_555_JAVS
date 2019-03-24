@@ -45,12 +45,17 @@ public class GedComTree {
 				"+------+----------------+----------------+--------------+-----------------------+--------------+-----------------------+-----------------------+%n");
 		for (int i = 0; i < Ftp.familyList.size(); i++) {
 			Family fam = Ftp.familyList.get(i);
-			String wifeName = Ftp.individualMap.get(fam.getWifeId()).getName();
-			String husbandName = Ftp.individualMap.get(fam.getHusbandId()).getName();
+			//String wifeName = Ftp.individualMap.get(fam.getWifeId()).getName();
+			String wifeName = fam.getWifeId()== null? "NULL" : (Ftp.individualMap.get(fam.getWifeId()) == null? "NULL": Ftp.individualMap.get(fam.getWifeId()).getName());
+			String husbandName = fam.getHusbandId() == null? "NULL" : (Ftp.individualMap.get(fam.getHusbandId())== null? "NULL": Ftp.individualMap.get(fam.getHusbandId()).getName());
+			//String husbandName = Ftp.individualMap.get(fam.getHusbandId()).getName();
 			System.out.format(familyOutputFormat, fam.getId(),
 					fam.getMarriageDate() == null ? "NA" : fam.getMarriageDate(),
-					fam.getDivorcedDate() == null ? "NA" : fam.getDivorcedDate(), fam.getHusbandId(), husbandName,
-					fam.getWifeId(), wifeName,
+					fam.getDivorcedDate() == null ? "NA" : fam.getDivorcedDate(), 
+					fam.getHusbandId() == null? "NULL" : fam.getHusbandId(), 
+					husbandName,
+					fam.getWifeId() == null? "NULL" : fam.getWifeId(), 
+					wifeName,
 					fam.getChildId().isEmpty() ? "NA" : "{'" + String.join("', '", fam.getChildId()) + "'}");
 		}
 		System.out.format(
@@ -82,14 +87,19 @@ public class GedComTree {
 		// ---------------------------------------------------------------------------------------//
 
 		// --------------------------------Sprint02-----------------------------------------------//
-		allErrors.addAll(MultiIndividualFamilyData.US21_check_Gender_Role(Ftp));
+	
+		allErrors.addAll(MultiIndividualFamilyData.US21_check_Gender_Role(Ftp)); //Allan
+		allErrors.addAll(MultiIndividualFamilyData.US22_check_Unique_FamilyId(Ftp)); //Allan
+		
 		allErrors.addAll(DatesCheckInFamily.us04MarriageBeforeDivorce(Ftp));
 		allErrors.addAll(MultiIndividualFamilyData.us15FewerThanFifteenSiblings(Ftp));
+		//allErrors.addAll(UniqueFamilyBySpouses.US_24_Method_To_Find_Unique_Family_By_Spouse_In_Given_Family_Gedcom_Data(Ftp));
+		//allErrors.addAll(UniqueFamilyBySpouses.findDuplicateSpousedetails(Ftp));
 
 		// ---------------------------------------------------------------------------------------//
 		for (int i = 0; i < allErrors.size(); i++) {
 			ErrorData error = allErrors.get(i);
-			System.out.println(error.getErrorType() + " : " + error.getRecordType() + " : " + error.getUserStroyNumber()
+			System.out.println(error.getErrorType() + " : " + error.getRecordType() + " : " + error.getUserStoryNumber()
 					+ " : " + error.getIndividualId() + " : " + error.getErrorDetails());
 		}
 	}
