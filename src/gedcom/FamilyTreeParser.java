@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class FamilyTreeParser {
+	public static ArrayList<ErrorData> duplicateIndividual = new ArrayList<ErrorData>();
 	HashMap<String, Integer> validTags = new HashMap<String, Integer>();
 	HashMap<String, Individual> individualMap;
 	ArrayList<Family> familyList;
@@ -45,7 +46,16 @@ public class FamilyTreeParser {
 		}
 		return false;
 	}
-
+	
+	public void foundADuplicateId(String id) {
+		ErrorData error = new ErrorData();
+		error.setErrorType("WARNING");
+		error.setRecordType("INDIVIDUAL");
+		error.setIndividualId(id);
+		error.setUserStoryNumber("US22");
+		error.setErrorDetails("The person  "+individualMap.get(id).getName()+" ("+id+") is replaced because of duplicate id");
+		duplicateIndividual.add(error);
+	}
 	public void FamilyTreeParserCheck() {
 		File file = new File("resources/GedComTest.ged");
 		// File file = new File("C:\\Stevens\\Courses\\CS-555-Agile Methods for SW
@@ -85,6 +95,9 @@ public class FamilyTreeParser {
 						individual = new Individual();
 						currentIndividualId = arguements;
 						individual.setId(currentIndividualId);
+						if(individualMap.containsKey(currentIndividualId)) {
+							foundADuplicateId(currentIndividualId);
+						}
 						individualMap.put(currentIndividualId, individual);
 					}
 					if (tag.equals("NAME")) {

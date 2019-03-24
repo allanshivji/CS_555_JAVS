@@ -89,6 +89,7 @@ public class GedComTree {
 		// --------------------------------Sprint02-----------------------------------------------//
 	
 		allErrors.addAll(MultiIndividualFamilyData.US21_check_Gender_Role(Ftp)); //Allan
+		allErrors.addAll(FamilyTreeParser.duplicateIndividual);
 		allErrors.addAll(MultiIndividualFamilyData.US22_check_Unique_FamilyId(Ftp)); //Allan
 		
 		allErrors.addAll(DatesCheckInFamily.us04MarriageBeforeDivorce(Ftp));
