@@ -38,7 +38,6 @@ public class TestUS22UniqueIds {
 		error.setIndividualId("F221195");
 		error.setErrorDetails("Family id F221195 is duplicated.");
 		
-		
 		assertEquals(error.getErrorDetails(), recordError.get(0).getErrorDetails());
 	}
 	
@@ -62,8 +61,6 @@ public class TestUS22UniqueIds {
 		error.setIndividualId("F2211955555");
 		error.setErrorDetails("Family id F2211955555 is duplicated.");
 		
-
 		assertTrue(recordError.size() == 0);
 	}
-
 }
