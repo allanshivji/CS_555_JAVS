@@ -245,7 +245,6 @@ public class MultiIndividualFamilyData {
 				error.setUserStoryNumber("US22");
 				error.setErrorDetails("Family id "+familyRecord.getId()+" is duplicated.");
 				errorList.add(error);
-				
 			}
 			uniqueids.add(familyRecord.getId());
 		}
