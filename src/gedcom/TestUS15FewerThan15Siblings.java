@@ -32,6 +32,7 @@ public class TestUS15FewerThan15Siblings {
 		
 		individual = new Individual();
 		individual.setId("I111");
+		individual.setName("Alex Gabriel");
 		individual.setFamilyChildId("F100");
 		testIndividualMap.put("I111", individual);
 		
@@ -137,7 +138,7 @@ public class TestUS15FewerThan15Siblings {
 		
 		ErrorData error = new ErrorData();
 		error.setIndividualId("F100");
-		error.setErrorDetails("The child I111 has more than 15 siblings");
+		error.setErrorDetails("The child I111 (Alex Gabriel) has more than 15 siblings");
 		
 		assertEquals(error.getErrorDetails(), recordError.get(0).getErrorDetails());
 	}

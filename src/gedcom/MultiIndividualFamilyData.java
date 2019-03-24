@@ -264,7 +264,8 @@ public class MultiIndividualFamilyData {
 				error.setRecordType("FAMILY");
 				error.setIndividualId(familyRecord.getId());
 				error.setUserStoryNumber("US15");
-				error.setErrorDetails("The child "+familyRecord.getChildId().get(0)+" has more than 15 siblings");
+				String childName = Ftp.individualMap.get(familyRecord.getChildId().get(0)).getName();
+				error.setErrorDetails("The child "+familyRecord.getChildId().get(0)+" ("+childName+") has more than 15 siblings");
 				errorList.add(error);
 			}
 		}
