@@ -97,9 +97,6 @@ public class GedComTree {
 		allErrors.addAll(MultiIndividualFamilyData.checkSiblingMarraige(Ftp));
 		
 
-		//allErrors.addAll(UniqueFamilyBySpouses.US_24_Method_To_Find_Unique_Family_By_Spouse_In_Given_Family_Gedcom_Data(Ftp));
-		//allErrors.addAll(UniqueFamilyBySpouses.findDuplicateSpousedetails(Ftp));
-
 		// ---------------------------------------------------------------------------------------//
 		for (int i = 0; i < allErrors.size(); i++) {
 			ErrorData error = allErrors.get(i);
