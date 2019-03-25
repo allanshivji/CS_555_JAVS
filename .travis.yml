@@ -1,4 +1,4 @@
 language: java
 jdk:
 - oraclejdk8
-script : javac AllTests.java && java AllTests
+script : javac src/gedcom/AllTests.java && java src/gedcom/AllTests
