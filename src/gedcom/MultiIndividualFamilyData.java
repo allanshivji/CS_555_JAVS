@@ -226,6 +226,8 @@ public class MultiIndividualFamilyData {
 	
 	// Allan: Sprint 2 US22 - Check individual unique ids - Built in function in FamilyTreeParser.java
 	
+	
+	
 	// Allan: Sprint 2 US22 - Check unique family ids
 	
 	public static ArrayList<ErrorData> US22_check_Unique_FamilyId(FamilyTreeParser Ftp){
