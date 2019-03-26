@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.*;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 
 public class TestUS22UniqueIds {
 	
