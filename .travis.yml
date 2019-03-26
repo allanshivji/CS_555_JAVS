@@ -1,4 +1,5 @@
 language: java
 jdk:
 - oraclejdk8
-script : javac src/gedcom/AllTests.java && java src/gedcom/AllTests
+install: mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+script : java -cp .:/usr/share/java/junit.jar org.junit.runner.JUnitCore AllTests
