@@ -33,7 +33,7 @@ public class TestUS04MarriageAfterDivorce {
 		family.setHusbandId("I100");
 		family.setWifeId("I101");
 		family.setMarriageDate("25 DEC 2006");
-		family.setDivorceDate("13 Feb 2005");
+		family.setDivorceDate("13 FEB 2005");
 		testFamilyList.add(family);
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
@@ -62,7 +62,7 @@ public class TestUS04MarriageAfterDivorce {
 		family.setHusbandId("I200");
 		family.setWifeId("I201");
 		family.setMarriageDate("25 DEC 2006");
-		family.setDivorceDate("13 Feb 2015");
+		family.setDivorceDate("13 FEB 2015");
 		testFamilyList.add(family);
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
@@ -86,7 +86,7 @@ public class TestUS04MarriageAfterDivorce {
 		family.setId("F300");
 		family.setHusbandId("I300");
 		family.setWifeId("I301");
-		family.setDivorceDate("13 Feb 2015");
+		family.setDivorceDate("13 FEB 2015");
 		testFamilyList.add(family);
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
