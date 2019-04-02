@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class CheckValidity {
+public class US_CheckValidity {
 	public static ArrayList<ErrorData> check(FamilyTreeParser Ftp) {
 		Map<String, Individual> treeMap = new TreeMap<String, Individual>(Ftp.individualMap);
 		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();

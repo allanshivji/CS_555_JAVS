@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
-public class MultiIndividualFamilyData {
+public class US_MultiIndividualFamilyData {
 	// Shreesh Chavan: Sprint2 US29 check list of deceased
 	public static ArrayList<Individual> listOfDeceased(FamilyTreeParser ftp) {
 		ArrayList<Individual> deceasedArray = new ArrayList<Individual>();

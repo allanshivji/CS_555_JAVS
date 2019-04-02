@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import org.junit.*;
 
-public class CheckValidityTest {
+public class Test_CheckValidity {
 //
 //	int Age1 = 151;
 //	int Age2 = 13;
@@ -40,10 +40,10 @@ public class CheckValidityTest {
 		indi.setId("I01");
 		indi.setName("XX");
 		indi.setBirthDate("1 JAN 1900");
-		assertNull(CheckValidity.check_age(indi));
+		assertNull(US_CheckValidity.check_age(indi));
 		
 		indi.setBirthDate("1 JAN 1800");
-		assertNotNull(CheckValidity.check_age(indi));
+		assertNotNull(US_CheckValidity.check_age(indi));
 
 	}
 	
@@ -54,10 +54,10 @@ public class CheckValidityTest {
 		indi.setName("XX");
 		indi.setFamilySpouseId("F01");
 		indi.setBirthDate("1 JAN 2010");
-		assertNotNull(CheckValidity.check_marriage_age(indi));
+		assertNotNull(US_CheckValidity.check_marriage_age(indi));
 		
 		indi.setBirthDate("1 JAN 2000");
-		assertNull(CheckValidity.check_marriage_age(indi));
+		assertNull(US_CheckValidity.check_marriage_age(indi));
 	}
 	
 	@Test
@@ -80,11 +80,11 @@ public class CheckValidityTest {
 		indi_child.setFamilySpouseId("F01");
 		indi_child.setBirthDate("1 JAN 2000");
 		
-		assertNotEquals(CheckValidity.check_parents_not_too_old(indi_husband, indi_wife, indi_child).size(), 0);
+		assertNotEquals(US_CheckValidity.check_parents_not_too_old(indi_husband, indi_wife, indi_child).size(), 0);
 		indi_husband.setBirthDate("1 JAN 1950");
-		assertNotEquals(CheckValidity.check_parents_not_too_old(indi_husband, indi_wife, indi_child).size(), 0);
+		assertNotEquals(US_CheckValidity.check_parents_not_too_old(indi_husband, indi_wife, indi_child).size(), 0);
 		indi_wife.setBirthDate("1 JAN 1970");
-		assertEquals(CheckValidity.check_parents_not_too_old(indi_husband, indi_wife, indi_child).size(), 0);
+		assertEquals(US_CheckValidity.check_parents_not_too_old(indi_husband, indi_wife, indi_child).size(), 0);
 	}
 	
 	@Test
@@ -107,9 +107,9 @@ public class CheckValidityTest {
 		indi_child.setFamilySpouseId("F01");
 		indi_child.setBirthDate("1 JAN 2000");
 		
-		assertNotEquals(CheckValidity.check_parents_no_marriages_to_children(indi_husband, indi_wife, indi_husband).size(), 0);
-		assertNotEquals(CheckValidity.check_parents_no_marriages_to_children(indi_husband, indi_wife, indi_wife).size(), 0);
-		assertEquals(CheckValidity.check_parents_no_marriages_to_children(indi_husband, indi_wife, indi_child).size(), 0);
+		assertNotEquals(US_CheckValidity.check_parents_no_marriages_to_children(indi_husband, indi_wife, indi_husband).size(), 0);
+		assertNotEquals(US_CheckValidity.check_parents_no_marriages_to_children(indi_husband, indi_wife, indi_wife).size(), 0);
+		assertEquals(US_CheckValidity.check_parents_no_marriages_to_children(indi_husband, indi_wife, indi_child).size(), 0);
 	}
 	
 //	@Test

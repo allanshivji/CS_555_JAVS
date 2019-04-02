@@ -264,7 +264,7 @@ public class Test_DateCheck {
 		testFamilyList.add(family1);
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
-		ArrayList<ErrorData> recordError = MultiIndividualFamilyData.checkBigamy(Ftp);
+		ArrayList<ErrorData> recordError = US_MultiIndividualFamilyData.checkBigamy(Ftp);
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I900");
 		error.setErrorDetails("I900 has married without seperation from previous spouse.");
@@ -304,7 +304,7 @@ public class Test_DateCheck {
 		testFamilyList.add(family1);
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
-		ArrayList<ErrorData> recordError = MultiIndividualFamilyData.checkBigamy(Ftp);
+		ArrayList<ErrorData> recordError = US_MultiIndividualFamilyData.checkBigamy(Ftp);
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I1000");
 		error.setErrorDetails("I1000 has married without seperation from previous spouse.");

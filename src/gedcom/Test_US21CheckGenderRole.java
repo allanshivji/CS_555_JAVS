@@ -39,7 +39,7 @@ public class Test_US21CheckGenderRole {
 		testFamilyList.add(family);
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
-		ArrayList<ErrorData> recordError = MultiIndividualFamilyData.US21_check_Gender_Role(Ftp);
+		ArrayList<ErrorData> recordError = US_MultiIndividualFamilyData.US21_check_Gender_Role(Ftp);
 		
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I009");
@@ -72,7 +72,7 @@ public class Test_US21CheckGenderRole {
 		testFamilyList.add(family);
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
-		ArrayList<ErrorData> recordError = MultiIndividualFamilyData.US21_check_Gender_Role(Ftp);
+		ArrayList<ErrorData> recordError = US_MultiIndividualFamilyData.US21_check_Gender_Role(Ftp);
 		
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I009");

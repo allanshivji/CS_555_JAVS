@@ -75,7 +75,7 @@ public class GedComTree {
 
 		allErrors.addAll(US_DatesCheckInFamily.testCheckDatesBeforeCurrentDate(Ftp));
 
-		allErrors.addAll(MultiIndividualFamilyData.checkBigamy(Ftp));
+		allErrors.addAll(US_MultiIndividualFamilyData.checkBigamy(Ftp));
 
 		allErrors.addAll(US_DatesCheckInFamily.US08_Birth_Before_Marriage_Of_Parents(Ftp));
 
@@ -83,12 +83,12 @@ public class GedComTree {
 
 		allErrors.addAll(US_DatesCheckInFamily.US02_check_Birth_Before_Marriage(Ftp));
 
-		allErrors.addAll(CheckValidity.check(Ftp)); // Jiayuan Liu
+		allErrors.addAll(US_CheckValidity.check(Ftp)); // Jiayuan Liu
 		// ---------------------------------------------------------------------------------------//
 
 		// --------------------------------Sprint02-----------------------------------------------//
 	
-		allErrors.addAll(MultiIndividualFamilyData.US21_check_Gender_Role(Ftp)); //Allan
+		allErrors.addAll(US_MultiIndividualFamilyData.US21_check_Gender_Role(Ftp)); //Allan
 		allErrors.addAll(FamilyTreeParser.duplicateIndividual); //Allan
 		allErrors.addAll(US_CheckUniqueness.US22_check_Unique_FamilyId(Ftp)); //Allan
 		
