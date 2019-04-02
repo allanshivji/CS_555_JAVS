@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 import org.junit.*;
 
-public class TestUS15FewerThan15Siblings {
+public class Test_US15FewerThanFifteenSiblings {
 
 	HashMap<String, Individual> testIndividualMap;
 	ArrayList<Family> testFamilyList;
@@ -134,7 +134,7 @@ public class TestUS15FewerThan15Siblings {
 		testFamilyList.add(family);
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
-		ArrayList<ErrorData> recordError = MultiIndividualFamilyData.us15FewerThanFifteenSiblings(Ftp);
+		ArrayList<ErrorData> recordError = US_Siblings.us15FewerThanFifteenSiblings(Ftp);
 		
 		ErrorData error = new ErrorData();
 		error.setIndividualId("F100");
@@ -174,7 +174,7 @@ public class TestUS15FewerThan15Siblings {
 		testFamilyList.add(family);
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
-		ArrayList<ErrorData> recordError = MultiIndividualFamilyData.us15FewerThanFifteenSiblings(Ftp);
+		ArrayList<ErrorData> recordError = US_Siblings.us15FewerThanFifteenSiblings(Ftp);
 		
 		assertTrue(recordError.size()==0);
 	}

@@ -9,59 +9,17 @@ import java.util.Map.Entry;
 
 public class MultiIndividualFamilyData {
 	// Shreesh Chavan: Sprint2 US29 check list of deceased
-	public static ArrayList<Individual> listOfDeceased(FamilyTreeParser ftp){
+	public static ArrayList<Individual> listOfDeceased(FamilyTreeParser ftp) {
 		ArrayList<Individual> deceasedArray = new ArrayList<Individual>();
 		HashMap<String, Individual> enter = ftp.individualMap;
 		for (Entry<String, Individual> entry : enter.entrySet()) {
-			if (entry.getValue().isAlive()=="False") {
-			deceasedArray.add(entry.getValue());
+			if (entry.getValue().isAlive() == "False") {
+				deceasedArray.add(entry.getValue());
 			}
 		}
 		return deceasedArray;
 	}
-	// Shreesh Chavan: Sprint2 US18 siblings shouldn't marry
-		public static ArrayList<ErrorData> checkSiblingMarraige(FamilyTreeParser ftp){
-			ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
-			ArrayList <String> temp = new ArrayList<String>();
-			ArrayList<ArrayList> checkHalfSiblings = new ArrayList<ArrayList>();
-			for(Family familyRecord:ftp.familyList) {
-				for (Family famrec:ftp.familyList) {
 
-					if (familyRecord.getChildId().contains(famrec.getHusbandId())&&familyRecord.getChildId().contains(famrec.getWifeId())) {
-						ErrorData error = new ErrorData();
-						error.setErrorType("ERROR");
-						error.setRecordType("FAMILY");
-						error.setIndividualId(famrec.getId());
-						error.setUserStoryNumber("US18");
-						error.setErrorDetails(famrec.getHusbandId() +" and "+ famrec.getWifeId()+" are married siblings.");
-						errorList.add(error);
-					}
-					if((familyRecord.getId()!=famrec.getId())&&((familyRecord.getHusbandId() == famrec.getHusbandId()))) {
-//						||familyRecord.getWifeId() == famrec.getWifeId())
-						System.out.println("hi");
-						temp.addAll(familyRecord.getChildId());
-						temp.addAll(famrec.getChildId());
-						checkHalfSiblings.add(temp);
-						temp.clear();
-					}
-				}
-			}
-			for(ArrayList halfsiblings:checkHalfSiblings) {
-				for(Family familyRecord:ftp.familyList) {
-					if (halfsiblings.contains(familyRecord.getHusbandId())&&halfsiblings.contains(familyRecord.getWifeId())) {
-						System.out.println("hi");
-						ErrorData error = new ErrorData();
-						error.setErrorType("ERROR");
-						error.setRecordType("FAMILY");
-						error.setIndividualId(familyRecord.getId());
-						error.setUserStoryNumber("US18");
-						error.setErrorDetails(familyRecord.getHusbandId() +" and "+ familyRecord.getWifeId()+" are married siblings.");
-						errorList.add(error);
-					}
-				}
-			}
-			return errorList;
-		}
 	// Shreesh Chavan: Sprint1 US11 check bigamy
 	public static ArrayList<ErrorData> checkBigamy(FamilyTreeParser ftp) {
 		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
@@ -191,8 +149,10 @@ public class MultiIndividualFamilyData {
 
 				String husbId = familyRecord.getHusbandId();
 				String wifeId = familyRecord.getWifeId();
-				String husbGender = (Ftp.individualMap.get(husbId) == null? "NULL":Ftp.individualMap.get(husbId).getGender());
-				String wifeGender = (Ftp.individualMap.get(wifeId) == null? "NULL": Ftp.individualMap.get(wifeId).getGender());
+				String husbGender = (Ftp.individualMap.get(husbId) == null ? "NULL"
+						: Ftp.individualMap.get(husbId).getGender());
+				String wifeGender = (Ftp.individualMap.get(wifeId) == null ? "NULL"
+						: Ftp.individualMap.get(wifeId).getGender());
 				String name = "";
 
 				String[] famId = { husbId, wifeId };
@@ -222,53 +182,5 @@ public class MultiIndividualFamilyData {
 		}
 		return errorList;
 	}
-	
-	
-	// Allan: Sprint 2 US22 - Check individual unique ids - Built in function in FamilyTreeParser.java
-	
-	// Allan: Sprint 2 US22 - Check unique family ids
-	
-	public static ArrayList<ErrorData> US22_check_Unique_FamilyId(FamilyTreeParser Ftp){
-		
-		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
-		
-		ArrayList<String> uniqueids = new ArrayList<String>();
-		
-		for (Family familyRecord : Ftp.familyList) {
-			
-			if(uniqueids.contains(familyRecord.getId())){
-				
-				ErrorData error = new ErrorData();
-				error.setErrorType("ERROR");
-				error.setRecordType("FAMILY");
-				error.setIndividualId(familyRecord.getId());
-				error.setUserStoryNumber("US22");
-				error.setErrorDetails("Family id "+familyRecord.getId()+" is duplicated.");
-				errorList.add(error);
-			}
-			uniqueids.add(familyRecord.getId());
-		}
-		return errorList;
-	}
-	
-	
-	
-	
-	// Vidya Maiya: Sprint02 : US15: Fewer than 15 siblings
-	public static ArrayList<ErrorData> us15FewerThanFifteenSiblings(FamilyTreeParser Ftp) {
-		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
-		for(Family familyRecord : Ftp.familyList) {
-			if(familyRecord.getChildId().size()>15) {
-				ErrorData error = new ErrorData();
-				error.setErrorType("ANOMALY");
-				error.setRecordType("FAMILY");
-				error.setIndividualId(familyRecord.getId());
-				error.setUserStoryNumber("US15");
-				String childName = Ftp.individualMap.get(familyRecord.getChildId().get(0)).getName();
-				error.setErrorDetails("The child "+familyRecord.getChildId().get(0)+" ("+childName+") has more than 15 siblings");
-				errorList.add(error);
-			}
-		}
-		return errorList;
-	}
+
 }

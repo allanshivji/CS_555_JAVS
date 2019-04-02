@@ -13,7 +13,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
-public class TestDateCheck {
+public class Test_DateCheck {
 	HashMap<String,Individual> testIndividualMap;
 	ArrayList<Family> testFamilyList;
 	@Before
@@ -33,7 +33,7 @@ public class TestDateCheck {
 		testIndividualMap.put("I100",individual);
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
 		
-		ArrayList<ErrorData> recordError = DatesCheckInFamily.testCheckDatesBeforeCurrentDate(Ftp);
+		ArrayList<ErrorData> recordError = US_DatesCheckInFamily.testCheckDatesBeforeCurrentDate(Ftp);
 		
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I100");
@@ -52,7 +52,7 @@ public class TestDateCheck {
 		testIndividualMap.put("I200",individual);
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
 		
-		ArrayList<ErrorData> recordError = DatesCheckInFamily.testCheckDatesBeforeCurrentDate(Ftp);
+		ArrayList<ErrorData> recordError = US_DatesCheckInFamily.testCheckDatesBeforeCurrentDate(Ftp);
 		
 		
 		ErrorData error = new ErrorData();
@@ -81,7 +81,7 @@ public class TestDateCheck {
 		testFamilyList.add(family);
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
-		ArrayList<ErrorData> recordError = DatesCheckInFamily.testCheckDatesBeforeCurrentDate(Ftp);
+		ArrayList<ErrorData> recordError = US_DatesCheckInFamily.testCheckDatesBeforeCurrentDate(Ftp);
 		
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I300");
@@ -115,7 +115,7 @@ public class TestDateCheck {
 		testFamilyList.add(family);
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
-		ArrayList<ErrorData> recordError = DatesCheckInFamily.testCheckDatesBeforeCurrentDate(Ftp);
+		ArrayList<ErrorData> recordError = US_DatesCheckInFamily.testCheckDatesBeforeCurrentDate(Ftp);
 		
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I400");
@@ -137,7 +137,7 @@ public class TestDateCheck {
 		testIndividualMap.put("I500",individual);
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
 		
-		ArrayList<ErrorData> recordError = DatesCheckInFamily.testCheckDatesBeforeCurrentDate(Ftp);
+		ArrayList<ErrorData> recordError = US_DatesCheckInFamily.testCheckDatesBeforeCurrentDate(Ftp);
 		
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I500");
@@ -160,7 +160,7 @@ public class TestDateCheck {
 		testIndividualMap.put("I600",individual);
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
 		
-		ArrayList<ErrorData> recordError = DatesCheckInFamily.testCheckDatesBeforeCurrentDate(Ftp);
+		ArrayList<ErrorData> recordError = US_DatesCheckInFamily.testCheckDatesBeforeCurrentDate(Ftp);
 		
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I600");
@@ -189,7 +189,7 @@ public class TestDateCheck {
 		testFamilyList.add(family);
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
-		ArrayList<ErrorData> recordError = DatesCheckInFamily.testCheckDatesBeforeCurrentDate(Ftp);
+		ArrayList<ErrorData> recordError = US_DatesCheckInFamily.testCheckDatesBeforeCurrentDate(Ftp);
 		
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I700");
@@ -220,7 +220,7 @@ public class TestDateCheck {
 		testFamilyList.add(family);
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
-		ArrayList<ErrorData> recordError = DatesCheckInFamily.testCheckDatesBeforeCurrentDate(Ftp);
+		ArrayList<ErrorData> recordError = US_DatesCheckInFamily.testCheckDatesBeforeCurrentDate(Ftp);
 		
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I800");

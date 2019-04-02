@@ -6,7 +6,7 @@ import java.util.HashMap;
 import org.junit.Before;
 import org.junit.*;
 
-public class TestUS02_US03Test {
+public class Test_US02_US03 {
 	
 	HashMap<String, Individual> testIndividualMap;
 	ArrayList<Family> testFamilyList;
@@ -29,7 +29,7 @@ public class TestUS02_US03Test {
 		testIndividualMap.put("I0022", individual);
 
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
-		ArrayList<ErrorData> recordError = DatesCheckInFamily.US03_check_Birth_Before_Death(Ftp);
+		ArrayList<ErrorData> recordError = US_DatesCheckInFamily.US03_check_Birth_Before_Death(Ftp);
 		
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I0022");
@@ -63,7 +63,7 @@ public class TestUS02_US03Test {
 		testFamilyList.add(family);
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
-		ArrayList<ErrorData> recordError = DatesCheckInFamily.US02_check_Birth_Before_Marriage(Ftp);
+		ArrayList<ErrorData> recordError = US_DatesCheckInFamily.US02_check_Birth_Before_Marriage(Ftp);
 		
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I1111");
@@ -95,7 +95,7 @@ public class TestUS02_US03Test {
 		testFamilyList.add(family);
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
-		ArrayList<ErrorData> recordError = DatesCheckInFamily.US02_check_Birth_Before_Marriage(Ftp);
+		ArrayList<ErrorData> recordError = US_DatesCheckInFamily.US02_check_Birth_Before_Marriage(Ftp);
 		
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I1111");
@@ -127,7 +127,7 @@ public class TestUS02_US03Test {
 		testFamilyList.add(family);
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
-		ArrayList<ErrorData> recordError = DatesCheckInFamily.US02_check_Birth_Before_Marriage(Ftp);
+		ArrayList<ErrorData> recordError = US_DatesCheckInFamily.US02_check_Birth_Before_Marriage(Ftp);
 		assertTrue(recordError.size()!=0);	
 	}
 }

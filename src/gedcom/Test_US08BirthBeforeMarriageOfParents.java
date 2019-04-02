@@ -8,7 +8,7 @@ import java.util.HashMap;
 import org.junit.Before;
 import org.junit.*;
 
-public class TestUS08BirthBeforeMarriageOfParents {
+public class Test_US08BirthBeforeMarriageOfParents {
 	HashMap<String, Individual> testIndividualMap;
 	ArrayList<Family> testFamilyList;
 
@@ -45,7 +45,7 @@ public class TestUS08BirthBeforeMarriageOfParents {
 				"The child I001 having birth date 2011-04-05 was born before the marriage date 2012-05-06 of parents");
 
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
-		ArrayList<ErrorData> erraneousRecord = DatesCheckInFamily.US08_Birth_Before_Marriage_Of_Parents(Ftp);
+		ArrayList<ErrorData> erraneousRecord = US_DatesCheckInFamily.US08_Birth_Before_Marriage_Of_Parents(Ftp);
 
 		assertEquals(error.getErrorDetails(), erraneousRecord.get(0).getErrorDetails());
 	}
@@ -71,7 +71,7 @@ public class TestUS08BirthBeforeMarriageOfParents {
 				"The child I002 having birth date 2009-10-15 was born 9 months after the divorce date 2008-10-23 of parents");
 
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
-		ArrayList<ErrorData> erraneousRecord = DatesCheckInFamily.US08_Birth_Before_Marriage_Of_Parents(Ftp);
+		ArrayList<ErrorData> erraneousRecord = US_DatesCheckInFamily.US08_Birth_Before_Marriage_Of_Parents(Ftp);
 
 		assertEquals(error.getErrorDetails(), erraneousRecord.get(0).getErrorDetails());
 	}
@@ -92,7 +92,7 @@ public class TestUS08BirthBeforeMarriageOfParents {
 		testFamilyList.add(family);
 
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
-		ArrayList<ErrorData> erraneousRecord = DatesCheckInFamily.US08_Birth_Before_Marriage_Of_Parents(Ftp);
+		ArrayList<ErrorData> erraneousRecord = US_DatesCheckInFamily.US08_Birth_Before_Marriage_Of_Parents(Ftp);
 		assertTrue(erraneousRecord.size() == 0);
 	}
 
@@ -111,7 +111,7 @@ public class TestUS08BirthBeforeMarriageOfParents {
 		testFamilyList.add(family);
 
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
-		ArrayList<ErrorData> erraneousRecord = DatesCheckInFamily.US08_Birth_Before_Marriage_Of_Parents(Ftp);
+		ArrayList<ErrorData> erraneousRecord = US_DatesCheckInFamily.US08_Birth_Before_Marriage_Of_Parents(Ftp);
 		assertTrue(erraneousRecord.size() == 0);
 	}
 
@@ -130,7 +130,7 @@ public class TestUS08BirthBeforeMarriageOfParents {
 		testFamilyList.add(family);
 
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
-		ArrayList<ErrorData> erraneousRecord = DatesCheckInFamily.US08_Birth_Before_Marriage_Of_Parents(Ftp);
+		ArrayList<ErrorData> erraneousRecord = US_DatesCheckInFamily.US08_Birth_Before_Marriage_Of_Parents(Ftp);
 		assertTrue(erraneousRecord.size() == 0);
 	}
 
@@ -143,7 +143,7 @@ public class TestUS08BirthBeforeMarriageOfParents {
 		testFamilyList.add(family);
 
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
-		ArrayList<ErrorData> erraneousRecord = DatesCheckInFamily.US08_Birth_Before_Marriage_Of_Parents(Ftp);
+		ArrayList<ErrorData> erraneousRecord = US_DatesCheckInFamily.US08_Birth_Before_Marriage_Of_Parents(Ftp);
 		assertTrue(erraneousRecord.size() == 0);
 	}
 
@@ -161,7 +161,7 @@ public class TestUS08BirthBeforeMarriageOfParents {
 		testFamilyList.add(family);
 
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
-		ArrayList<ErrorData> erraneousRecord = DatesCheckInFamily.US08_Birth_Before_Marriage_Of_Parents(Ftp);
+		ArrayList<ErrorData> erraneousRecord = US_DatesCheckInFamily.US08_Birth_Before_Marriage_Of_Parents(Ftp);
 		assertTrue(erraneousRecord.size() == 0);
 
 	}

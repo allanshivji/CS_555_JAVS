@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
-public class DatesCheckInFamily {
+public class US_DatesCheckInFamily {
 
 	// Vidya Maiya: Sprint01 : US05: Marriage before death
 	public static ArrayList<ErrorData> US05_Marriage_Before_Death(FamilyTreeParser Ftp) {

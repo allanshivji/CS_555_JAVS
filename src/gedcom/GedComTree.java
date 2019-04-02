@@ -71,17 +71,17 @@ public class GedComTree {
 
 		// --------------------------------Sprint01-----------------------------------------------//
 		System.out.println();
-		allErrors.addAll(DatesCheckInFamily.US05_Marriage_Before_Death(Ftp));
+		allErrors.addAll(US_DatesCheckInFamily.US05_Marriage_Before_Death(Ftp));
 
-		allErrors.addAll(DatesCheckInFamily.testCheckDatesBeforeCurrentDate(Ftp));
+		allErrors.addAll(US_DatesCheckInFamily.testCheckDatesBeforeCurrentDate(Ftp));
 
 		allErrors.addAll(MultiIndividualFamilyData.checkBigamy(Ftp));
 
-		allErrors.addAll(DatesCheckInFamily.US08_Birth_Before_Marriage_Of_Parents(Ftp));
+		allErrors.addAll(US_DatesCheckInFamily.US08_Birth_Before_Marriage_Of_Parents(Ftp));
 
-		allErrors.addAll(DatesCheckInFamily.US03_check_Birth_Before_Death(Ftp));
+		allErrors.addAll(US_DatesCheckInFamily.US03_check_Birth_Before_Death(Ftp));
 
-		allErrors.addAll(DatesCheckInFamily.US02_check_Birth_Before_Marriage(Ftp));
+		allErrors.addAll(US_DatesCheckInFamily.US02_check_Birth_Before_Marriage(Ftp));
 
 		allErrors.addAll(CheckValidity.check(Ftp)); // Jiayuan Liu
 		// ---------------------------------------------------------------------------------------//
@@ -90,15 +90,17 @@ public class GedComTree {
 	
 		allErrors.addAll(MultiIndividualFamilyData.US21_check_Gender_Role(Ftp)); //Allan
 		allErrors.addAll(FamilyTreeParser.duplicateIndividual); //Allan
-		allErrors.addAll(MultiIndividualFamilyData.US22_check_Unique_FamilyId(Ftp)); //Allan
+		allErrors.addAll(US_CheckUniqueness.US22_check_Unique_FamilyId(Ftp)); //Allan
 		
-		allErrors.addAll(DatesCheckInFamily.us04MarriageBeforeDivorce(Ftp));
-		allErrors.addAll(MultiIndividualFamilyData.us15FewerThanFifteenSiblings(Ftp));
+		allErrors.addAll(US_DatesCheckInFamily.us04MarriageBeforeDivorce(Ftp));
+		allErrors.addAll(US_Siblings.us15FewerThanFifteenSiblings(Ftp));
 
-		allErrors.addAll(MultiIndividualFamilyData.checkSiblingMarraige(Ftp));
+		allErrors.addAll(US_Siblings.checkSiblingMarraige(Ftp));
 		
 
 		// ---------------------------------------------------------------------------------------//
+		allErrors.addAll(US_CheckUniqueness.findDuplicateSpousedetails(Ftp));
+		
 		for (int i = 0; i < allErrors.size(); i++) {
 			ErrorData error = allErrors.get(i);
 			System.out.println(error.getErrorType() + " : " + error.getRecordType() + " : " + error.getUserStoryNumber()

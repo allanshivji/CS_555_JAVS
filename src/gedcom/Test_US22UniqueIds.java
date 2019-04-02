@@ -6,7 +6,7 @@ import java.util.*;
 import org.junit.Before;
 import org.junit.*;
 
-public class TestUS22UniqueIds {
+public class Test_US22UniqueIds {
 	
 	HashMap<String, Individual> testIndividualMap;
 	ArrayList<Family> testFamilyList;
@@ -32,7 +32,7 @@ public class TestUS22UniqueIds {
 		testFamilyList.add(family);
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
-		ArrayList<ErrorData> recordError = MultiIndividualFamilyData.US22_check_Unique_FamilyId(Ftp);
+		ArrayList<ErrorData> recordError = US_CheckUniqueness.US22_check_Unique_FamilyId(Ftp);
 		
 		ErrorData error = new ErrorData();
 		error.setIndividualId("F221195");
@@ -55,7 +55,7 @@ public class TestUS22UniqueIds {
 		testFamilyList.add(family);
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
-		ArrayList<ErrorData> recordError = MultiIndividualFamilyData.US22_check_Unique_FamilyId(Ftp);
+		ArrayList<ErrorData> recordError = US_CheckUniqueness.US22_check_Unique_FamilyId(Ftp);
 		
 		ErrorData error = new ErrorData();
 		error.setIndividualId("F2211955555");

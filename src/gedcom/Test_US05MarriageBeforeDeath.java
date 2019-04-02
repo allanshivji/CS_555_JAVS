@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.junit.*;
 
-public class TestUS05MarriageBeforeDeath {
+public class Test_US05MarriageBeforeDeath {
 	HashMap<String, Individual> testIndividualMap;
 	ArrayList<Family> testFamilyList;
 
@@ -36,7 +36,7 @@ public class TestUS05MarriageBeforeDeath {
 		testFamilyList.add(family);
 
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
-		ArrayList<ErrorData> recordError = DatesCheckInFamily.US05_Marriage_Before_Death(Ftp);
+		ArrayList<ErrorData> recordError = US_DatesCheckInFamily.US05_Marriage_Before_Death(Ftp);
 
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I100");
@@ -65,7 +65,7 @@ public class TestUS05MarriageBeforeDeath {
 		testFamilyList.add(family);
 
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
-		ArrayList<ErrorData> recordError = DatesCheckInFamily.US05_Marriage_Before_Death(Ftp);
+		ArrayList<ErrorData> recordError = US_DatesCheckInFamily.US05_Marriage_Before_Death(Ftp);
 
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I400");
@@ -99,7 +99,7 @@ public class TestUS05MarriageBeforeDeath {
 		testFamilyList.add(family);
 
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
-		ArrayList<ErrorData> recordError = DatesCheckInFamily.US05_Marriage_Before_Death(Ftp);
+		ArrayList<ErrorData> recordError = US_DatesCheckInFamily.US05_Marriage_Before_Death(Ftp);
 
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I201");
@@ -128,7 +128,7 @@ public class TestUS05MarriageBeforeDeath {
 		testFamilyList.add(family);
 
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
-		ArrayList<ErrorData> recordError = DatesCheckInFamily.US05_Marriage_Before_Death(Ftp);
+		ArrayList<ErrorData> recordError = US_DatesCheckInFamily.US05_Marriage_Before_Death(Ftp);
 
 		assertTrue(recordError.size() == 0);
 	}
@@ -152,7 +152,7 @@ public class TestUS05MarriageBeforeDeath {
 		testFamilyList.add(family);
 
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
-		ArrayList<ErrorData> recordError = DatesCheckInFamily.US05_Marriage_Before_Death(Ftp);
+		ArrayList<ErrorData> recordError = US_DatesCheckInFamily.US05_Marriage_Before_Death(Ftp);
 
 		assertTrue(recordError.size() == 0);
 	}
@@ -175,7 +175,7 @@ public class TestUS05MarriageBeforeDeath {
 		testFamilyList.add(family);
 
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
-		ArrayList<ErrorData> recordError = DatesCheckInFamily.US05_Marriage_Before_Death(Ftp);
+		ArrayList<ErrorData> recordError = US_DatesCheckInFamily.US05_Marriage_Before_Death(Ftp);
 
 		assertTrue(recordError.size() == 0);
 	}

@@ -6,7 +6,7 @@ import java.util.*;
 import org.junit.Before;
 import org.junit.*;
 
-public class TestUS21CheckGenderRole {
+public class Test_US21CheckGenderRole {
 	HashMap<String, Individual> testIndividualMap;
 	ArrayList<Family> testFamilyList;
 	
