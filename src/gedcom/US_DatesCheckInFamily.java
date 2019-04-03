@@ -18,8 +18,10 @@ public class US_DatesCheckInFamily {
 				LocalDate marriageDate = familyRecord.getMarriageDate();
 				String husbandId = familyRecord.getHusbandId();
 				String wifeId = familyRecord.getWifeId();
-				LocalDate husbandDeathDate = (Ftp.individualMap.get(husbandId) == null? null:Ftp.individualMap.get(husbandId).getDeathDate());
-				LocalDate wifeDeathDate = (Ftp.individualMap.get(wifeId) == null? null: Ftp.individualMap.get(wifeId).getDeathDate());
+				LocalDate husbandDeathDate = (Ftp.individualMap.get(husbandId) == null ? null
+						: Ftp.individualMap.get(husbandId).getDeathDate());
+				LocalDate wifeDeathDate = (Ftp.individualMap.get(wifeId) == null ? null
+						: Ftp.individualMap.get(wifeId).getDeathDate());
 				if (husbandId != null && wifeDeathDate != null && marriageDate.isAfter(wifeDeathDate)) {
 					ErrorData error = new ErrorData();
 					error.setErrorType("ERROR");
@@ -56,7 +58,8 @@ public class US_DatesCheckInFamily {
 			ArrayList<String> childrenList = family.getChildId();
 
 			for (String childId : childrenList) {
-				LocalDate birthDate = (Ftp.individualMap.get(childId) == null? null : Ftp.individualMap.get(childId).getBirthDate());
+				LocalDate birthDate = (Ftp.individualMap.get(childId) == null ? null
+						: Ftp.individualMap.get(childId).getBirthDate());
 				if (birthDate != null && marriageDate != null && birthDate.isBefore(marriageDate)) {
 					ErrorData error = new ErrorData();
 					error.setErrorType("ERROR");
@@ -198,9 +201,11 @@ public class US_DatesCheckInFamily {
 				String[] famId = { husbId, wifeId };
 
 				for (String id : famId) {
-					LocalDate birthDate = (Ftp.individualMap.get(id) == null? null : (Ftp.individualMap.get(id).getBirthDate() == null?null:Ftp.individualMap.get(id).getBirthDate()));
+					LocalDate birthDate = (Ftp.individualMap.get(id) == null ? null
+							: (Ftp.individualMap.get(id).getBirthDate() == null ? null
+									: Ftp.individualMap.get(id).getBirthDate()));
 
-					if (id != null && marriagedate != null && birthDate!=null && birthDate.isAfter(marriagedate)) {
+					if (id != null && marriagedate != null && birthDate != null && birthDate.isAfter(marriagedate)) {
 
 						ErrorData error = new ErrorData();
 
@@ -240,5 +245,42 @@ public class US_DatesCheckInFamily {
 
 		}
 		return errorList;
+	}
+	
+	public static ArrayList<ErrorData> findBirthBeforeDeathOfParents(FamilyTreeParser Ftp) {
+		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
+		
+		for(Family familyRecord : Ftp.familyList) {
+			
+			ArrayList<String> children = familyRecord.getChildId();
+			LocalDate mothersDeathDate = Ftp.individualMap.get(familyRecord.getWifeId())==null?null:(Ftp.individualMap.get(familyRecord.getWifeId()).getDeathDate()==null?null:Ftp.individualMap.get(familyRecord.getWifeId()).getDeathDate());
+			LocalDate fathersDeathDate = Ftp.individualMap.get(familyRecord.getHusbandId())==null?null:(Ftp.individualMap.get(familyRecord.getHusbandId()).getDeathDate()==null?null:Ftp.individualMap.get(familyRecord.getHusbandId()).getDeathDate());
+			
+			for(String child : children) {
+				LocalDate childBirthDate = Ftp.individualMap.get(child)==null?null:(Ftp.individualMap.get(child).getBirthDate()==null?null:Ftp.individualMap.get(child).getBirthDate());
+
+				if(childBirthDate!=null && mothersDeathDate!=null && childBirthDate.isAfter(mothersDeathDate)) {
+					ErrorData error = new ErrorData();
+					error.setErrorType("ERROR");
+					error.setRecordType("FAMILY");
+					error.setUserStoryNumber("US09");
+					error.setIndividualId(child);
+					error.setErrorDetails("The birthdate "+childBirthDate+" of "+Ftp.individualMap.get(child).getName()+" ("+child+") is after the death date "+mothersDeathDate+" of mother("+familyRecord.getWifeId()+")");
+					errorList.add(error);
+				}
+				if(childBirthDate!=null && fathersDeathDate!=null && childBirthDate.isAfter(fathersDeathDate.plusMonths(9))) {
+					ErrorData error = new ErrorData();
+					error.setErrorType("ERROR");
+					error.setRecordType("FAMILY");
+					error.setUserStoryNumber("US09");
+					error.setIndividualId(child);
+					error.setErrorDetails("The birthdate "+childBirthDate+" of "+Ftp.individualMap.get(child).getName()+" ("+child+") is nine months after the death date "+fathersDeathDate+" of father("+familyRecord.getHusbandId()+")");
+					errorList.add(error);
+				}
+				
+			}
+		}
+		return errorList;
+		
 	}
 }

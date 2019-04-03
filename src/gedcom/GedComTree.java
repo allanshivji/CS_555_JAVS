@@ -30,6 +30,7 @@ public class GedComTree {
 		}
 		System.out.format(
 				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
+		System.out.println();
 	}
 
 	private static void printFamilyList(FamilyTreeParser Ftp) {
@@ -45,10 +46,8 @@ public class GedComTree {
 				"+------+----------------+----------------+--------------+-----------------------+--------------+-----------------------+-----------------------------------------------------------------------------------------------------------------+%n");
 		for (int i = 0; i < Ftp.familyList.size(); i++) {
 			Family fam = Ftp.familyList.get(i);
-			//String wifeName = Ftp.individualMap.get(fam.getWifeId()).getName();
 			String wifeName = fam.getWifeId()== null? "NULL" : (Ftp.individualMap.get(fam.getWifeId()) == null? "NULL": Ftp.individualMap.get(fam.getWifeId()).getName());
 			String husbandName = fam.getHusbandId() == null? "NULL" : (Ftp.individualMap.get(fam.getHusbandId())== null? "NULL": Ftp.individualMap.get(fam.getHusbandId()).getName());
-			//String husbandName = Ftp.individualMap.get(fam.getHusbandId()).getName();
 			System.out.format(familyOutputFormat, fam.getId(),
 					fam.getMarriageDate() == null ? "NA" : fam.getMarriageDate(),
 					fam.getDivorcedDate() == null ? "NA" : fam.getDivorcedDate(), 
@@ -60,6 +59,7 @@ public class GedComTree {
 		}
 		System.out.format(
 				"+------+----------------+----------------+--------------+-----------------------+--------------+-----------------------+-----------------------------------------------------------------------------------------------------------------+%n");
+		System.out.println();
 	}
 
 	private static void printErrorDetails(FamilyTreeParser Ftp) throws ParseException {
@@ -70,7 +70,7 @@ public class GedComTree {
 		ArrayList<ErrorData> allErrors = new ArrayList<ErrorData>();
 
 		// --------------------------------Sprint01-----------------------------------------------//
-		System.out.println();
+		
 		allErrors.addAll(US_DatesCheckInFamily.US05_Marriage_Before_Death(Ftp));
 
 		allErrors.addAll(US_DatesCheckInFamily.testCheckDatesBeforeCurrentDate(Ftp));
@@ -84,22 +84,28 @@ public class GedComTree {
 		allErrors.addAll(US_DatesCheckInFamily.US02_check_Birth_Before_Marriage(Ftp));
 
 		allErrors.addAll(US_CheckValidity.check(Ftp)); // Jiayuan Liu
-		// ---------------------------------------------------------------------------------------//
 
 		// --------------------------------Sprint02-----------------------------------------------//
 	
 		allErrors.addAll(US_MultiIndividualFamilyData.US21_check_Gender_Role(Ftp)); //Allan
+		
 		allErrors.addAll(FamilyTreeParser.duplicateIndividual); //Allan
+		
 		allErrors.addAll(US_CheckUniqueness.US22_check_Unique_FamilyId(Ftp)); //Allan
 		
 		allErrors.addAll(US_DatesCheckInFamily.us04MarriageBeforeDivorce(Ftp));
+		
 		allErrors.addAll(US_Siblings.us15FewerThanFifteenSiblings(Ftp));
 
 		allErrors.addAll(US_Siblings.checkSiblingMarraige(Ftp));
 		
-
-		// ---------------------------------------------------------------------------------------//
+		// ---------------------------------Sprint03--------------------------------------------//
+		
 		allErrors.addAll(US_CheckUniqueness.findDuplicateSpousedetails(Ftp));
+		
+		allErrors.addAll(US_DatesCheckInFamily.findBirthBeforeDeathOfParents(Ftp));
+		
+		//-------------------------------------------------------------------------------------//
 		
 		for (int i = 0; i < allErrors.size(); i++) {
 			ErrorData error = allErrors.get(i);
