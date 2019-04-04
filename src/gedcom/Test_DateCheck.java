@@ -311,4 +311,92 @@ public class Test_DateCheck {
 		assertEquals(error.getErrorDetails(),recordError.get(0).getErrorDetails());
 		
 	}
+	@Test
+	public void getListOfDeceased() throws Exception {
+		Individual individual = new Individual();
+		individual.setId("I1100");
+		individual.setBirthDate("12 APR 2001");
+		testIndividualMap.put("I1000",individual);
+		
+		individual = new Individual();
+		individual.setId("I1101");
+		individual.setBirthDate("12 APR 2011");
+		individual.setDeathDate("25 DEC 2018");
+		testIndividualMap.put("I1101",individual);
+		
+		individual = new Individual();
+		individual.setId("I1102");
+		individual.setBirthDate("12 APR 2011");
+		testIndividualMap.put("I1002",individual);
+		
+		Family family = new Family();
+		family.setId("F1101");
+		family.setHusbandId("I1100");
+		family.setWifeId("I1101");
+		family.setMarriageDate("25 DEC 2016");
+		testFamilyList.add(family);
+		
+		Family family1 = new Family();
+		family1.setId("F1102");
+		family1.setHusbandId("I1100");
+		family1.setWifeId("I1102");
+		family1.setMarriageDate("25 DEC 2017");
+		testFamilyList.add(family1);
+		
+		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
+		ArrayList<Individual> deceasedPeople = US_MultiIndividualFamilyData.listOfDeceased(Ftp);
+		System.out.println(deceasedPeople);
+		
+	}
+	@Test
+	public void checkSiblingMarraigeTest() throws Exception {
+		
+		Individual individual = new Individual();
+		individual.setId("I1300");
+		individual.setBirthDate("12 APR 1961");
+		testIndividualMap.put("I1300",individual);
+	
+		individual = new Individual();
+		individual.setId("I1301");
+		individual.setBirthDate("12 APR 1961");
+		testIndividualMap.put("I1301",individual);
+		
+		individual = new Individual();
+		individual.setId("I1303");
+		individual.setBirthDate("12 APR 1995");
+		individual.setFamilyChildId("F1301");
+		testIndividualMap.put("I1303",individual);
+		
+		individual = new Individual();
+		individual.setId("I1304");
+		individual.setBirthDate("12 APR 1995");
+		individual.setFamilyChildId("F1301");
+		testIndividualMap.put("I1304",individual);
+		
+		Family family = new Family();
+		family.setId("F1301");
+		family.setHusbandId("I1300");
+		family.setWifeId("I1301");
+		family.setMarriageDate("25 DEC 1989");
+		family.setChildId("I1303");
+		family.setChildId("I1304");
+		testFamilyList.add(family);
+		
+		Family family1 = new Family();
+		family1.setId("F1302");
+		family1.setHusbandId("I1303");
+		family1.setWifeId("I1304");
+		family1.setMarriageDate("24 MAR 2019");
+		testFamilyList.add(family1);
+		
+		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
+		ArrayList<ErrorData> recordError = US_Siblings.checkSiblingMarraige(Ftp);
+
+		ErrorData error = new ErrorData();
+		error.setIndividualId("F1302");
+		error.setErrorDetails("I1303 and I1304 are married siblings.");
+		System.out.println(error.getErrorDetails());
+		assertEquals(error.getErrorDetails(),recordError.get(0).getErrorDetails());
+		
+	}
 }
