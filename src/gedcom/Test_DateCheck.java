@@ -1,4 +1,5 @@
 package gedcom;
+
 //Shreesh Chavan: Sprint1 US01 valid date
 import static org.junit.Assert.*;
 
@@ -25,7 +26,6 @@ public class Test_DateCheck {
 	
 	@Test
 	public void testCheckBirthDatesAfterCurrentDate() throws Exception {
-//		fail("Not yet implemented");
 		
 		Individual individual = new Individual();
 		individual.setId("I100");
@@ -38,13 +38,11 @@ public class Test_DateCheck {
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I100");
 		error.setErrorDetails("BirthDate 2020-04-12 for I100 is after today's date.");
-//		System.out.println(recordError.get(0).getErrorDetails());
 		assertEquals(error.getErrorDetails(),recordError.get(0).getErrorDetails());
 
 	}
 	@Test
 	public void testCheckDeathDatesAfterCurrentDate() throws Exception {
-//		fail("Not yet implemented");
 		Individual individual = new Individual();
 		individual.setId("I200");
 		individual.setBirthDate("12 APR 2010");
@@ -58,7 +56,6 @@ public class Test_DateCheck {
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I200");
 		error.setErrorDetails("DeathDate 2020-04-12 for I200 is after today's date.");
-//		System.out.println(recordError.get(1).getErrorDetails());
 		assertEquals(error.getErrorDetails(),recordError.get(0).getErrorDetails());
 	}
 	@Test
@@ -86,12 +83,10 @@ public class Test_DateCheck {
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I300");
 		error.setErrorDetails("MarriageDate 2096-12-25 for I300 is after today's date.");
-//		System.out.println(recordError.get(4).getErrorDetails());
 		assertEquals(error.getErrorDetails(),recordError.get(0).getErrorDetails());		
 		error = new ErrorData();
 		error.setIndividualId("I301");
 		error.setErrorDetails("MarriageDate 2096-12-25 for I301 is after today's date.");
-//		System.out.println(recordError.get(5).getErrorDetails());
 		assertEquals(error.getErrorDetails(),recordError.get(1).getErrorDetails());
 	}
 	@Test
@@ -120,16 +115,13 @@ public class Test_DateCheck {
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I400");
 		error.setErrorDetails("DivorceDate 2019-12-25 for I400 is after today's date.");
-//		System.out.println(recordError.get(2).getErrorDetails());
 		assertEquals(error.getErrorDetails(),recordError.get(0).getErrorDetails());
 		error.setIndividualId("I401");
 		error.setErrorDetails("DivorceDate 2019-12-25 for I401 is after today's date.");
-//		System.out.println(recordError.get(3).getErrorDetails());
 		assertEquals(error.getErrorDetails(),recordError.get(1).getErrorDetails());
 	}
 	@Test
 	public void testCheckBirthDatesBeforeCurrentDate() throws Exception {
-//		fail("Not yet implemented");
 		
 		Individual individual = new Individual();
 		individual.setId("I500");
@@ -142,17 +134,13 @@ public class Test_DateCheck {
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I500");
 		error.setErrorDetails("BirthDate 2010-04-12 for I500 is after today's date.");
-//		for(int i=0;i<recordError.size();i++) {
-//			System.out.println(recordError.get(i).getErrorDetails());
-//		}
 		for(ErrorData record : recordError) {
 			assertNotEquals("I500", record.getIndividualId());
 		}
-//		System.out.print("hi");
 	}
 	@Test
 	public void testCheckDeathDatesBeforeCurrentDate() throws Exception {
-//		fail("Not yet implemented");
+
 		Individual individual = new Individual();
 		individual.setId("I600");
 		individual.setBirthDate("12 APR 2010");
@@ -395,7 +383,6 @@ public class Test_DateCheck {
 		ErrorData error = new ErrorData();
 		error.setIndividualId("F1302");
 		error.setErrorDetails("I1303 and I1304 are married siblings.");
-//		System.out.println(error.getErrorDetails());
 		assertEquals(error.getErrorDetails(),recordError.get(0).getErrorDetails());
 		
 	}
