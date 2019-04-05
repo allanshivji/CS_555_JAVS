@@ -17,6 +17,7 @@ public class Test_CheckList {
 		testFamilyList = new ArrayList<Family>();
 	}
 	
+	// Allan: Sprint 3 US30 check list of Living Married
 	@Test
 	public void test_Check_LivingMarried(){
 		Individual indi = new Individual();
@@ -46,6 +47,7 @@ public class Test_CheckList {
 		assertTrue(livingMarriedArray.size() == 2);
 	}
 	
+	// Allan: Sprint 3 US30 check list of Living Married
 	@Test
 	public void test_Check_LivingMarried2(){
 		Individual indi = new Individual();
@@ -76,6 +78,7 @@ public class Test_CheckList {
 		assertTrue(livingMarriedArray.size() == 0);
 	}
 	
+	// Allan: Sprint 3 US27 list of Current Age
 	@Test
 	public void test_Check_CurrentAge(){
 		Individual indi = new Individual();
@@ -83,6 +86,7 @@ public class Test_CheckList {
 		assertTrue(indi.getAge() == 23);
 	}
 	
+	// Allan: Sprint 3 US27 list of Current Age
 	@Test
 	public void test_Check_CurrentAge2(){
 		Individual indi = new Individual();
