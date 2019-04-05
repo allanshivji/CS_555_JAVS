@@ -9,6 +9,25 @@ import java.util.Map.Entry;
 import java.util.stream.Stream;
 
 public class US_MultiIndividualFamilyData {
+	
+	// Allan: Sprint 3 US30 check list of Living Married
+	public static ArrayList<Individual> listOfLivingMarried(FamilyTreeParser Ftp){
+		ArrayList<Individual> livingMarriedArray = new ArrayList<Individual>();
+		for (Family familyRecord : Ftp.familyList) {
+			
+			String husbId = familyRecord.getHusbandId();
+			String wifeId = familyRecord.getWifeId();
+
+			if(Ftp.individualMap.get(husbId).isAlive() == "True" && Ftp.individualMap.get(wifeId).isAlive() == "True") {
+				livingMarriedArray.add(Ftp.individualMap.get(husbId));
+				livingMarriedArray.add(Ftp.individualMap.get(wifeId));
+			}
+		}
+		return livingMarriedArray;
+	}
+	
+	
+	
 	// Shreesh Chavan: Sprint2 US29 check list of deceased
 	public static ArrayList<Individual> listOfDeceased(FamilyTreeParser ftp) {
 		ArrayList<Individual> deceasedArray = new ArrayList<Individual>();

@@ -185,6 +185,40 @@ public class GedComTree {
 				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
 		System.out.println();
 	}
+	
+	
+	
+	private static void printListOfLivingMarried(FamilyTreeParser Ftp) {
+		System.out.println("List of Living Married");
+		ArrayList<Individual> livingMarried = US_MultiIndividualFamilyData.listOfLivingMarried(Ftp);
+		
+		String individualOutputFormat = "|%1$-6s|%2$-20s|%3$-10s|%4$-12s|%5$-7s|%6$-9s|%7$-12s|%8$-10s|%9$-10s|%n";
+		System.out.format(
+				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
+		System.out.format(
+				"|  ID  |       Name         |  Gender  |  Birthday  |  Age  |  Alive  |    Death   |   Child  |  Spouse  |%n");
+		System.out.format(
+				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
+		
+		
+		for(Individual indi:livingMarried) {
+			System.out.format(individualOutputFormat, indi.getId(), indi.getName(), indi.getGender(),
+					indi.getBirthDate(), indi.getAge(), indi.isAlive(),
+					indi.getDeathDate() == null ? "NA" : indi.getDeathDate(),
+					indi.getFamilyChildId() == null ? "NA" : "{'" + indi.getFamilyChildId() + "'}",
+					indi.getFamilySpouseId() == null ? "NA" : "{'" + indi.getFamilySpouseId() + "'}");
+		}
+		System.out.format(
+				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
+		System.out.println();
+	}
+	
+	
+	
+	
+	
+	
+	
 	public static void main(String[] args) throws IOException, ParseException {
 		FamilyTreeParser Ftp = new FamilyTreeParser();
 		Ftp.setValidTags();
@@ -195,6 +229,7 @@ public class GedComTree {
 		printListOfDeceasedIndividuals(Ftp);
 		printListOfOrphansIndividuals(Ftp);
 		printListOfSingleLivingIndividuals(Ftp);
+		printListOfLivingMarried(Ftp);
 //		ArrayList<Individual> livingSingles = US_MultiIndividualFamilyData.listOflivingSingle(Ftp);
 //		ArrayList<Individual> livingSingles = US_MultiIndividualFamilyData.listofOrphans(Ftp);
 	}
