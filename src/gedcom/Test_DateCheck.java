@@ -344,7 +344,7 @@ public class Test_DateCheck {
 		testFamilyList.add(family1);
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
-		ArrayList<Individual> deceasedPeople = US_MultiIndividualFamilyData.listOfDeceased(Ftp);
+		ArrayList<Individual> deceasedPeople = All_Lists.listOfDeceased(Ftp);
 		System.out.println(deceasedPeople);
 		
 	}

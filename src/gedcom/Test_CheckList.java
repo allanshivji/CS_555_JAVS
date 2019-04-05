@@ -41,7 +41,7 @@ public class Test_CheckList {
 		testFamilyList.add(family);
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
-		ArrayList<Individual> livingMarriedArray = US_MultiIndividualFamilyData.listOfLivingMarried(Ftp);
+		ArrayList<Individual> livingMarriedArray = All_Lists.listOfLivingMarried(Ftp);
 		
 		assertTrue(livingMarriedArray.size() == 2);
 	}
@@ -71,7 +71,7 @@ public class Test_CheckList {
 		testFamilyList.add(family);
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
-		ArrayList<Individual> livingMarriedArray = US_MultiIndividualFamilyData.listOfLivingMarried(Ftp);
+		ArrayList<Individual> livingMarriedArray = All_Lists.listOfLivingMarried(Ftp);
 		
 		assertTrue(livingMarriedArray.size() == 0);
 	}
