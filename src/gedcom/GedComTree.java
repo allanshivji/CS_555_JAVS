@@ -187,7 +187,7 @@ public class GedComTree {
 	}
 	
 	
-	
+	//US27 Living Married Individuals - Allan
 	private static void printListOfLivingMarried(FamilyTreeParser Ftp) {
 		System.out.println("List of Living Married");
 		ArrayList<Individual> livingMarried = US_MultiIndividualFamilyData.listOfLivingMarried(Ftp);

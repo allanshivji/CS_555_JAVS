@@ -23,7 +23,7 @@ public class US_Siblings {
 				}
 				if((familyRecord.getId()!=famrec.getId())&&((familyRecord.getHusbandId() == famrec.getHusbandId()))) {
 //					||familyRecord.getWifeId() == famrec.getWifeId())
-					System.out.println("hi");
+//					System.out.println("hi");
 					temp.addAll(familyRecord.getChildId());
 					temp.addAll(famrec.getChildId());
 					checkHalfSiblings.add(temp);
@@ -34,7 +34,7 @@ public class US_Siblings {
 		for(ArrayList halfsiblings:checkHalfSiblings) {
 			for(Family familyRecord:ftp.familyList) {
 				if (halfsiblings.contains(familyRecord.getHusbandId())&&halfsiblings.contains(familyRecord.getWifeId())) {
-					System.out.println("hi");
+//					System.out.println("hi");
 					ErrorData error = new ErrorData();
 					error.setErrorType("ERROR");
 					error.setRecordType("FAMILY");

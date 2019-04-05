@@ -395,7 +395,7 @@ public class Test_DateCheck {
 		ErrorData error = new ErrorData();
 		error.setIndividualId("F1302");
 		error.setErrorDetails("I1303 and I1304 are married siblings.");
-		System.out.println(error.getErrorDetails());
+//		System.out.println(error.getErrorDetails());
 		assertEquals(error.getErrorDetails(),recordError.get(0).getErrorDetails());
 		
 	}
