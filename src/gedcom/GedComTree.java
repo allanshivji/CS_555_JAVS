@@ -116,6 +116,7 @@ public class GedComTree {
 	private static void printListOfDeceasedIndividuals(FamilyTreeParser Ftp) {
 		ArrayList<Individual> deceasedPeople = All_Lists.listOfDeceased(Ftp);
 
+		//Sprint 2 - US29 List of Deceased - Shreesh Chavan
 		// For individuals
 		System.out.println("List of Deceased");
 		String individualOutputFormat = "|%1$-6s|%2$-20s|%3$-10s|%4$-12s|%5$-7s|%6$-9s|%7$-12s|%8$-10s|%9$-10s|%n";
@@ -140,6 +141,7 @@ public class GedComTree {
 	private static void printListOfOrphansIndividuals(FamilyTreeParser Ftp) {
 		ArrayList<Individual> orphans = All_Lists.listofOrphans(Ftp);
 
+		//Sprint 3 - US33 List of Orphans - Shreesh Chavan
 		// For individuals
 		System.out.println("List of Orphans");
 		String individualOutputFormat = "|%1$-6s|%2$-20s|%3$-10s|%4$-12s|%5$-7s|%6$-9s|%7$-12s|%8$-10s|%9$-10s|%n";
@@ -164,6 +166,7 @@ public class GedComTree {
 	private static void printListOfSingleLivingIndividuals(FamilyTreeParser Ftp) {
 		ArrayList<Individual> singles = All_Lists.listOflivingSingle(Ftp);
 
+		//Sprint 3 - US31 Living Singles - Shreesh Chavan
 		// For individuals
 		System.out.println("List of Singles");
 		String individualOutputFormat = "|%1$-6s|%2$-20s|%3$-10s|%4$-12s|%5$-7s|%6$-9s|%7$-12s|%8$-10s|%9$-10s|%n";
@@ -187,7 +190,7 @@ public class GedComTree {
 	}
 	
 	
-	//US27 Living Married Individuals - Allan
+	//Sprint 3 - US27 Living Married Individuals - Allan
 	private static void printListOfLivingMarried(FamilyTreeParser Ftp) {
 		System.out.println("List of Living Married");
 		ArrayList<Individual> livingMarried = All_Lists.listOfLivingMarried(Ftp);
@@ -230,7 +233,5 @@ public class GedComTree {
 		printListOfOrphansIndividuals(Ftp);
 		printListOfSingleLivingIndividuals(Ftp);
 		printListOfLivingMarried(Ftp);
-//		ArrayList<Individual> livingSingles = US_MultiIndividualFamilyData.listOflivingSingle(Ftp);
-//		ArrayList<Individual> livingSingles = US_MultiIndividualFamilyData.listofOrphans(Ftp);
 	}
 }
