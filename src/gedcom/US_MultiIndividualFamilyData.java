@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map.Entry;
+import java.util.stream.Stream;
 
 public class US_MultiIndividualFamilyData {
 	// Shreesh Chavan: Sprint2 US29 check list of deceased
@@ -19,7 +20,45 @@ public class US_MultiIndividualFamilyData {
 		}
 		return deceasedArray;
 	}
-
+	public static ArrayList<Individual> listOflivingSingle(FamilyTreeParser ftp) {
+		ArrayList<Individual> livingSingleArray = new ArrayList<Individual>();
+		HashMap<String, Individual> enter = ftp.individualMap;
+		for (Entry<String, Individual> entry : enter.entrySet()) {
+			if (entry.getValue().isAlive() == "True") {
+				if(entry.getValue().getAge() >= 30 && checkIfMarried(entry.getValue().getId(),ftp)!=false)
+				{
+					livingSingleArray.add(entry.getValue());	
+				}
+			}
+		}
+		return livingSingleArray;
+	}
+	public static boolean checkIfMarried(String id, FamilyTreeParser ftp) {
+		ArrayList<Family> family = ftp.familyList;
+		for(Family famrec: family) {
+//			System.out.println(famrec);
+			if(id == famrec.getHusbandId() || id == famrec.getWifeId()) {
+				return true;
+			}
+		}
+		return false;
+		
+	}
+	public static ArrayList<Individual> listofOrphans(FamilyTreeParser ftp) {
+		ArrayList<Individual> orphansArray = new ArrayList<Individual>();
+		HashMap<String, Individual> enter = ftp.individualMap;
+		ArrayList<Family> family = ftp.familyList;
+		for(Family famrec:family) {
+			if(famrec.getChildId().size()>0 && enter.get(famrec.getHusbandId()).isAlive()=="False" && enter.get(famrec.getWifeId()).isAlive()=="False") {
+				for(String childid:famrec.getChildId()) {
+					if(enter.get(childid).getAge()<18) {
+						orphansArray.add(enter.get(childid));
+					}
+				}
+			}
+		}
+		return orphansArray;
+	}
 	// Shreesh Chavan: Sprint1 US11 check bigamy
 	public static ArrayList<ErrorData> checkBigamy(FamilyTreeParser ftp) {
 		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();

@@ -117,7 +117,7 @@ public class GedComTree {
 		ArrayList<Individual> deceasedPeople = US_MultiIndividualFamilyData.listOfDeceased(Ftp);
 
 		// For individuals
-		System.out.println("Individuals");
+		System.out.println("List of Deceased");
 		String individualOutputFormat = "|%1$-6s|%2$-20s|%3$-10s|%4$-12s|%5$-7s|%6$-9s|%7$-12s|%8$-10s|%9$-10s|%n";
 		System.out.format(
 				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
@@ -137,6 +137,54 @@ public class GedComTree {
 				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
 		System.out.println();
 	}
+	private static void printListOfOrphansIndividuals(FamilyTreeParser Ftp) {
+		ArrayList<Individual> orphans = US_MultiIndividualFamilyData.listofOrphans(Ftp);
+
+		// For individuals
+		System.out.println("List of Orphans");
+		String individualOutputFormat = "|%1$-6s|%2$-20s|%3$-10s|%4$-12s|%5$-7s|%6$-9s|%7$-12s|%8$-10s|%9$-10s|%n";
+		System.out.format(
+				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
+		System.out.format(
+				"|  ID  |       Name         |  Gender  |  Birthday  |  Age  |  Alive  |    Death   |   Child  |  Spouse  |%n");
+		System.out.format(
+				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
+		for (Individual indi:orphans) {
+			System.out.format(individualOutputFormat, indi.getId(), indi.getName(), indi.getGender(),
+					indi.getBirthDate(), indi.getAge(), indi.isAlive(),
+					indi.getDeathDate() == null ? "NA" : indi.getDeathDate(),
+					indi.getFamilyChildId() == null ? "NA" : "{'" + indi.getFamilyChildId() + "'}",
+					indi.getFamilySpouseId() == null ? "NA" : "{'" + indi.getFamilySpouseId() + "'}");
+
+		}
+		System.out.format(
+				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
+		System.out.println();
+	}
+	private static void printListOfSingleLivingIndividuals(FamilyTreeParser Ftp) {
+		ArrayList<Individual> singles = US_MultiIndividualFamilyData.listOflivingSingle(Ftp);
+
+		// For individuals
+		System.out.println("List of Singles");
+		String individualOutputFormat = "|%1$-6s|%2$-20s|%3$-10s|%4$-12s|%5$-7s|%6$-9s|%7$-12s|%8$-10s|%9$-10s|%n";
+		System.out.format(
+				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
+		System.out.format(
+				"|  ID  |       Name         |  Gender  |  Birthday  |  Age  |  Alive  |    Death   |   Child  |  Spouse  |%n");
+		System.out.format(
+				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
+		for (Individual indi:singles) {
+			System.out.format(individualOutputFormat, indi.getId(), indi.getName(), indi.getGender(),
+					indi.getBirthDate(), indi.getAge(), indi.isAlive(),
+					indi.getDeathDate() == null ? "NA" : indi.getDeathDate(),
+					indi.getFamilyChildId() == null ? "NA" : "{'" + indi.getFamilyChildId() + "'}",
+					indi.getFamilySpouseId() == null ? "NA" : "{'" + indi.getFamilySpouseId() + "'}");
+
+		}
+		System.out.format(
+				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
+		System.out.println();
+	}
 	public static void main(String[] args) throws IOException, ParseException {
 		FamilyTreeParser Ftp = new FamilyTreeParser();
 		Ftp.setValidTags();
@@ -145,5 +193,9 @@ public class GedComTree {
 		printFamilyList(Ftp);
 		printErrorDetails(Ftp);
 		printListOfDeceasedIndividuals(Ftp);
+		printListOfOrphansIndividuals(Ftp);
+		printListOfSingleLivingIndividuals(Ftp);
+//		ArrayList<Individual> livingSingles = US_MultiIndividualFamilyData.listOflivingSingle(Ftp);
+//		ArrayList<Individual> livingSingles = US_MultiIndividualFamilyData.listofOrphans(Ftp);
 	}
 }
