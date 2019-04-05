@@ -333,7 +333,6 @@ public class Test_DateCheck {
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
 		ArrayList<Individual> deceasedPeople = All_Lists.listOfDeceased(Ftp);
-		System.out.println(deceasedPeople);
 		
 	}
 	@Test
