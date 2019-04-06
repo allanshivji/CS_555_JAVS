@@ -93,5 +93,82 @@ public class Test_CheckList {
 		indi.setBirthDate("11 NOV 1994");
 		assertEquals(indi.getAge(), 24);
 	}
+	// Shreesh: Sprint 2 US29 list of Deceased
+	@Test
+	public void getListOfDeceased() throws Exception {
+		Individual individual = new Individual();
+		individual.setId("I1100");
+		individual.setBirthDate("12 APR 2001");
+		testIndividualMap.put("I1000",individual);
+		
+		individual = new Individual();
+		individual.setId("I1101");
+		individual.setBirthDate("12 APR 2011");
+		individual.setDeathDate("25 DEC 2018");
+		testIndividualMap.put("I1101",individual);
+		
+		individual = new Individual();
+		individual.setId("I1102");
+		individual.setBirthDate("12 APR 2011");
+		testIndividualMap.put("I1002",individual);
+		
+		Family family = new Family();
+		family.setId("F1101");
+		family.setHusbandId("I1100");
+		family.setWifeId("I1101");
+		family.setMarriageDate("25 DEC 2016");
+		testFamilyList.add(family);
+		
+		Family family1 = new Family();
+		family1.setId("F1102");
+		family1.setHusbandId("I1100");
+		family1.setWifeId("I1102");
+		family1.setMarriageDate("25 DEC 2017");
+		testFamilyList.add(family1);
+		
+		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
+		ArrayList<Individual> deceasedPeople = All_Lists.US_listOfDeceased(Ftp);
+		assertTrue(deceasedPeople.size() == 1);
+		
+	}
+	
+	// Shreesh: Sprint 3 US33 list of Deceased
+		@Test
+		public void getListOfOrphans() throws Exception {
+			Individual individual = new Individual();
+			individual.setId("I1100");
+			individual.setBirthDate("12 APR 2001");
+			testIndividualMap.put("I1000",individual);
+			
+			individual = new Individual();
+			individual.setId("I1101");
+			individual.setBirthDate("12 APR 2011");
+			individual.setDeathDate("25 DEC 2018");
+			testIndividualMap.put("I1101",individual);
+			
+			individual = new Individual();
+			individual.setId("I1102");
+			individual.setBirthDate("12 APR 2011");
+			testIndividualMap.put("I1002",individual);
+			
+			Family family = new Family();
+			family.setId("F1101");
+			family.setHusbandId("I1100");
+			family.setWifeId("I1101");
+			family.setMarriageDate("25 DEC 2016");
+			testFamilyList.add(family);
+			
+			Family family1 = new Family();
+			family1.setId("F1102");
+			family1.setHusbandId("I1100");
+			family1.setWifeId("I1102");
+			family1.setMarriageDate("25 DEC 2017");
+			testFamilyList.add(family1);
+			
+			FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
+			ArrayList<Individual> orphans = All_Lists.US_listofOrphans(Ftp);
+			assertTrue(orphans.size() == 0);
+			
+		}
 
 }

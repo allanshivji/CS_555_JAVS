@@ -299,42 +299,7 @@ public class Test_DateCheck {
 		assertEquals(error.getErrorDetails(),recordError.get(0).getErrorDetails());
 		
 	}
-	@Test
-	public void getListOfDeceased() throws Exception {
-		Individual individual = new Individual();
-		individual.setId("I1100");
-		individual.setBirthDate("12 APR 2001");
-		testIndividualMap.put("I1000",individual);
-		
-		individual = new Individual();
-		individual.setId("I1101");
-		individual.setBirthDate("12 APR 2011");
-		individual.setDeathDate("25 DEC 2018");
-		testIndividualMap.put("I1101",individual);
-		
-		individual = new Individual();
-		individual.setId("I1102");
-		individual.setBirthDate("12 APR 2011");
-		testIndividualMap.put("I1002",individual);
-		
-		Family family = new Family();
-		family.setId("F1101");
-		family.setHusbandId("I1100");
-		family.setWifeId("I1101");
-		family.setMarriageDate("25 DEC 2016");
-		testFamilyList.add(family);
-		
-		Family family1 = new Family();
-		family1.setId("F1102");
-		family1.setHusbandId("I1100");
-		family1.setWifeId("I1102");
-		family1.setMarriageDate("25 DEC 2017");
-		testFamilyList.add(family1);
-		
-		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
-		ArrayList<Individual> deceasedPeople = All_Lists.listOfDeceased(Ftp);
-		
-	}
+
 	@Test
 	public void checkSiblingMarraigeTest() throws Exception {
 		

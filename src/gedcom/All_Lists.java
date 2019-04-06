@@ -24,7 +24,7 @@ public class All_Lists {
 	}
 
 	// Shreesh Chavan: Sprint 2 US29 check list of Deceased
-	public static ArrayList<Individual> listOfDeceased(FamilyTreeParser ftp) {
+	public static ArrayList<Individual> US_listOfDeceased(FamilyTreeParser ftp) {
 		ArrayList<Individual> deceasedArray = new ArrayList<Individual>();
 		HashMap<String, Individual> enter = ftp.individualMap;
 		for (Entry<String, Individual> entry : enter.entrySet()) {
@@ -36,7 +36,7 @@ public class All_Lists {
 	}
 
 	// Shreesh Chavan: Sprint 3 US31 check list of Living Singles
-	public static ArrayList<Individual> listOflivingSingle(FamilyTreeParser ftp) {
+	public static ArrayList<Individual> US_listOflivingSingle(FamilyTreeParser ftp) {
 		ArrayList<Individual> livingSingleArray = new ArrayList<Individual>();
 		HashMap<String, Individual> enter = ftp.individualMap;
 		for (Entry<String, Individual> entry : enter.entrySet()) {
@@ -60,7 +60,7 @@ public class All_Lists {
 	}
 
 	// Shreesh Chavan: Sprint 3 US33 check list of Orphans
-	public static ArrayList<Individual> listofOrphans(FamilyTreeParser ftp) {
+	public static ArrayList<Individual> US_listofOrphans(FamilyTreeParser ftp) {
 		ArrayList<Individual> orphansArray = new ArrayList<Individual>();
 		HashMap<String, Individual> enter = ftp.individualMap;
 		ArrayList<Family> family = ftp.familyList;
