@@ -170,6 +170,7 @@ public class Test_CheckList {
 			ArrayList<Individual> orphans = All_Lists.US_listofOrphans(Ftp);
 			System.out.println(orphans.size());
 			assertTrue(orphans.size() == 2);
+//			check for dead orphan
 			
 		}
 
