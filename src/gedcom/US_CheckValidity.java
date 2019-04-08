@@ -25,7 +25,7 @@ public class US_CheckValidity {
 			if (check_marriage_age(indi)!=null)
 				errorList.add(check_marriage_age(indi));
 		}
-		
+
 		// check Family
 		for (Family familyRecord : Ftp.familyList) {
 			if (familyRecord.getMarriageDate() != null) {
@@ -33,25 +33,25 @@ public class US_CheckValidity {
 				Individual husband = Ftp.individualMap.get(familyRecord.getHusbandId());
 				//Individual wife
 				Individual wife = Ftp.individualMap.get(familyRecord.getWifeId());
-				
-				
+
+
 				ArrayList<String> childrenList = familyRecord.getChildId();
 				ArrayList<Individual> children = new ArrayList<Individual>();
 				for (String childId : childrenList) {
 					//Individual child
 					children.add(Ftp.individualMap.get(childId));
 				}
-				
+
 //				for (String childId : childrenList) {
 //					//Individual child
 //					Individual child = Ftp.individualMap.get(childId);
-//					
+//
 //					ArrayList<ErrorData> tmp_list  = new ArrayList<ErrorData>();
 //					// US12
 //					tmp_list.addAll(check_parents_not_too_old(husband, wife, child));
 //					// US17
 //					tmp_list.addAll(check_parents_no_marriages_to_children(husband, wife, child));
-//					
+//
 //					for (ErrorData error : tmp_list) {
 //						error.setUserStoryNumber(familyRecord.getId());
 //					}
@@ -66,7 +66,7 @@ public class US_CheckValidity {
 					errorList.addAll(check_divorce_before_death(husband, wife, familyRecord));
 				// US14
 				if(children.size() > 5) {
-					errorList.add(check_multiple_births(children, familyRecord.getId()));
+					errorList.addAll(check_multiple_births(children, familyRecord.getId()));
 				}
 			}
 		}
@@ -77,7 +77,7 @@ public class US_CheckValidity {
 	public static ErrorData check_age(Individual indi) {
 		if (indi.getAge() >= 150) {
 			ErrorData error = new ErrorData(
-				"ERROR", 
+				"ERROR",
 				"INDIVIDUAL",
 				"US05",
 				indi.getId(),
@@ -125,7 +125,7 @@ public class US_CheckValidity {
 	// Jiayuan Liu: Sprint2 US12 Parents not too old
 	// Mother should be less than 60 years older than her children
 	// and father should be less than 80 years older than his children
-	
+
 	public static ArrayList<ErrorData> check_parents_not_too_old(Individual husband, Individual wife, ArrayList<Individual> children, String FamilyID){
 		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
 		for (Individual child : children) {
@@ -155,7 +155,7 @@ public class US_CheckValidity {
 		}
 		return errorList;
 	}
-	
+
 //	public static boolean check_father_not_too_old(int husbandAge, int childAge) {
 //		if ((husbandAge - childAge) > 80) {
 //			return false;
@@ -174,7 +174,7 @@ public class US_CheckValidity {
 	// Parents should not marry any of their children
 	public static ArrayList<ErrorData> check_parents_no_marriages_to_children(Individual husband, Individual wife, ArrayList<Individual> children, String FamilyID){
 		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
-		
+
 		//check father no marriages to children
 		for (Individual child : children) {
 			//Individual child
@@ -202,7 +202,7 @@ public class US_CheckValidity {
 		}
 		return errorList;
 	}
-	
+
 //	public static boolean check_father_no_marriages_to_children(String wifeId, String childId) {
 //		if (wifeId.equals(childId)) {
 //			return false;
@@ -245,14 +245,15 @@ public class US_CheckValidity {
 					);
 			errorList.add(error);
 		}
-		
+
 		return errorList;
 	}
-	
-	
-	// Jiayuan Liu:Sprint2 US14 Multiple births <= 5. 
+
+
+	// Jiayuan Liu:Sprint2 US14 Multiple births <= 5.
 	// No more than five siblings should be born at the same time
 	public static ErrorData check_multiple_births(ArrayList<Individual> children, String familyID){
+		ArrayList <ErrorData> errorList = new ArrayList<ErrorData>();
 		Map<LocalDate, Integer> mapDate = new HashMap<LocalDate, Integer>();
 		for(Individual child : children) {
 			Integer count = mapDate.get(child.getBirthDate());
@@ -277,8 +278,8 @@ public class US_CheckValidity {
 					"US14",
 					"More than five siblings were born at the same time."
 					);
-			return error;
-		}
-		return null;
+					errorList.add(error);
+				}
+				return errorList;
 	}
 }
