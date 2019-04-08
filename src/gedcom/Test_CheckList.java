@@ -134,7 +134,7 @@ public class Test_CheckList {
 	
 	// Shreesh: Sprint 3 US33 list of Orphans
 		@Test
-		public void getListOfOrphans() throws Exception {
+		public void testGetListOfOrphans() throws Exception {
 			Individual individual = new Individual();
 			individual.setId("I1100");
 			individual.setBirthDate("12 APR 2001");
@@ -174,7 +174,7 @@ public class Test_CheckList {
 		}
 		// Shreesh: Sprint 3 US31 list of Singles
 				@Test
-				public void getListOfLivingSingles() throws Exception {
+				public void testGetListOfLivingSingles() throws Exception {
 					Individual individual = new Individual();
 					individual.setId("I1100");
 					individual.setBirthDate("12 APR 2001");
@@ -210,7 +210,6 @@ public class Test_CheckList {
 					ArrayList<Individual> singles = All_Lists.US_listOflivingSingle(Ftp);
 					System.out.println(singles.size());
 					assertTrue(singles.size() == 2);
-//					check for dead orphan
 					
 				}
 
