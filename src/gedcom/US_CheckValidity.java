@@ -79,7 +79,7 @@ public class US_CheckValidity {
 			ErrorData error = new ErrorData(
 				"ERROR",
 				"INDIVIDUAL",
-				"US05",
+				"US07",
 				indi.getId(),
 				"Age of " + indi.getName() + "(" + indi.getId() + ")" + " is more then 150 years old."
 				);
