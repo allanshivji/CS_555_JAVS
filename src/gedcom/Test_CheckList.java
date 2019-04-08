@@ -132,42 +132,44 @@ public class Test_CheckList {
 		
 	}
 	
-	// Shreesh: Sprint 3 US33 list of Deceased
+	// Shreesh: Sprint 3 US33 list of Orphans
 		@Test
 		public void getListOfOrphans() throws Exception {
 			Individual individual = new Individual();
 			individual.setId("I1100");
 			individual.setBirthDate("12 APR 2001");
-			testIndividualMap.put("I1000",individual);
+			individual.setDeathDate("25 DEC 2018");
+			testIndividualMap.put("I1100",individual);
 			
 			individual = new Individual();
 			individual.setId("I1101");
-			individual.setBirthDate("12 APR 2011");
+			individual.setBirthDate("12 APR 2001");
 			individual.setDeathDate("25 DEC 2018");
 			testIndividualMap.put("I1101",individual);
 			
 			individual = new Individual();
-			individual.setId("I1102");
+			individual.setId("I1103");
 			individual.setBirthDate("12 APR 2011");
-			testIndividualMap.put("I1002",individual);
+			testIndividualMap.put("I1103",individual);
+			
+			individual = new Individual();
+			individual.setId("I1104");
+			individual.setBirthDate("12 APR 2011");
+			testIndividualMap.put("I1104",individual);
 			
 			Family family = new Family();
 			family.setId("F1101");
 			family.setHusbandId("I1100");
 			family.setWifeId("I1101");
 			family.setMarriageDate("25 DEC 2016");
+			family.setChildId("I1103");
+			family.setChildId("I1104");
 			testFamilyList.add(family);
-			
-			Family family1 = new Family();
-			family1.setId("F1102");
-			family1.setHusbandId("I1100");
-			family1.setWifeId("I1102");
-			family1.setMarriageDate("25 DEC 2017");
-			testFamilyList.add(family1);
 			
 			FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
 			ArrayList<Individual> orphans = All_Lists.US_listofOrphans(Ftp);
-			assertTrue(orphans.size() == 0);
+			System.out.println(orphans.size());
+			assertTrue(orphans.size() == 2);
 			
 		}
 

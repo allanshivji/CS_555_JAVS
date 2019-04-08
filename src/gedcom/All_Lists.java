@@ -65,9 +65,9 @@ public class All_Lists {
 		HashMap<String, Individual> enter = ftp.individualMap;
 		ArrayList<Family> family = ftp.familyList;
 		for (Family famrec : family) {
-			if (famrec.getChildId().size() > 0 && enter.get(famrec.getHusbandId()).isAlive() == "False"
-					&& enter.get(famrec.getWifeId()).isAlive() == "False") {
+			if (famrec.getChildId().size() > 0 && enter.get(famrec.getHusbandId()).isAlive() == "False"	&& enter.get(famrec.getWifeId()).isAlive() == "False") {
 				for (String childid : famrec.getChildId()) {
+
 					if (enter.get(childid).getAge() < 18) {
 						orphansArray.add(enter.get(childid));
 					}
