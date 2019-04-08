@@ -252,7 +252,7 @@ public class US_CheckValidity {
 
 	// Jiayuan Liu:Sprint2 US14 Multiple births <= 5.
 	// No more than five siblings should be born at the same time
-	public static ErrorData check_multiple_births(ArrayList<Individual> children, String familyID){
+	public static ArrayList <ErrorData> check_multiple_births(ArrayList<Individual> children, String familyID){
 		ArrayList <ErrorData> errorList = new ArrayList<ErrorData>();
 		Map<LocalDate, Integer> mapDate = new HashMap<LocalDate, Integer>();
 		for(Individual child : children) {
