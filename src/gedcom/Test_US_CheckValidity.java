@@ -145,9 +145,9 @@ public class Test_US_CheckValidity {
 		indi_family2.setDivorceDate("1 JAN 1970");
 		
 		
-		assertNotEquals(US_CheckValidity.check_divorce_before_death(indi_husband, indi_wife, indi_family1.getDivorcedDate()).size(), 0);
-		assertNotEquals(US_CheckValidity.check_divorce_before_death(indi_husband, indi_wife, indi_family1.getDivorcedDate()).size(), 0);
-		assertEquals(US_CheckValidity.check_divorce_before_death(indi_husband, indi_wife, indi_family2.getDivorcedDate()).size(), 0);
+		assertNotEquals(US_CheckValidity.check_divorce_before_death(indi_husband, indi_wife, indi_family1).size(), 0);
+		assertNotEquals(US_CheckValidity.check_divorce_before_death(indi_husband, indi_wife, indi_family1).size(), 0);
+		assertEquals(US_CheckValidity.check_divorce_before_death(indi_husband, indi_wife, indi_family2).size(), 0);
 		
 	}
 	

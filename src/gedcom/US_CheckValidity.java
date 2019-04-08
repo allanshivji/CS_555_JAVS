@@ -63,7 +63,7 @@ public class US_CheckValidity {
 				errorList.addAll(check_parents_no_marriages_to_children(husband, wife, children, familyRecord.getId()));
 				// US06
 				if(familyRecord.getDivorcedDate() != null)
-					errorList.addAll(check_divorce_before_death(husband, wife, familyRecord.getDivorcedDate()));
+					errorList.addAll(check_divorce_before_death(husband, wife, familyRecord));
 				// US14
 				if(children.size() > 5) {
 					errorList.add(check_multiple_births(children, familyRecord.getId()));
@@ -219,15 +219,15 @@ public class US_CheckValidity {
 
 	// Jiayuan Liu: Sprint2 US06 divorce before death
 	// divorce can only occur before death of both spouse
-	public static ArrayList<ErrorData> check_divorce_before_death(Individual husband, Individual wife, LocalDate divorceDate){
+	public static ArrayList<ErrorData> check_divorce_before_death(Individual husband, Individual wife, Family familyRecord){
 		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
 		//check husband
 		LocalDate husbandDeathDate = husband.getDeathDate();
-		if(husbandDeathDate!=null && husbandDeathDate.isBefore(divorceDate)) {
+		if(husbandDeathDate!=null && husbandDeathDate.isBefore(familyRecord.getDivorcedDate())) {
 			ErrorData error = new ErrorData(
 					"ERROR",
 					"FAMILY",
-					"",
+					familyRecord.getId(),
 					"US06",
 					"husband " + husband.getId() + " " + husband.getName() + " divorced before death."
 					);
@@ -235,11 +235,11 @@ public class US_CheckValidity {
 		}
 		//check wife
 		LocalDate wifeDeathDate = wife.getDeathDate();
-		if(wifeDeathDate!=null && wifeDeathDate.isBefore(divorceDate)) {
+		if(wifeDeathDate!=null && wifeDeathDate.isBefore(familyRecord.getDivorcedDate())) {
 			ErrorData error = new ErrorData(
 					"ERROR",
 					"FAMILY",
-					"",
+					familyRecord.getId(),
 					"US06",
 					"wife " + wife.getId() + " " + wife.getName() + " divorced before death."
 					);
