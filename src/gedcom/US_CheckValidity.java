@@ -229,7 +229,7 @@ public class US_CheckValidity {
 					"FAMILY",
 					familyRecord.getId(),
 					"US06",
-					"husband " + husband.getId() + " " + husband.getName() + " divorced before death."
+					"husband " + husband.getId() + " " + husband.getName() + " divorced after death."
 					);
 			errorList.add(error);
 		}
@@ -241,7 +241,7 @@ public class US_CheckValidity {
 					"FAMILY",
 					familyRecord.getId(),
 					"US06",
-					"wife " + wife.getId() + " " + wife.getName() + " divorced before death."
+					"wife " + wife.getId() + " " + wife.getName() + " divorced after death."
 					);
 			errorList.add(error);
 		}
