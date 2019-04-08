@@ -93,6 +93,7 @@ public class Test_CheckList {
 		indi.setBirthDate("11 NOV 1994");
 		assertEquals(indi.getAge(), 24);
 	}
+	
 	// Shreesh: Sprint 2 US29 list of Deceased
 	@Test
 	public void getListOfDeceased() throws Exception {
