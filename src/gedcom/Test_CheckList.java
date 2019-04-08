@@ -168,10 +168,51 @@ public class Test_CheckList {
 			
 			FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
 			ArrayList<Individual> orphans = All_Lists.US_listofOrphans(Ftp);
-			System.out.println(orphans.size());
 			assertTrue(orphans.size() == 2);
 //			check for dead orphan
 			
 		}
+		// Shreesh: Sprint 3 US31 list of Singles
+				@Test
+				public void getListOfLivingSingles() throws Exception {
+					Individual individual = new Individual();
+					individual.setId("I1100");
+					individual.setBirthDate("12 APR 2001");
+					individual.setDeathDate("25 DEC 2018");
+					testIndividualMap.put("I1100",individual);
+					
+					individual = new Individual();
+					individual.setId("I1101");
+					individual.setBirthDate("12 APR 2001");
+					individual.setDeathDate("25 DEC 2018");
+					testIndividualMap.put("I1101",individual);
+					
+					individual = new Individual();
+					individual.setId("I1103");
+					individual.setBirthDate("12 APR 1980");
+					testIndividualMap.put("I1103",individual);
+					
+					individual = new Individual();
+					individual.setId("I1104");
+					individual.setBirthDate("12 APR 1980");
+					testIndividualMap.put("I1104",individual);
+					
+					Family family = new Family();
+					family.setId("F1101");
+					family.setHusbandId("I1100");
+					family.setWifeId("I1101");
+					family.setMarriageDate("25 DEC 2016");
+					family.setChildId("I1103");
+					family.setChildId("I1104");
+					testFamilyList.add(family);
+					
+					FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
+					ArrayList<Individual> singles = All_Lists.US_listOflivingSingle(Ftp);
+					System.out.println(singles.size());
+					assertTrue(singles.size() == 2);
+//					check for dead orphan
+					
+				}
+
 
 }

@@ -41,7 +41,7 @@ public class All_Lists {
 		HashMap<String, Individual> enter = ftp.individualMap;
 		for (Entry<String, Individual> entry : enter.entrySet()) {
 			if (entry.getValue().isAlive() == "True") {
-				if (entry.getValue().getAge() >= 30 && checkIfMarried(entry.getValue().getId(), ftp) != false) {
+				if (entry.getValue().getAge() >= 30 && !checkIfMarried(entry.getValue().getId(), ftp) != false) {
 					livingSingleArray.add(entry.getValue());
 				}
 			}
