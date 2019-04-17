@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
-public class All_Lists {
+public class US_All_Lists {
 
 	// Allan: Sprint 3 US30 check list of Living Married
 	public static ArrayList<Individual> listOfLivingMarried(FamilyTreeParser Ftp) {

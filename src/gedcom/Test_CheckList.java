@@ -42,7 +42,7 @@ public class Test_CheckList {
 		testFamilyList.add(family);
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
-		ArrayList<Individual> livingMarriedArray = All_Lists.listOfLivingMarried(Ftp);
+		ArrayList<Individual> livingMarriedArray = US_All_Lists.listOfLivingMarried(Ftp);
 		
 		assertTrue(livingMarriedArray.size() == 2);
 	}
@@ -73,7 +73,7 @@ public class Test_CheckList {
 		testFamilyList.add(family);
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
-		ArrayList<Individual> livingMarriedArray = All_Lists.listOfLivingMarried(Ftp);
+		ArrayList<Individual> livingMarriedArray = US_All_Lists.listOfLivingMarried(Ftp);
 		
 		assertTrue(livingMarriedArray.size() == 0);
 	}
@@ -128,7 +128,7 @@ public class Test_CheckList {
 		testFamilyList.add(family1);
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
-		ArrayList<Individual> deceasedPeople = All_Lists.US_listOfDeceased(Ftp);
+		ArrayList<Individual> deceasedPeople = US_All_Lists.US_listOfDeceased(Ftp);
 		assertTrue(deceasedPeople.size() == 1);
 		
 	}
@@ -168,7 +168,7 @@ public class Test_CheckList {
 			testFamilyList.add(family);
 			
 			FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
-			ArrayList<Individual> orphans = All_Lists.US_listofOrphans(Ftp);
+			ArrayList<Individual> orphans = US_All_Lists.US_listofOrphans(Ftp);
 			assertTrue(orphans.size() == 2);
 //			check for dead orphan
 			
@@ -208,7 +208,7 @@ public class Test_CheckList {
 					testFamilyList.add(family);
 					
 					FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
-					ArrayList<Individual> singles = All_Lists.US_listOflivingSingle(Ftp);
+					ArrayList<Individual> singles = US_All_Lists.US_listOflivingSingle(Ftp);
 					System.out.println(singles.size());
 					assertTrue(singles.size() == 2);
 					
