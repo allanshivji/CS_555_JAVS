@@ -37,7 +37,7 @@ public class Test_US04MarriageAfterDivorce {
 		testFamilyList.add(family);
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
-		ArrayList<ErrorData> recordError = US_DatesCheckInFamily.us04MarriageBeforeDivorce(Ftp);
+		ArrayList<ErrorData> recordError = US_DatesCheckInFamily.US04_MarriageBeforeDivorce(Ftp);
 		
 		ErrorData error = new ErrorData();
 		error.setIndividualId("I100");
@@ -66,7 +66,7 @@ public class Test_US04MarriageAfterDivorce {
 		testFamilyList.add(family);
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
-		ArrayList<ErrorData> recordError = US_DatesCheckInFamily.us04MarriageBeforeDivorce(Ftp);
+		ArrayList<ErrorData> recordError = US_DatesCheckInFamily.US04_MarriageBeforeDivorce(Ftp);
 				
 		assertTrue(recordError.size() == 0);
 	}
@@ -90,7 +90,7 @@ public class Test_US04MarriageAfterDivorce {
 		testFamilyList.add(family);
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
-		ArrayList<ErrorData> recordError = US_DatesCheckInFamily.us04MarriageBeforeDivorce(Ftp);
+		ArrayList<ErrorData> recordError = US_DatesCheckInFamily.US04_MarriageBeforeDivorce(Ftp);
 				
 		assertTrue(recordError.size() == 0);
 	}
@@ -114,7 +114,7 @@ public class Test_US04MarriageAfterDivorce {
 		testFamilyList.add(family);
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
-		ArrayList<ErrorData> recordError = US_DatesCheckInFamily.us04MarriageBeforeDivorce(Ftp);
+		ArrayList<ErrorData> recordError = US_DatesCheckInFamily.US04_MarriageBeforeDivorce(Ftp);
 				
 		assertTrue(recordError.size() == 0);
 	}

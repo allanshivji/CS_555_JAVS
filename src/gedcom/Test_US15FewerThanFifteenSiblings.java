@@ -134,7 +134,7 @@ public class Test_US15FewerThanFifteenSiblings {
 		testFamilyList.add(family);
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
-		ArrayList<ErrorData> recordError = US_Siblings.us15FewerThanFifteenSiblings(Ftp);
+		ArrayList<ErrorData> recordError = US_Siblings.US15_FewerThanFifteenSiblings(Ftp);
 		
 		ErrorData error = new ErrorData();
 		error.setIndividualId("F100");
@@ -174,7 +174,7 @@ public class Test_US15FewerThanFifteenSiblings {
 		testFamilyList.add(family);
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
-		ArrayList<ErrorData> recordError = US_Siblings.us15FewerThanFifteenSiblings(Ftp);
+		ArrayList<ErrorData> recordError = US_Siblings.US15_FewerThanFifteenSiblings(Ftp);
 		
 		assertTrue(recordError.size()==0);
 	}

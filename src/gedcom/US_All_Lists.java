@@ -1,7 +1,10 @@
 package gedcom;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Map.Entry;
 
 public class US_All_Lists {
@@ -76,4 +79,43 @@ public class US_All_Lists {
 		}
 		return orphansArray;
 	}
+	
+	//Vidya Maiya: Sprint 04 US_35_List recent births
+	public static ArrayList<Individual> US35_findListOfRecentBirths(FamilyTreeParser Ftp) {
+		ArrayList<Individual> recentBirths = new ArrayList<Individual>();
+		HashMap<String,Individual> individualMap = Ftp.individualMap;
+		LocalDate today = LocalDate.now();
+		
+		for(Map.Entry<String, Individual> individual : individualMap.entrySet() ) {
+			Individual individualData = individual.getValue();
+			LocalDate birthdate = individualData.getBirthDate();
+			if(birthdate !=null && (birthdate.isBefore(today) || birthdate.equals(today))) {
+				long daysBetween = ChronoUnit.DAYS.between(birthdate, today);
+				if(daysBetween >= 0 && daysBetween <=30) {
+					recentBirths.add(individualData);
+				}
+			}
+		}
+		return recentBirths;
+	}
+	
+	//Vidya Maiya: Sprint04 US_36_List_recent_deaths
+	public static ArrayList<Individual> US36_findListOfRecentDeaths(FamilyTreeParser Ftp) {
+		ArrayList<Individual> recentDeaths = new ArrayList<Individual>();
+		HashMap<String,Individual> individualMap = Ftp.individualMap;
+		LocalDate today = LocalDate.now();
+		
+		for(Map.Entry<String, Individual> individual : individualMap.entrySet() ) {
+			Individual individualData = individual.getValue();
+			LocalDate deathDate = individualData.getDeathDate();
+			if(deathDate !=null && (deathDate.isBefore(today) || deathDate.equals(today))) {
+				long daysBetween = ChronoUnit.DAYS.between(deathDate, today);
+				if(daysBetween >= 0 && daysBetween <=30) {
+					recentDeaths.add(individualData);
+				}
+			}
+		}
+		return recentDeaths;
+	}
+	
 }

@@ -7,7 +7,7 @@ import java.util.HashMap;
 public class US_CheckUniqueness {
 
 	//US24 : Unique families by spouses
-	public static ArrayList<ErrorData> findDuplicateSpousedetails(FamilyTreeParser Ftp) {
+	public static ArrayList<ErrorData> US24_findDuplicateSpousedetails(FamilyTreeParser Ftp) {
 
 		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
 		HashMap<String, LocalDate> familyMap = new HashMap<String, LocalDate>();

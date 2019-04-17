@@ -49,7 +49,7 @@ public class US_Siblings {
 	}
 	
 	// Vidya Maiya: Sprint02 : US15: Fewer than 15 siblings
-	public static ArrayList<ErrorData> us15FewerThanFifteenSiblings(FamilyTreeParser Ftp) {
+	public static ArrayList<ErrorData> US15_FewerThanFifteenSiblings(FamilyTreeParser Ftp) {
 		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
 		for (Family familyRecord : Ftp.familyList) {
 			if (familyRecord.getChildId().size() > 15) {

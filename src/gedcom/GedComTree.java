@@ -93,19 +93,20 @@ public class GedComTree {
 		
 		allErrors.addAll(US_CheckUniqueness.US22_check_Unique_FamilyId(Ftp)); //Allan
 		
-		allErrors.addAll(US_DatesCheckInFamily.us04MarriageBeforeDivorce(Ftp));
+		allErrors.addAll(US_DatesCheckInFamily.US04_MarriageBeforeDivorce(Ftp));
 		
-		allErrors.addAll(US_Siblings.us15FewerThanFifteenSiblings(Ftp));
+		allErrors.addAll(US_Siblings.US15_FewerThanFifteenSiblings(Ftp));
 
 		allErrors.addAll(US_Siblings.checkSiblingMarraige(Ftp));
 		
 		// ---------------------------------Sprint03--------------------------------------------//
 		
-		allErrors.addAll(US_CheckUniqueness.findDuplicateSpousedetails(Ftp));
+		allErrors.addAll(US_CheckUniqueness.US24_findDuplicateSpousedetails(Ftp));
 		
-		allErrors.addAll(US_DatesCheckInFamily.findBirthBeforeDeathOfParents(Ftp));
+		allErrors.addAll(US_DatesCheckInFamily.US09_findBirthBeforeDeathOfParents(Ftp));
 		
-		//-------------------------------------------------------------------------------------//
+		//-----------------------------------Sprint04--------------------------------------------//
+		
 		
 		for (int i = 0; i < allErrors.size(); i++) {
 			ErrorData error = allErrors.get(i);
@@ -217,6 +218,51 @@ public class GedComTree {
 		System.out.println();
 	}
 
+	public static void printListOfRecentBirths(FamilyTreeParser Ftp) {
+		ArrayList<Individual>listOfRecentBirths = US_All_Lists.US35_findListOfRecentBirths(Ftp);
+		System.out.println("US35: List of recent births");
+		String individualOutputFormat = "|%1$-6s|%2$-20s|%3$-10s|%4$-12s|%5$-7s|%6$-9s|%7$-12s|%8$-10s|%9$-10s|%n";
+		System.out.format(
+				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
+		System.out.format(
+				"|  ID  |       Name         |  Gender  |  Birthday  |  Age  |  Alive  |    Death   |   Child  |  Spouse  |%n");
+		System.out.format(
+				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
+		for(int i=0;i<listOfRecentBirths.size();i++) {
+			Individual indi = listOfRecentBirths.get(i);
+			System.out.format(individualOutputFormat, indi.getId(), indi.getName(), indi.getGender(),
+					indi.getBirthDate(), indi.getAge(), indi.isAlive(),
+					indi.getDeathDate() == null ? "NA" : indi.getDeathDate(),
+					indi.getFamilyChildId() == null ? "NA" : "{'" + indi.getFamilyChildId() + "'}",
+					indi.getFamilySpouseId() == null ? "NA" : "{'" + indi.getFamilySpouseId() + "'}");
+		}
+		System.out.format(
+				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
+		System.out.println();
+	}
+	
+	public static void printListOfRecentDeaths(FamilyTreeParser Ftp) {
+		ArrayList<Individual>listOfRecentDeaths = US_All_Lists.US36_findListOfRecentDeaths(Ftp);
+		System.out.println("US36: List of recent deaths");
+		String individualOutputFormat = "|%1$-6s|%2$-20s|%3$-10s|%4$-12s|%5$-7s|%6$-9s|%7$-12s|%8$-10s|%9$-10s|%n";
+		System.out.format(
+				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
+		System.out.format(
+				"|  ID  |       Name         |  Gender  |  Birthday  |  Age  |  Alive  |    Death   |   Child  |  Spouse  |%n");
+		System.out.format(
+				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
+		for(int i=0;i<listOfRecentDeaths.size();i++) {
+			Individual indi = listOfRecentDeaths.get(i);
+			System.out.format(individualOutputFormat, indi.getId(), indi.getName(), indi.getGender(),
+					indi.getBirthDate(), indi.getAge(), indi.isAlive(),
+					indi.getDeathDate() == null ? "NA" : indi.getDeathDate(),
+					indi.getFamilyChildId() == null ? "NA" : "{'" + indi.getFamilyChildId() + "'}",
+					indi.getFamilySpouseId() == null ? "NA" : "{'" + indi.getFamilySpouseId() + "'}");
+		}
+		System.out.format(
+				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
+		System.out.println();
+	}
 	
 	public static void main(String[] args) throws IOException, ParseException {
 		FamilyTreeParser Ftp = new FamilyTreeParser();
@@ -225,9 +271,14 @@ public class GedComTree {
 		printIndividualList(Ftp);
 		printFamilyList(Ftp);
 		printErrorDetails(Ftp);
+	   /*         Display List User stories     */
+	   //--------------Sprint03-----------------//
 		printListOfDeceasedIndividuals(Ftp);
 		printListOfOrphansIndividuals(Ftp);
 		printListOfSingleLivingIndividuals(Ftp);
 		printListOfLivingMarried(Ftp);
+	   //--------------Sprint04-----------------//
+		printListOfRecentBirths(Ftp);
+		printListOfRecentDeaths(Ftp);
 	}
 }

@@ -57,7 +57,7 @@ public class Test_US09BirthAfterDeathOfParents {
 		error.setErrorDetails("The birthdate 2018-02-24 of James Birt (I102) is after the death date 2016-03-10 of mother(I101)");
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
-		ArrayList<ErrorData> erraneousRecord = US_DatesCheckInFamily.findBirthBeforeDeathOfParents(Ftp);
+		ArrayList<ErrorData> erraneousRecord = US_DatesCheckInFamily.US09_findBirthBeforeDeathOfParents(Ftp);
 		
 		assertEquals(error.getErrorDetails(), erraneousRecord.get(0).getErrorDetails());
 		
@@ -101,7 +101,7 @@ public class Test_US09BirthAfterDeathOfParents {
 		error.setErrorDetails("The birthdate 2015-10-02 of James Birt (I202) is nine months after the death date 2015-01-01 of father(I200)");
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
-		ArrayList<ErrorData> erraneousRecord = US_DatesCheckInFamily.findBirthBeforeDeathOfParents(Ftp);
+		ArrayList<ErrorData> erraneousRecord = US_DatesCheckInFamily.US09_findBirthBeforeDeathOfParents(Ftp);
 		
 		assertEquals(error.getErrorDetails(), erraneousRecord.get(0).getErrorDetails());
 		
@@ -141,7 +141,7 @@ public class Test_US09BirthAfterDeathOfParents {
 		testFamilyList.add(family);
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
-		ArrayList<ErrorData> recordError = US_DatesCheckInFamily.findBirthBeforeDeathOfParents(Ftp);
+		ArrayList<ErrorData> recordError = US_DatesCheckInFamily.US09_findBirthBeforeDeathOfParents(Ftp);
 		
 		ErrorData error = new ErrorData();
 		error.setErrorType("ERROR");
@@ -190,7 +190,7 @@ public class Test_US09BirthAfterDeathOfParents {
 		testFamilyList.add(family);
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
-		ArrayList<ErrorData> recordError = US_DatesCheckInFamily.findBirthBeforeDeathOfParents(Ftp);
+		ArrayList<ErrorData> recordError = US_DatesCheckInFamily.US09_findBirthBeforeDeathOfParents(Ftp);
 
 		assertTrue(recordError.size()==0);
 		
@@ -228,7 +228,7 @@ public class Test_US09BirthAfterDeathOfParents {
 		testFamilyList.add(family);
 		
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
-		ArrayList<ErrorData> recordError = US_DatesCheckInFamily.findBirthBeforeDeathOfParents(Ftp);
+		ArrayList<ErrorData> recordError = US_DatesCheckInFamily.US09_findBirthBeforeDeathOfParents(Ftp);
 
 		assertTrue(recordError.size()==0);
 		

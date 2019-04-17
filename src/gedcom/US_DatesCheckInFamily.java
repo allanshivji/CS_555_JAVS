@@ -225,7 +225,7 @@ public class US_DatesCheckInFamily {
 	}
 
 	// Vidya Maiya: Sprint02 : US04: Marriage before Divorce
-	public static ArrayList<ErrorData> us04MarriageBeforeDivorce(FamilyTreeParser Ftp) {
+	public static ArrayList<ErrorData> US04_MarriageBeforeDivorce(FamilyTreeParser Ftp) {
 		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
 		for (Family familyRecord : Ftp.familyList) {
 			LocalDate marriageDate = familyRecord.getMarriageDate();
@@ -247,7 +247,7 @@ public class US_DatesCheckInFamily {
 		return errorList;
 	}
 	
-	public static ArrayList<ErrorData> findBirthBeforeDeathOfParents(FamilyTreeParser Ftp) {
+	public static ArrayList<ErrorData> US09_findBirthBeforeDeathOfParents(FamilyTreeParser Ftp) {
 		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
 		
 		for(Family familyRecord : Ftp.familyList) {

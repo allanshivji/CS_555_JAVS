@@ -46,7 +46,7 @@ public class Test_US24UniqueFamilyBySpouse {
 		testFamilyList.add(family);
 
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
-		ArrayList<ErrorData> recordError = US_CheckUniqueness.findDuplicateSpousedetails(Ftp);
+		ArrayList<ErrorData> recordError = US_CheckUniqueness.US24_findDuplicateSpousedetails(Ftp);
 		
 		ErrorData error = new ErrorData();
 		error.setIndividualId("F601");
@@ -88,7 +88,7 @@ public class Test_US24UniqueFamilyBySpouse {
 		testFamilyList.add(family);
 
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
-		ArrayList<ErrorData> recordError = US_CheckUniqueness.findDuplicateSpousedetails(Ftp);
+		ArrayList<ErrorData> recordError = US_CheckUniqueness.US24_findDuplicateSpousedetails(Ftp);
 			
 		assertTrue(recordError.size()==0);
 	}
