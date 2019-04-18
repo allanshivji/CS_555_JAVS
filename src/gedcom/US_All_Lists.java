@@ -1,11 +1,16 @@
 package gedcom;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.temporal.ChronoUnit;
 
 public class US_All_Lists {
 
@@ -25,6 +30,35 @@ public class US_All_Lists {
 		}
 		return livingMarriedArray;
 	}
+	
+	// Allan: Sprint 4 US39 List of Upcoming Anniversaries
+		public static ArrayList<Individual> listOfUpcoming_Anniversaries(FamilyTreeParser Ftp) {
+			
+			ArrayList<Individual> upcommingAnniversaries = new ArrayList<Individual>();
+			LocalDate today = LocalDate.now();
+			
+			for (Family familyRecord : Ftp.familyList) {
+				
+				String husbId = familyRecord.getHusbandId();
+				String wifeId = familyRecord.getWifeId();
+				LocalDate marriageDate = familyRecord.getMarriageDate();
+				
+				if (Ftp.individualMap.get(husbId).isAlive() == "True"
+						&& Ftp.individualMap.get(wifeId).isAlive() == "True") {
+					
+					
+					LocalDate thisYearsAnniversary = LocalDate.of(today.getYear(), marriageDate.getMonth(), marriageDate.getDayOfMonth());
+
+					long aniDate = ChronoUnit.DAYS.between(today, thisYearsAnniversary);
+					if (aniDate >= 1 && aniDate <= 30) {
+						upcommingAnniversaries.add(Ftp.individualMap.get(husbId));
+						upcommingAnniversaries.add(Ftp.individualMap.get(wifeId));
+					}
+					
+				}
+			}
+			return upcommingAnniversaries;
+		}
 
 	// Shreesh Chavan: Sprint 2 US29 check list of Deceased
 	public static ArrayList<Individual> US_listOfDeceased(FamilyTreeParser ftp) {

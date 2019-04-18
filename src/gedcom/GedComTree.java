@@ -119,6 +119,7 @@ public class GedComTree {
 
 		//Sprint 2 - US29 List of Deceased - Shreesh Chavan
 		// For individuals
+		System.out.println();
 		System.out.println("List of Deceased");
 		String individualOutputFormat = "|%1$-6s|%2$-20s|%3$-10s|%4$-12s|%5$-7s|%6$-9s|%7$-12s|%8$-10s|%9$-10s|%n";
 		System.out.format(
@@ -264,6 +265,39 @@ public class GedComTree {
 		System.out.println();
 	}
 	
+	
+	
+	//Sprint 4 - US39 Living Married Individuals - Allan
+			private static void printListOfUpcomingAnniversary(FamilyTreeParser Ftp) {
+				System.out.println("List of Living Couple Upcoming Anniversaries within 30 days");
+				ArrayList<Individual> upCommingAnniversaries = US_All_Lists.listOfUpcoming_Anniversaries(Ftp);
+				
+				String individualOutputFormat = "|%1$-6s|%2$-20s|%3$-10s|%4$-12s|%5$-7s|%6$-9s|%7$-12s|%8$-10s|%9$-10s|%n";
+				System.out.format(
+						"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
+				System.out.format(
+						"|  ID  |       Name         |  Gender  |  Birthday  |  Age  |  Alive  |    Death   |   Child  |  Spouse  |%n");
+				System.out.format(
+						"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
+				
+				
+				for(Individual indi:upCommingAnniversaries) {
+					System.out.format(individualOutputFormat, indi.getId(), indi.getName(), indi.getGender(),
+							indi.getBirthDate(), indi.getAge(), indi.isAlive(),
+							indi.getDeathDate() == null ? "NA" : indi.getDeathDate(),
+							indi.getFamilyChildId() == null ? "NA" : "{'" + indi.getFamilyChildId() + "'}",
+							indi.getFamilySpouseId() == null ? "NA" : "{'" + indi.getFamilySpouseId() + "'}");
+				}
+				System.out.format(
+						"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
+				System.out.println();
+			}
+	
+	
+	
+	
+	
+	
 	public static void main(String[] args) throws IOException, ParseException {
 		FamilyTreeParser Ftp = new FamilyTreeParser();
 		Ftp.setValidTags();
@@ -280,5 +314,8 @@ public class GedComTree {
 	   //--------------Sprint04-----------------//
 		printListOfRecentBirths(Ftp);
 		printListOfRecentDeaths(Ftp);
+		printListOfUpcomingAnniversary(Ftp);
 	}
+	
+	
 }

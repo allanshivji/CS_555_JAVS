@@ -209,10 +209,67 @@ public class Test_CheckList {
 					
 					FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
 					ArrayList<Individual> singles = US_All_Lists.US_listOflivingSingle(Ftp);
-					System.out.println(singles.size());
+//					System.out.println(singles.size());
 					assertTrue(singles.size() == 2);
 					
 				}
 
+		// Allan: Sprint 4 US39 check list of upcoming anniversary
+		@Test
+		public void test_Check_LivingMarried_Upcomming_Anniversary(){
+		Individual indi = new Individual();
+		indi.setId("KO009");
+		indi.setName("Smith /Allans/");
+		indi.setGender("M");
+		indi.setBirthDate("22 NOV 1997");
+		testIndividualMap.put("KO009",indi);
+					
+		indi = new Individual();
+		indi.setId("KO0099");
+		indi.setName("Jess /Allans/");
+		indi.setGender("F");
+		indi.setBirthDate("22 NOV 1999");
+		testIndividualMap.put("KO0099",indi);
+					
+		Family family = new Family();
+		family.setId("KO009009");
+		family.setHusbandId("KO009");
+		family.setWifeId("KO0099");
+		family.setMarriageDate("18 MAY 2018");
+		testFamilyList.add(family);
+					
+		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
+		ArrayList<Individual> livingMarriedUpcommingAnniversary = US_All_Lists.listOfUpcoming_Anniversaries(Ftp);
+		assertTrue(livingMarriedUpcommingAnniversary.size() == 2);
+	}
+		
+		// Allan: Sprint 4 US39 check list of upcoming anniversary
+				@Test
+				public void test_Check_LivingMarried_Upcomming_Anniversary2(){
+				Individual indi = new Individual();
+				indi.setId("KKO009");
+				indi.setName("Smith /Allans/");
+				indi.setGender("M");
+				indi.setBirthDate("22 NOV 1997");
+				testIndividualMap.put("KKO009",indi);
+							
+				indi = new Individual();
+				indi.setId("KKO0099");
+				indi.setName("Jess /Allans/");
+				indi.setGender("F");
+				indi.setBirthDate("22 NOV 1999");
+				testIndividualMap.put("KKO0099",indi);
+							
+				Family family = new Family();
+				family.setId("KKO009009");
+				family.setHusbandId("KKO009");
+				family.setWifeId("KKO0099");
+				family.setMarriageDate("18 DEC 2018");
+				testFamilyList.add(family);
+							
+				FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap,testFamilyList);
+				ArrayList<Individual> livingMarriedUpcommingAnniversary = US_All_Lists.listOfUpcoming_Anniversaries(Ftp);
+				assertTrue(livingMarriedUpcommingAnniversary.size() == 0);
+			}
 
 }
