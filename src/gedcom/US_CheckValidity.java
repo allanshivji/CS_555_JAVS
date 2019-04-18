@@ -19,26 +19,25 @@ public class US_CheckValidity {
 		for (Map.Entry<String, Individual> entry : treeMap.entrySet()) {
 			Individual indi = entry.getValue();
 			// US05
-			if (check_age(indi)!=null)
+			if (check_age(indi) != null)
 				errorList.add(check_age(indi));
 			// US10
-			if (check_marriage_age(indi)!=null)
+			if (check_marriage_age(indi) != null)
 				errorList.add(check_marriage_age(indi));
 		}
 
 		// check Family
 		for (Family familyRecord : Ftp.familyList) {
 			if (familyRecord.getMarriageDate() != null) {
-				//Individual husband
+				// Individual husband
 				Individual husband = Ftp.individualMap.get(familyRecord.getHusbandId());
-				//Individual wife
+				// Individual wife
 				Individual wife = Ftp.individualMap.get(familyRecord.getWifeId());
-
 
 				ArrayList<String> childrenList = familyRecord.getChildId();
 				ArrayList<Individual> children = new ArrayList<Individual>();
 				for (String childId : childrenList) {
-					//Individual child
+					// Individual child
 					children.add(Ftp.individualMap.get(childId));
 				}
 
@@ -62,10 +61,10 @@ public class US_CheckValidity {
 				// US17
 				errorList.addAll(check_parents_no_marriages_to_children(husband, wife, children, familyRecord.getId()));
 				// US06
-				if(familyRecord.getDivorcedDate() != null)
+				if (familyRecord.getDivorcedDate() != null)
 					errorList.addAll(check_divorce_before_death(husband, wife, familyRecord));
 				// US14
-				if(children.size() > 5) {
+				if (children.size() > 5) {
 					errorList.addAll(check_multiple_births(children, familyRecord.getId()));
 				}
 			}
@@ -76,32 +75,20 @@ public class US_CheckValidity {
 	// Jiayuan Liu: Sprint1 US07 Less then 150 years old
 	public static ErrorData check_age(Individual indi) {
 		if (indi.getAge() >= 150) {
-			ErrorData error = new ErrorData(
-				"ERROR",
-				"INDIVIDUAL",
-				"US07",
-				indi.getId(),
-				"Age of " + indi.getName() + "(" + indi.getId() + ")" + " is more then 150 years old."
-				);
+			ErrorData error = new ErrorData("ERROR", "INDIVIDUAL", "US07", indi.getId(),
+					"Age of " + indi.getName() + "(" + indi.getId() + ")" + " is more then 150 years old.");
 			return error;
-		}
-		else
+		} else
 			return null;
 	}
 
 	// Jiayuan Liu: Sprint1 US10 Marriage after 14
 	public static ErrorData check_marriage_age(Individual indi) {
 		if (indi.getFamilySpouseId() != null && indi.getAge() <= 14) {
-			ErrorData error = new ErrorData(
-					"ERROR",
-					"INDIVIDUAL",
-					"US10",
-					indi.getId(),
-					indi.getName() + "(" + indi.getId() + ")" + " got married before 14 years old."
-					);
+			ErrorData error = new ErrorData("ERROR", "INDIVIDUAL", "US10", indi.getId(),
+					indi.getName() + "(" + indi.getId() + ")" + " got married before 14 years old.");
 			return error;
-		}
-		else
+		} else
 			return null;
 	}
 
@@ -126,30 +113,25 @@ public class US_CheckValidity {
 	// Mother should be less than 60 years older than her children
 	// and father should be less than 80 years older than his children
 
-	public static ArrayList<ErrorData> check_parents_not_too_old(Individual husband, Individual wife, ArrayList<Individual> children, String FamilyID){
+	public static ArrayList<ErrorData> check_parents_not_too_old(Individual husband, Individual wife,
+			ArrayList<Individual> children, String FamilyID) {
 		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
 		for (Individual child : children) {
-			//Individual child
-			//check_father_not_too_old
-			if(husband!=null && child!=null&& husband.getAge()-child.getAge() > 80 ) {
-				ErrorData error = new ErrorData(
-						"ERROR",
-						"FAMILY",
-						FamilyID,
-						"US12",
-						"father " + husband.getId() + " " + husband.getName() + "is more than 80 years older than his children" + child.getId() + " " + child.getName()
-						);
+			// Individual child
+			// check_father_not_too_old
+			if (husband != null && child != null && husband.getAge() - child.getAge() > 80) {
+				ErrorData error = new ErrorData("ERROR", "FAMILY", FamilyID, "US12",
+						"father " + husband.getId() + " " + husband.getName()
+								+ "is more than 80 years older than his children" + child.getId() + " "
+								+ child.getName());
 				errorList.add(error);
 			}
-			//check_mother_not_too_old
-			if( wife!=null && child!=null&& wife.getAge()!=0 && child.getAge()!=0 && wife.getAge()-child.getAge() > 60 ) {
-				ErrorData error = new ErrorData(
-						"ERROR",
-						"FAMILY",
-						FamilyID,
-						"US12",
-						"mother " + wife.getId() + " " + wife.getName() + "is more than 60 years older than his child" + child.getId() + " " + child.getName()
-						);
+			// check_mother_not_too_old
+			if (wife != null && child != null && wife.getAge() != 0 && child.getAge() != 0
+					&& wife.getAge() - child.getAge() > 60) {
+				ErrorData error = new ErrorData("ERROR", "FAMILY", FamilyID, "US12",
+						"mother " + wife.getId() + " " + wife.getName() + "is more than 60 years older than his child"
+								+ child.getId() + " " + child.getName());
 				errorList.add(error);
 			}
 		}
@@ -172,31 +154,22 @@ public class US_CheckValidity {
 
 	// Jiayuan Liu: Sprint2 US17 No marriages to children
 	// Parents should not marry any of their children
-	public static ArrayList<ErrorData> check_parents_no_marriages_to_children(Individual husband, Individual wife, ArrayList<Individual> children, String FamilyID){
+	public static ArrayList<ErrorData> check_parents_no_marriages_to_children(Individual husband, Individual wife,
+			ArrayList<Individual> children, String FamilyID) {
 		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
 
-		//check father no marriages to children
+		// check father no marriages to children
 		for (Individual child : children) {
-			//Individual child
-			if (wife!=null && child!=null&& wife.getId().equals(child.getId())) {
-				ErrorData error = new ErrorData(
-						"ERROR",
-						"FAMILY",
-						FamilyID,
-						"US17",
-						"father " + husband.getId() + " " + husband.getName() + "married with his child" + child.getId() + " " + child.getName()
-						);
+			// Individual child
+			if (wife != null && child != null && wife.getId().equals(child.getId())) {
+				ErrorData error = new ErrorData("ERROR", "FAMILY", FamilyID, "US17", "father " + husband.getId() + " "
+						+ husband.getName() + "married with his child" + child.getId() + " " + child.getName());
 				errorList.add(error);
 			}
-			//check mother no marriages to children
-			if (husband!=null && child!=null &&husband.getId().equals(child.getId())) {
-				ErrorData error = new ErrorData(
-						"ERROR",
-						"FAMILY",
-						FamilyID,
-						"US17",
-						"mother " + wife.getId() + " " + wife.getName() + "married with her child" + child.getId() + " " + child.getName()
-						);
+			// check mother no marriages to children
+			if (husband != null && child != null && husband.getId().equals(child.getId())) {
+				ErrorData error = new ErrorData("ERROR", "FAMILY", FamilyID, "US17", "mother " + wife.getId() + " "
+						+ wife.getName() + "married with her child" + child.getId() + " " + child.getName());
 				errorList.add(error);
 			}
 		}
@@ -219,67 +192,52 @@ public class US_CheckValidity {
 
 	// Jiayuan Liu: Sprint2 US06 divorce before death
 	// divorce can only occur before death of both spouse
-	public static ArrayList<ErrorData> check_divorce_before_death(Individual husband, Individual wife, Family familyRecord){
+	public static ArrayList<ErrorData> check_divorce_before_death(Individual husband, Individual wife,
+			Family familyRecord) {
 		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
-		//check husband
+		// check husband
 		LocalDate husbandDeathDate = husband.getDeathDate();
-		if(husbandDeathDate!=null && husbandDeathDate.isBefore(familyRecord.getDivorcedDate())) {
-			ErrorData error = new ErrorData(
-					"ERROR",
-					"FAMILY",
-					familyRecord.getId(),
-					"US06",
-					"husband " + husband.getId() + " " + husband.getName() + " divorced after death."
-					);
+		if (husbandDeathDate != null && husbandDeathDate.isBefore(familyRecord.getDivorcedDate())) {
+			ErrorData error = new ErrorData("ERROR", "FAMILY", familyRecord.getId(), "US06",
+					"husband " + husband.getId() + " " + husband.getName() + " divorced after death.");
 			errorList.add(error);
 		}
-		//check wife
+		// check wife
 		LocalDate wifeDeathDate = wife.getDeathDate();
-		if(wifeDeathDate!=null && wifeDeathDate.isBefore(familyRecord.getDivorcedDate())) {
-			ErrorData error = new ErrorData(
-					"ERROR",
-					"FAMILY",
-					familyRecord.getId(),
-					"US06",
-					"wife " + wife.getId() + " " + wife.getName() + " divorced after death."
-					);
+		if (wifeDeathDate != null && wifeDeathDate.isBefore(familyRecord.getDivorcedDate())) {
+			ErrorData error = new ErrorData("ERROR", "FAMILY", familyRecord.getId(), "US06",
+					"wife " + wife.getId() + " " + wife.getName() + " divorced after death.");
 			errorList.add(error);
 		}
 
 		return errorList;
 	}
 
-
 	// Jiayuan Liu:Sprint2 US14 Multiple births <= 5.
 	// No more than five siblings should be born at the same time
-	public static ArrayList <ErrorData> check_multiple_births(ArrayList<Individual> children, String familyID){
-		ArrayList <ErrorData> errorList = new ArrayList<ErrorData>();
+	public static ArrayList<ErrorData> check_multiple_births(ArrayList<Individual> children, String familyID) {
+		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
 		Map<LocalDate, Integer> mapDate = new HashMap<LocalDate, Integer>();
-		for(Individual child : children) {
+		for (Individual child : children) {
 			Integer count = mapDate.get(child.getBirthDate());
-			if(count == null){
+			if (count == null) {
 				mapDate.put(child.getBirthDate(), 1);
-			}else {
-				mapDate.put(child.getBirthDate(), count+1);
+			} else {
+				mapDate.put(child.getBirthDate(), count + 1);
 			}
 		}
 		boolean flag = false;
-		for(LocalDate childDate : mapDate.keySet()) {
-			if(mapDate.get(childDate) > 5){
+		for (LocalDate childDate : mapDate.keySet()) {
+			if (mapDate.get(childDate) > 5) {
 				flag = true;
 				break;
 			}
 		}
-		if(flag) {
-			ErrorData error = new ErrorData(
-					"ERROR",
-					"FAMILY",
-					familyID,
-					"US14",
-					"More than five siblings were born at the same time."
-					);
-					errorList.add(error);
-				}
-				return errorList;
+		if (flag) {
+			ErrorData error = new ErrorData("ERROR", "FAMILY", familyID, "US14",
+					"More than five siblings were born at the same time.");
+			errorList.add(error);
+		}
+		return errorList;
 	}
 }

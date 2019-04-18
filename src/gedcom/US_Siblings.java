@@ -3,25 +3,28 @@ package gedcom;
 import java.util.ArrayList;
 
 public class US_Siblings {
-	
-	// Shreesh Chavan: Sprint2 US18 siblings shouldn't marry
-	public static ArrayList<ErrorData> checkSiblingMarraige(FamilyTreeParser ftp){
-		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
-		ArrayList <String> temp = new ArrayList<String>();
-		ArrayList<ArrayList> checkHalfSiblings = new ArrayList<ArrayList>();
-		for(Family familyRecord:ftp.familyList) {
-			for (Family famrec:ftp.familyList) {
 
-				if (familyRecord.getChildId().contains(famrec.getHusbandId())&&familyRecord.getChildId().contains(famrec.getWifeId())) {
+	// Shreesh Chavan: Sprint2 US18 siblings shouldn't marry
+	public static ArrayList<ErrorData> checkSiblingMarraige(FamilyTreeParser ftp) {
+		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
+		ArrayList<String> temp = new ArrayList<String>();
+		ArrayList<ArrayList> checkHalfSiblings = new ArrayList<ArrayList>();
+		for (Family familyRecord : ftp.familyList) {
+			for (Family famrec : ftp.familyList) {
+
+				if (familyRecord.getChildId().contains(famrec.getHusbandId())
+						&& familyRecord.getChildId().contains(famrec.getWifeId())) {
 					ErrorData error = new ErrorData();
 					error.setErrorType("ERROR");
 					error.setRecordType("FAMILY");
 					error.setIndividualId(famrec.getId());
 					error.setUserStoryNumber("US18");
-					error.setErrorDetails(famrec.getHusbandId() +" and "+ famrec.getWifeId()+" are married siblings.");
+					error.setErrorDetails(
+							famrec.getHusbandId() + " and " + famrec.getWifeId() + " are married siblings.");
 					errorList.add(error);
 				}
-				if((familyRecord.getId()!=famrec.getId())&&((familyRecord.getHusbandId() == famrec.getHusbandId()))) {
+				if ((familyRecord.getId() != famrec.getId())
+						&& ((familyRecord.getHusbandId() == famrec.getHusbandId()))) {
 //					||familyRecord.getWifeId() == famrec.getWifeId())
 //					System.out.println("hi");
 					temp.addAll(familyRecord.getChildId());
@@ -31,23 +34,25 @@ public class US_Siblings {
 				}
 			}
 		}
-		for(ArrayList halfsiblings:checkHalfSiblings) {
-			for(Family familyRecord:ftp.familyList) {
-				if (halfsiblings.contains(familyRecord.getHusbandId())&&halfsiblings.contains(familyRecord.getWifeId())) {
+		for (ArrayList halfsiblings : checkHalfSiblings) {
+			for (Family familyRecord : ftp.familyList) {
+				if (halfsiblings.contains(familyRecord.getHusbandId())
+						&& halfsiblings.contains(familyRecord.getWifeId())) {
 //					System.out.println("hi");
 					ErrorData error = new ErrorData();
 					error.setErrorType("ERROR");
 					error.setRecordType("FAMILY");
 					error.setIndividualId(familyRecord.getId());
 					error.setUserStoryNumber("US18");
-					error.setErrorDetails(familyRecord.getHusbandId() +" and "+ familyRecord.getWifeId()+" are married siblings.");
+					error.setErrorDetails(familyRecord.getHusbandId() + " and " + familyRecord.getWifeId()
+							+ " are married siblings.");
 					errorList.add(error);
 				}
 			}
 		}
 		return errorList;
 	}
-	
+
 	// Vidya Maiya: Sprint02 : US15: Fewer than 15 siblings
 	public static ArrayList<ErrorData> US15_FewerThanFifteenSiblings(FamilyTreeParser Ftp) {
 		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();

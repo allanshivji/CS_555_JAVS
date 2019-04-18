@@ -80,15 +80,17 @@ public class Test_US_CheckValidity {
 		indi_child.setFamilySpouseId("F01");
 		indi_child.setBirthDate("1 JAN 2000");
 
-
 		ArrayList<Individual> indi_children = new ArrayList<Individual>();
 		indi_children.add(indi_child);
 
-		assertNotEquals(US_CheckValidity.check_parents_not_too_old(indi_husband, indi_wife, indi_children, "F1").size(), 0);
+		assertNotEquals(US_CheckValidity.check_parents_not_too_old(indi_husband, indi_wife, indi_children, "F1").size(),
+				0);
 		indi_husband.setBirthDate("1 JAN 1950");
-		assertNotEquals(US_CheckValidity.check_parents_not_too_old(indi_husband, indi_wife, indi_children, "F1").size(), 0);
+		assertNotEquals(US_CheckValidity.check_parents_not_too_old(indi_husband, indi_wife, indi_children, "F1").size(),
+				0);
 		indi_wife.setBirthDate("1 JAN 1970");
-		assertEquals(US_CheckValidity.check_parents_not_too_old(indi_husband, indi_wife, indi_children, "F1").size(), 0);
+		assertEquals(US_CheckValidity.check_parents_not_too_old(indi_husband, indi_wife, indi_children, "F1").size(),
+				0);
 	}
 
 	@Test
@@ -118,9 +120,12 @@ public class Test_US_CheckValidity {
 		ArrayList<Individual> indi_children3 = new ArrayList<Individual>();
 		indi_children3.add(indi_child);
 
-		assertNotEquals(US_CheckValidity.check_parents_no_marriages_to_children(indi_husband, indi_wife, indi_children1, "F01").size(), 0);
-		assertNotEquals(US_CheckValidity.check_parents_no_marriages_to_children(indi_husband, indi_wife, indi_children2, "F01").size(), 0);
-		assertEquals(US_CheckValidity.check_parents_no_marriages_to_children(indi_husband, indi_wife, indi_children3, "F01").size(), 0);
+		assertNotEquals(US_CheckValidity
+				.check_parents_no_marriages_to_children(indi_husband, indi_wife, indi_children1, "F01").size(), 0);
+		assertNotEquals(US_CheckValidity
+				.check_parents_no_marriages_to_children(indi_husband, indi_wife, indi_children2, "F01").size(), 0);
+		assertEquals(US_CheckValidity
+				.check_parents_no_marriages_to_children(indi_husband, indi_wife, indi_children3, "F01").size(), 0);
 	}
 
 	@Test
@@ -143,7 +148,6 @@ public class Test_US_CheckValidity {
 		Family indi_family2 = new Family();
 		indi_family2.setId("F01");
 		indi_family2.setDivorceDate("1 JAN 1970");
-
 
 		assertNotEquals(US_CheckValidity.check_divorce_before_death(indi_husband, indi_wife, indi_family1).size(), 0);
 		assertNotEquals(US_CheckValidity.check_divorce_before_death(indi_husband, indi_wife, indi_family1).size(), 0);
@@ -202,7 +206,6 @@ public class Test_US_CheckValidity {
 		assertEquals(US_CheckValidity.check_multiple_births(children2, "F01").size(), 0);
 
 	}
-
 
 //	@Test
 //	public void test_check_age() {
@@ -265,6 +268,5 @@ public class Test_US_CheckValidity {
 //		assertTrue(CheckValidity.check_mother_no_marriages_to_children(fatherId1, childId2));
 //	}
 //
-
 
 }

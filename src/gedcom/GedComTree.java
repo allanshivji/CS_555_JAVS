@@ -46,15 +46,17 @@ public class GedComTree {
 				"+------+----------------+----------------+--------------+-----------------------+--------------+-----------------------+-----------------------------------------------------------------------------------------------------------------+%n");
 		for (int i = 0; i < Ftp.familyList.size(); i++) {
 			Family fam = Ftp.familyList.get(i);
-			String wifeName = fam.getWifeId()== null? "NULL" : (Ftp.individualMap.get(fam.getWifeId()) == null? "NULL": Ftp.individualMap.get(fam.getWifeId()).getName());
-			String husbandName = fam.getHusbandId() == null? "NULL" : (Ftp.individualMap.get(fam.getHusbandId())== null? "NULL": Ftp.individualMap.get(fam.getHusbandId()).getName());
+			String wifeName = fam.getWifeId() == null ? "NULL"
+					: (Ftp.individualMap.get(fam.getWifeId()) == null ? "NULL"
+							: Ftp.individualMap.get(fam.getWifeId()).getName());
+			String husbandName = fam.getHusbandId() == null ? "NULL"
+					: (Ftp.individualMap.get(fam.getHusbandId()) == null ? "NULL"
+							: Ftp.individualMap.get(fam.getHusbandId()).getName());
 			System.out.format(familyOutputFormat, fam.getId(),
 					fam.getMarriageDate() == null ? "NA" : fam.getMarriageDate(),
-					fam.getDivorcedDate() == null ? "NA" : fam.getDivorcedDate(), 
-					fam.getHusbandId() == null? "NULL" : fam.getHusbandId(), 
-					husbandName,
-					fam.getWifeId() == null? "NULL" : fam.getWifeId(), 
-					wifeName,
+					fam.getDivorcedDate() == null ? "NA" : fam.getDivorcedDate(),
+					fam.getHusbandId() == null ? "NULL" : fam.getHusbandId(), husbandName,
+					fam.getWifeId() == null ? "NULL" : fam.getWifeId(), wifeName,
 					fam.getChildId().isEmpty() ? "NA" : "{'" + String.join("', '", fam.getChildId()) + "'}");
 		}
 		System.out.format(
@@ -70,7 +72,7 @@ public class GedComTree {
 		ArrayList<ErrorData> allErrors = new ArrayList<ErrorData>();
 
 		// --------------------------------Sprint01-----------------------------------------------//
-		
+
 		allErrors.addAll(US_DatesCheckInFamily.US05_Marriage_Before_Death(Ftp));
 
 		allErrors.addAll(US_DatesCheckInFamily.testCheckDatesBeforeCurrentDate(Ftp));
@@ -86,38 +88,38 @@ public class GedComTree {
 		allErrors.addAll(US_CheckValidity.check(Ftp)); // Jiayuan Liu
 
 		// --------------------------------Sprint02-----------------------------------------------//
-	
-		allErrors.addAll(US_MultiIndividualFamilyData.US21_check_Gender_Role(Ftp)); //Allan
-		
-		allErrors.addAll(FamilyTreeParser.duplicateIndividual); //Allan
-		
-		allErrors.addAll(US_CheckUniqueness.US22_check_Unique_FamilyId(Ftp)); //Allan
-		
+
+		allErrors.addAll(US_MultiIndividualFamilyData.US21_check_Gender_Role(Ftp)); // Allan
+
+		allErrors.addAll(FamilyTreeParser.duplicateIndividual); // Allan
+
+		allErrors.addAll(US_CheckUniqueness.US22_check_Unique_FamilyId(Ftp)); // Allan
+
 		allErrors.addAll(US_DatesCheckInFamily.US04_MarriageBeforeDivorce(Ftp));
-		
+
 		allErrors.addAll(US_Siblings.US15_FewerThanFifteenSiblings(Ftp));
 
 		allErrors.addAll(US_Siblings.checkSiblingMarraige(Ftp));
-		
+
 		// ---------------------------------Sprint03--------------------------------------------//
-		
+
 		allErrors.addAll(US_CheckUniqueness.US24_findDuplicateSpousedetails(Ftp));
-		
+
 		allErrors.addAll(US_DatesCheckInFamily.US09_findBirthBeforeDeathOfParents(Ftp));
-		
-		//-----------------------------------Sprint04--------------------------------------------//
-		
-		
+
+		// -----------------------------------Sprint04--------------------------------------------//
+
 		for (int i = 0; i < allErrors.size(); i++) {
 			ErrorData error = allErrors.get(i);
 			System.out.println(error.getErrorType() + " : " + error.getRecordType() + " : " + error.getUserStoryNumber()
 					+ " : " + error.getIndividualId() + " : " + error.getErrorDetails());
 		}
 	}
+
 	private static void printListOfDeceasedIndividuals(FamilyTreeParser Ftp) {
 		ArrayList<Individual> deceasedPeople = US_All_Lists.US_listOfDeceased(Ftp);
 
-		//Sprint 2 - US29 List of Deceased - Shreesh Chavan
+		// Sprint 2 - US29 List of Deceased - Shreesh Chavan
 		// For individuals
 		System.out.println();
 		System.out.println("List of Deceased");
@@ -128,7 +130,7 @@ public class GedComTree {
 				"|  ID  |       Name         |  Gender  |  Birthday  |  Age  |  Alive  |    Death   |   Child  |  Spouse  |%n");
 		System.out.format(
 				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
-		for (Individual indi:deceasedPeople) {
+		for (Individual indi : deceasedPeople) {
 			System.out.format(individualOutputFormat, indi.getId(), indi.getName(), indi.getGender(),
 					indi.getBirthDate(), indi.getAge(), indi.isAlive(),
 					indi.getDeathDate() == null ? "NA" : indi.getDeathDate(),
@@ -140,10 +142,11 @@ public class GedComTree {
 				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
 		System.out.println();
 	}
+
 	private static void printListOfOrphansIndividuals(FamilyTreeParser Ftp) {
 		ArrayList<Individual> orphans = US_All_Lists.US_listofOrphans(Ftp);
 
-		//Sprint 3 - US33 List of Orphans - Shreesh Chavan
+		// Sprint 3 - US33 List of Orphans - Shreesh Chavan
 		// For individuals
 		System.out.println("List of Orphans");
 		String individualOutputFormat = "|%1$-6s|%2$-20s|%3$-10s|%4$-12s|%5$-7s|%6$-9s|%7$-12s|%8$-10s|%9$-10s|%n";
@@ -153,7 +156,7 @@ public class GedComTree {
 				"|  ID  |       Name         |  Gender  |  Birthday  |  Age  |  Alive  |    Death   |   Child  |  Spouse  |%n");
 		System.out.format(
 				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
-		for (Individual indi:orphans) {
+		for (Individual indi : orphans) {
 			System.out.format(individualOutputFormat, indi.getId(), indi.getName(), indi.getGender(),
 					indi.getBirthDate(), indi.getAge(), indi.isAlive(),
 					indi.getDeathDate() == null ? "NA" : indi.getDeathDate(),
@@ -165,11 +168,11 @@ public class GedComTree {
 				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
 		System.out.println();
 	}
-	//Sprint 3 - US31 Living Singles - Shreesh Chavan
+
+	// Sprint 3 - US31 Living Singles - Shreesh Chavan
 	// For individuals
 	private static void printListOfSingleLivingIndividuals(FamilyTreeParser Ftp) {
 		ArrayList<Individual> singles = US_All_Lists.US_listOflivingSingle(Ftp);
-
 
 		System.out.println("List of Singles");
 		String individualOutputFormat = "|%1$-6s|%2$-20s|%3$-10s|%4$-12s|%5$-7s|%6$-9s|%7$-12s|%8$-10s|%9$-10s|%n";
@@ -179,7 +182,7 @@ public class GedComTree {
 				"|  ID  |       Name         |  Gender  |  Birthday  |  Age  |  Alive  |    Death   |   Child  |  Spouse  |%n");
 		System.out.format(
 				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
-		for (Individual indi:singles) {
+		for (Individual indi : singles) {
 			System.out.format(individualOutputFormat, indi.getId(), indi.getName(), indi.getGender(),
 					indi.getBirthDate(), indi.getAge(), indi.isAlive(),
 					indi.getDeathDate() == null ? "NA" : indi.getDeathDate(),
@@ -191,13 +194,12 @@ public class GedComTree {
 				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
 		System.out.println();
 	}
-	
-	
-	//Sprint 3 - US27 Living Married Individuals - Allan
+
+	// Sprint 3 - US27 Living Married Individuals - Allan
 	private static void printListOfLivingMarried(FamilyTreeParser Ftp) {
 		System.out.println("List of Living Married");
 		ArrayList<Individual> livingMarried = US_All_Lists.listOfLivingMarried(Ftp);
-		
+
 		String individualOutputFormat = "|%1$-6s|%2$-20s|%3$-10s|%4$-12s|%5$-7s|%6$-9s|%7$-12s|%8$-10s|%9$-10s|%n";
 		System.out.format(
 				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
@@ -205,9 +207,8 @@ public class GedComTree {
 				"|  ID  |       Name         |  Gender  |  Birthday  |  Age  |  Alive  |    Death   |   Child  |  Spouse  |%n");
 		System.out.format(
 				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
-		
-		
-		for(Individual indi:livingMarried) {
+
+		for (Individual indi : livingMarried) {
 			System.out.format(individualOutputFormat, indi.getId(), indi.getName(), indi.getGender(),
 					indi.getBirthDate(), indi.getAge(), indi.isAlive(),
 					indi.getDeathDate() == null ? "NA" : indi.getDeathDate(),
@@ -220,7 +221,7 @@ public class GedComTree {
 	}
 
 	public static void printListOfRecentBirths(FamilyTreeParser Ftp) {
-		ArrayList<Individual>listOfRecentBirths = US_All_Lists.US35_findListOfRecentBirths(Ftp);
+		ArrayList<Individual> listOfRecentBirths = US_All_Lists.US35_findListOfRecentBirths(Ftp);
 		System.out.println("US35: List of recent births");
 		String individualOutputFormat = "|%1$-6s|%2$-20s|%3$-10s|%4$-12s|%5$-7s|%6$-9s|%7$-12s|%8$-10s|%9$-10s|%n";
 		System.out.format(
@@ -229,7 +230,7 @@ public class GedComTree {
 				"|  ID  |       Name         |  Gender  |  Birthday  |  Age  |  Alive  |    Death   |   Child  |  Spouse  |%n");
 		System.out.format(
 				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
-		for(int i=0;i<listOfRecentBirths.size();i++) {
+		for (int i = 0; i < listOfRecentBirths.size(); i++) {
 			Individual indi = listOfRecentBirths.get(i);
 			System.out.format(individualOutputFormat, indi.getId(), indi.getName(), indi.getGender(),
 					indi.getBirthDate(), indi.getAge(), indi.isAlive(),
@@ -241,9 +242,9 @@ public class GedComTree {
 				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
 		System.out.println();
 	}
-	
+
 	public static void printListOfRecentDeaths(FamilyTreeParser Ftp) {
-		ArrayList<Individual>listOfRecentDeaths = US_All_Lists.US36_findListOfRecentDeaths(Ftp);
+		ArrayList<Individual> listOfRecentDeaths = US_All_Lists.US36_findListOfRecentDeaths(Ftp);
 		System.out.println("US36: List of recent deaths");
 		String individualOutputFormat = "|%1$-6s|%2$-20s|%3$-10s|%4$-12s|%5$-7s|%6$-9s|%7$-12s|%8$-10s|%9$-10s|%n";
 		System.out.format(
@@ -252,7 +253,7 @@ public class GedComTree {
 				"|  ID  |       Name         |  Gender  |  Birthday  |  Age  |  Alive  |    Death   |   Child  |  Spouse  |%n");
 		System.out.format(
 				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
-		for(int i=0;i<listOfRecentDeaths.size();i++) {
+		for (int i = 0; i < listOfRecentDeaths.size(); i++) {
 			Individual indi = listOfRecentDeaths.get(i);
 			System.out.format(individualOutputFormat, indi.getId(), indi.getName(), indi.getGender(),
 					indi.getBirthDate(), indi.getAge(), indi.isAlive(),
@@ -264,40 +265,32 @@ public class GedComTree {
 				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
 		System.out.println();
 	}
-	
-	
-	
-	//Sprint 4 - US39 Living Married Individuals - Allan
-			private static void printListOfUpcomingAnniversary(FamilyTreeParser Ftp) {
-				System.out.println("List of Living Couple Upcoming Anniversaries within 30 days");
-				ArrayList<Individual> upCommingAnniversaries = US_All_Lists.listOfUpcoming_Anniversaries(Ftp);
-				
-				String individualOutputFormat = "|%1$-6s|%2$-20s|%3$-10s|%4$-12s|%5$-7s|%6$-9s|%7$-12s|%8$-10s|%9$-10s|%n";
-				System.out.format(
-						"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
-				System.out.format(
-						"|  ID  |       Name         |  Gender  |  Birthday  |  Age  |  Alive  |    Death   |   Child  |  Spouse  |%n");
-				System.out.format(
-						"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
-				
-				
-				for(Individual indi:upCommingAnniversaries) {
-					System.out.format(individualOutputFormat, indi.getId(), indi.getName(), indi.getGender(),
-							indi.getBirthDate(), indi.getAge(), indi.isAlive(),
-							indi.getDeathDate() == null ? "NA" : indi.getDeathDate(),
-							indi.getFamilyChildId() == null ? "NA" : "{'" + indi.getFamilyChildId() + "'}",
-							indi.getFamilySpouseId() == null ? "NA" : "{'" + indi.getFamilySpouseId() + "'}");
-				}
-				System.out.format(
-						"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
-				System.out.println();
-			}
-	
-	
-	
-	
-	
-	
+
+	// Sprint 4 - US39 Living Married Individuals - Allan
+	private static void printListOfUpcomingAnniversary(FamilyTreeParser Ftp) {
+		System.out.println("List of Living Couple Upcoming Anniversaries within 30 days");
+		ArrayList<Individual> upCommingAnniversaries = US_All_Lists.listOfUpcoming_Anniversaries(Ftp);
+
+		String individualOutputFormat = "|%1$-6s|%2$-20s|%3$-10s|%4$-12s|%5$-7s|%6$-9s|%7$-12s|%8$-10s|%9$-10s|%n";
+		System.out.format(
+				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
+		System.out.format(
+				"|  ID  |       Name         |  Gender  |  Birthday  |  Age  |  Alive  |    Death   |   Child  |  Spouse  |%n");
+		System.out.format(
+				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
+
+		for (Individual indi : upCommingAnniversaries) {
+			System.out.format(individualOutputFormat, indi.getId(), indi.getName(), indi.getGender(),
+					indi.getBirthDate(), indi.getAge(), indi.isAlive(),
+					indi.getDeathDate() == null ? "NA" : indi.getDeathDate(),
+					indi.getFamilyChildId() == null ? "NA" : "{'" + indi.getFamilyChildId() + "'}",
+					indi.getFamilySpouseId() == null ? "NA" : "{'" + indi.getFamilySpouseId() + "'}");
+		}
+		System.out.format(
+				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
+		System.out.println();
+	}
+
 	public static void main(String[] args) throws IOException, ParseException {
 		FamilyTreeParser Ftp = new FamilyTreeParser();
 		Ftp.setValidTags();
@@ -305,17 +298,16 @@ public class GedComTree {
 		printIndividualList(Ftp);
 		printFamilyList(Ftp);
 		printErrorDetails(Ftp);
-	   /*         Display List User stories     */
-	   //--------------Sprint03-----------------//
+		/* Display List User stories */
+		// --------------Sprint03-----------------//
 		printListOfDeceasedIndividuals(Ftp);
 		printListOfOrphansIndividuals(Ftp);
 		printListOfSingleLivingIndividuals(Ftp);
 		printListOfLivingMarried(Ftp);
-	   //--------------Sprint04-----------------//
+		// --------------Sprint04-----------------//
 		printListOfRecentBirths(Ftp);
 		printListOfRecentDeaths(Ftp);
 		printListOfUpcomingAnniversary(Ftp);
 	}
-	
-	
+
 }

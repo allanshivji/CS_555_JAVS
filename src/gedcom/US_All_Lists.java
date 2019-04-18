@@ -30,35 +30,35 @@ public class US_All_Lists {
 		}
 		return livingMarriedArray;
 	}
-	
-	// Allan: Sprint 4 US39 List of Upcoming Anniversaries
-		public static ArrayList<Individual> listOfUpcoming_Anniversaries(FamilyTreeParser Ftp) {
-			
-			ArrayList<Individual> upcommingAnniversaries = new ArrayList<Individual>();
-			LocalDate today = LocalDate.now();
-			
-			for (Family familyRecord : Ftp.familyList) {
-				
-				String husbId = familyRecord.getHusbandId();
-				String wifeId = familyRecord.getWifeId();
-				LocalDate marriageDate = familyRecord.getMarriageDate();
-				
-				if (Ftp.individualMap.get(husbId).isAlive() == "True"
-						&& Ftp.individualMap.get(wifeId).isAlive() == "True") {
-					
-					
-					LocalDate thisYearsAnniversary = LocalDate.of(today.getYear(), marriageDate.getMonth(), marriageDate.getDayOfMonth());
 
-					long aniDate = ChronoUnit.DAYS.between(today, thisYearsAnniversary);
-					if (aniDate >= 1 && aniDate <= 30) {
-						upcommingAnniversaries.add(Ftp.individualMap.get(husbId));
-						upcommingAnniversaries.add(Ftp.individualMap.get(wifeId));
-					}
-					
+	// Allan: Sprint 4 US39 List of Upcoming Anniversaries
+	public static ArrayList<Individual> listOfUpcoming_Anniversaries(FamilyTreeParser Ftp) {
+
+		ArrayList<Individual> upcommingAnniversaries = new ArrayList<Individual>();
+		LocalDate today = LocalDate.now();
+
+		for (Family familyRecord : Ftp.familyList) {
+
+			String husbId = familyRecord.getHusbandId();
+			String wifeId = familyRecord.getWifeId();
+			LocalDate marriageDate = familyRecord.getMarriageDate();
+
+			if (Ftp.individualMap.get(husbId).isAlive() == "True"
+					&& Ftp.individualMap.get(wifeId).isAlive() == "True") {
+
+				LocalDate thisYearsAnniversary = LocalDate.of(today.getYear(), marriageDate.getMonth(),
+						marriageDate.getDayOfMonth());
+
+				long aniDate = ChronoUnit.DAYS.between(today, thisYearsAnniversary);
+				if (aniDate >= 1 && aniDate <= 30) {
+					upcommingAnniversaries.add(Ftp.individualMap.get(husbId));
+					upcommingAnniversaries.add(Ftp.individualMap.get(wifeId));
 				}
+
 			}
-			return upcommingAnniversaries;
 		}
+		return upcommingAnniversaries;
+	}
 
 	// Shreesh Chavan: Sprint 2 US29 check list of Deceased
 	public static ArrayList<Individual> US_listOfDeceased(FamilyTreeParser ftp) {
@@ -102,7 +102,8 @@ public class US_All_Lists {
 		HashMap<String, Individual> enter = ftp.individualMap;
 		ArrayList<Family> family = ftp.familyList;
 		for (Family famrec : family) {
-			if (famrec.getChildId().size() > 0 && enter.get(famrec.getHusbandId()).isAlive() == "False"	&& enter.get(famrec.getWifeId()).isAlive() == "False") {
+			if (famrec.getChildId().size() > 0 && enter.get(famrec.getHusbandId()).isAlive() == "False"
+					&& enter.get(famrec.getWifeId()).isAlive() == "False") {
 				for (String childid : famrec.getChildId()) {
 
 					if (enter.get(childid).getAge() < 18) {
@@ -113,43 +114,43 @@ public class US_All_Lists {
 		}
 		return orphansArray;
 	}
-	
-	//Vidya Maiya: Sprint 04 US_35_List recent births
+
+	// Vidya Maiya: Sprint 04 US_35_List recent births
 	public static ArrayList<Individual> US35_findListOfRecentBirths(FamilyTreeParser Ftp) {
 		ArrayList<Individual> recentBirths = new ArrayList<Individual>();
-		HashMap<String,Individual> individualMap = Ftp.individualMap;
+		HashMap<String, Individual> individualMap = Ftp.individualMap;
 		LocalDate today = LocalDate.now();
-		
-		for(Map.Entry<String, Individual> individual : individualMap.entrySet() ) {
+
+		for (Map.Entry<String, Individual> individual : individualMap.entrySet()) {
 			Individual individualData = individual.getValue();
 			LocalDate birthdate = individualData.getBirthDate();
-			if(birthdate !=null && (birthdate.isBefore(today) || birthdate.equals(today))) {
+			if (birthdate != null && (birthdate.isBefore(today) || birthdate.equals(today))) {
 				long daysBetween = ChronoUnit.DAYS.between(birthdate, today);
-				if(daysBetween >= 0 && daysBetween <=30) {
+				if (daysBetween >= 0 && daysBetween <= 30) {
 					recentBirths.add(individualData);
 				}
 			}
 		}
 		return recentBirths;
 	}
-	
-	//Vidya Maiya: Sprint04 US_36_List_recent_deaths
+
+	// Vidya Maiya: Sprint04 US_36_List_recent_deaths
 	public static ArrayList<Individual> US36_findListOfRecentDeaths(FamilyTreeParser Ftp) {
 		ArrayList<Individual> recentDeaths = new ArrayList<Individual>();
-		HashMap<String,Individual> individualMap = Ftp.individualMap;
+		HashMap<String, Individual> individualMap = Ftp.individualMap;
 		LocalDate today = LocalDate.now();
-		
-		for(Map.Entry<String, Individual> individual : individualMap.entrySet() ) {
+
+		for (Map.Entry<String, Individual> individual : individualMap.entrySet()) {
 			Individual individualData = individual.getValue();
 			LocalDate deathDate = individualData.getDeathDate();
-			if(deathDate !=null && (deathDate.isBefore(today) || deathDate.equals(today))) {
+			if (deathDate != null && (deathDate.isBefore(today) || deathDate.equals(today))) {
 				long daysBetween = ChronoUnit.DAYS.between(deathDate, today);
-				if(daysBetween >= 0 && daysBetween <=30) {
+				if (daysBetween >= 0 && daysBetween <= 30) {
 					recentDeaths.add(individualData);
 				}
 			}
 		}
 		return recentDeaths;
 	}
-	
+
 }
