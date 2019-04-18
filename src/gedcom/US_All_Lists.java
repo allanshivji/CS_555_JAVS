@@ -46,6 +46,8 @@ public class US_All_Lists {
 			if (Ftp.individualMap.get(husbId).isAlive() == "True"
 					&& Ftp.individualMap.get(wifeId).isAlive() == "True") {
 
+			// Checked the LocalDate.of() function from stack overflow 
+			//https://stackoverflow.com/questions/55738201/calculate-days-between-two-dates-ignoring-year
 				LocalDate thisYearsAnniversary = LocalDate.of(today.getYear(), marriageDate.getMonth(),
 						marriageDate.getDayOfMonth());
 
@@ -59,6 +61,13 @@ public class US_All_Lists {
 		}
 		return upcommingAnniversaries;
 	}
+
+	// Allan: Sprint 4 
+	public static ArrayList<Individual> listOfUniqueFirstNames(FamilyTreeParser Ftp){
+		ArrayList<Individual> upcommingAnniversaries = new ArrayList<Individual>();
+		return upcommingAnniversaries;
+	}
+	
 
 	// Shreesh Chavan: Sprint 2 US29 check list of Deceased
 	public static ArrayList<Individual> US_listOfDeceased(FamilyTreeParser ftp) {
