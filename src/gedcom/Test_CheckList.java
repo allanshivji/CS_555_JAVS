@@ -2,9 +2,14 @@ package gedcom;
 
 import static org.junit.Assert.*;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 
 import org.junit.*;
 
@@ -273,6 +278,142 @@ public class Test_CheckList {
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
 		ArrayList<Individual> livingMarriedUpcommingAnniversary = US_All_Lists.listOfUpcoming_Anniversaries(Ftp);
 		assertTrue(livingMarriedUpcommingAnniversary.size() == 0);
+	}
+
+	@Test
+	public void test_US35ListOfRecentBirthsSuccess() {
+		// DateTimeFormatter dateFormat = new
+		// DateTimeFormatterBuilder().parseCaseInsensitive().appendPattern("dd MMM
+		// yyyy").toFormatter(Locale.ENGLISH);
+		// LocalDate birthDate;
+		// birthDate = LocalDate.now().minusDays(10);
+		// String ob = (birthDate).format(dateFormat);
+		// System.out.println(ob);
+
+		Individual indi = new Individual();
+		indi.setId("I100");
+		indi.setName("Isaac Stark");
+		indi.setBirthDate("16 APR 2019");
+		testIndividualMap.put("I100", indi);
+
+		indi.setId("I101");
+		indi.setName("Liana Stark");
+		indi.setBirthDate("18 APR 2019");
+		testIndividualMap.put("I101", indi);
+
+		Family family = new Family();
+		family.setId("F100");
+		family.setChildId("I100");
+		testFamilyList.add(family);
+
+		family.setId("F101");
+		family.setChildId("I101");
+		testFamilyList.add(family);
+
+		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
+		ArrayList<Individual> recentBirths = US_All_Lists.US35_findListOfRecentBirths(Ftp);
+		assertEquals(recentBirths.size(), 2);
+
+	}
+
+	@Test
+	public void test_US35ListOfRecentBirthsFailure() {
+		Individual indi = new Individual();
+		indi.setId("I100");
+		indi.setName("Arya Stark");
+		indi.setBirthDate("16 APR 2018");
+		testIndividualMap.put("I100", indi);
+
+		indi.setId("I101");
+		indi.setName("Sophie Stark");
+		indi.setBirthDate("18 APR 2025");
+		testIndividualMap.put("I101", indi);
+
+		indi.setId("I102");
+		indi.setName("Leya Stark");
+		testIndividualMap.put("I102", indi);
+
+		Family family = new Family();
+		family.setId("F100");
+		family.setChildId("I100");
+		testFamilyList.add(family);
+
+		family.setId("F101");
+		family.setChildId("I101");
+		testFamilyList.add(family);
+
+		family.setId("F102");
+		family.setChildId("I102");
+		testFamilyList.add(family);
+
+		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
+		ArrayList<Individual> recentBirths = US_All_Lists.US35_findListOfRecentBirths(Ftp);
+		assertEquals(recentBirths.size(), 0);
+
+	}
+
+	@Test
+	public void test_US36ListOfRecentDeathsSuccess() {
+		Individual indi = new Individual();
+		indi.setId("I100");
+		indi.setName("Sean Stark");
+		indi.setDeathDate("16 APR 2019");
+		testIndividualMap.put("I100", indi);
+
+		indi.setId("I101");
+		indi.setName("Leena Stark");
+		indi.setBirthDate("18 APR 2019");
+		testIndividualMap.put("I101", indi);
+
+		Family family = new Family();
+		family.setId("F100");
+		family.setChildId("I100");
+		testFamilyList.add(family);
+
+		family.setId("F101");
+		family.setChildId("I101");
+		testFamilyList.add(family);
+
+		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
+		ArrayList<Individual> recentDeaths = US_All_Lists.US36_findListOfRecentDeaths(Ftp);
+		assertEquals(recentDeaths.size(), 2);
+
+	}
+
+	@Test
+	public void test_US35ListOfRecentDeathsFailure() {
+		Individual indi = new Individual();
+		indi.setId("I100");
+		indi.setName("Harry Polis");
+		indi.setDeathDate("16 APR 2018");
+		testIndividualMap.put("I100", indi);
+
+		indi.setId("I101");
+		indi.setName("Masie Polis");
+		indi.setDeathDate("18 APR 2025");
+		testIndividualMap.put("I101", indi);
+
+		indi.setId("I102");
+		indi.setName("Nicole Polis");
+		testIndividualMap.put("I102", indi);
+
+		Family family = new Family();
+		family.setId("F100");
+		family.setChildId("I100");
+		testFamilyList.add(family);
+
+		family.setId("F101");
+		family.setChildId("I101");
+		testFamilyList.add(family);
+
+		family.setId("F102");
+		family.setChildId("I102");
+		testFamilyList.add(family);
+
+		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
+		ArrayList<Individual> recentDeaths = US_All_Lists.US36_findListOfRecentDeaths(Ftp);
+		assertEquals(recentDeaths.size(), 0);
+
 	}
 
 }
