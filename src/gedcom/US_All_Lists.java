@@ -1,6 +1,7 @@
 package gedcom;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.text.ParseException;
+import java.lang.*;
 import java.text.SimpleDateFormat;
 import java.time.temporal.ChronoUnit;
 
@@ -161,5 +163,39 @@ public class US_All_Lists {
 		}
 		return recentDeaths;
 	}
+	// Shreesh Chavan: Sprint04 US_34_List_couple_with_large_age_difference
+	public static ArrayList<Family> US34_listOfCouplesWithLargeAgeDifference(FamilyTreeParser Ftp){
+		ArrayList<Family> family = Ftp.familyList;
+		ArrayList<Family> listofCouples = new ArrayList<Family>();
+		HashMap<String, Individual> individualMap = Ftp.individualMap;
+		for(Family famrec: family) {
+			LocalDate marrDate = famrec.getMarriageDate();
+			if(marrDate!=null) {
+				int husbandsAge = Period.between(marrDate, individualMap.get(famrec.getHusbandId()).getBirthDate()).getYears();
+				int wifesAge = Period.between(marrDate, individualMap.get(famrec.getWifeId()).getBirthDate()).getYears();
+				int higherage  = husbandsAge>=wifesAge?husbandsAge:wifesAge;
+				if(higherage>= 2*(Math.abs(husbandsAge - wifesAge))) {
+					listofCouples.add(famrec);
+				}
+			}
 
+		}
+		return listofCouples;
+	}
+	// Shreesh Chavan: Sprint04 US_38_List_individuals with upcoming birthdays
+	public static ArrayList<Individual> US38_listOfUpcomingBirthdays(FamilyTreeParser Ftp){
+		ArrayList<Individual> listofupcomingBirthdays = new ArrayList<Individual>();
+		HashMap<String, Individual> individualMap = Ftp.individualMap;
+		for (Map.Entry<String, Individual> individual : individualMap.entrySet()) {
+			if(individual.getValue().isAlive() == "True") {
+				LocalDate today = LocalDate.now();
+				int upcomingyear = LocalDate.of(today.getYear(), individual.getValue().getBirthDate().getMonth(), individual.getValue().getBirthDate().getDayOfMonth()).isAfter(today)?today.getYear():today.plusYears(1).getYear();
+				long daysBetween = ChronoUnit.DAYS.between(LocalDate.of(upcomingyear, individual.getValue().getBirthDate().getMonth(), individual.getValue().getBirthDate().getDayOfMonth()), today);
+				if (Math.abs(daysBetween) >= 0 && Math.abs(daysBetween) <= 30) {
+					listofupcomingBirthdays.add(individual.getValue());
+				}	
+			}
+		}
+		return listofupcomingBirthdays;
+	}
 }

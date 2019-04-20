@@ -290,6 +290,58 @@ public class GedComTree {
 				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
 		System.out.println();
 	}
+	private static void printListOfUpcomingBirthdays(FamilyTreeParser Ftp) {
+		System.out.println("List of individuals with Upcoming Birthdays within 30 days");
+		ArrayList<Individual> upCommingBirthdays = US_All_Lists.US38_listOfUpcomingBirthdays(Ftp);
+
+		String individualOutputFormat = "|%1$-6s|%2$-20s|%3$-10s|%4$-12s|%5$-7s|%6$-9s|%7$-12s|%8$-10s|%9$-10s|%n";
+		System.out.format(
+				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
+		System.out.format(
+				"|  ID  |       Name         |  Gender  |  Birthday  |  Age  |  Alive  |    Death   |   Child  |  Spouse  |%n");
+		System.out.format(
+				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
+
+		for (Individual indi : upCommingBirthdays) {
+			System.out.format(individualOutputFormat, indi.getId(), indi.getName(), indi.getGender(),
+					indi.getBirthDate(), indi.getAge(), indi.isAlive(),
+					indi.getDeathDate() == null ? "NA" : indi.getDeathDate(),
+					indi.getFamilyChildId() == null ? "NA" : "{'" + indi.getFamilyChildId() + "'}",
+					indi.getFamilySpouseId() == null ? "NA" : "{'" + indi.getFamilySpouseId() + "'}");
+		}
+		System.out.format(
+				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
+		System.out.println();
+	}
+	private static void printListOfCouplesWithHighAgeDifference(FamilyTreeParser Ftp) {
+
+		// For Families
+		System.out.println("lisy of Families with high age difference between spouses at the time of marraige");
+		String familyOutputFormat = "|%1$-6s|%2$-16s|%3$-16s|%4$-14s|%5$-23s|%6$-14s|%7$-23s|%8$-113s|%n";
+		System.out.format(
+				"+------+----------------+----------------+--------------+-----------------------+--------------+-----------------------+-----------------------------------------------------------------------------------------------------------------+%n");
+		System.out.format(
+				"|  ID  |    Married     |    Divorced    |  Husband Id  |      Husband Name     |    Wife Id   |      Wife Name        |      Children                                                                                                   |%n");
+		System.out.format(
+				"+------+----------------+----------------+--------------+-----------------------+--------------+-----------------------+-----------------------------------------------------------------------------------------------------------------+%n");
+		for (Family fam: US_All_Lists.US34_listOfCouplesWithLargeAgeDifference(Ftp)) {
+			String wifeName = fam.getWifeId() == null ? "NULL"
+					: (Ftp.individualMap.get(fam.getWifeId()) == null ? "NULL"
+							: Ftp.individualMap.get(fam.getWifeId()).getName());
+			String husbandName = fam.getHusbandId() == null ? "NULL"
+					: (Ftp.individualMap.get(fam.getHusbandId()) == null ? "NULL"
+							: Ftp.individualMap.get(fam.getHusbandId()).getName());
+			System.out.format(familyOutputFormat, fam.getId(),
+					fam.getMarriageDate() == null ? "NA" : fam.getMarriageDate(),
+					fam.getDivorcedDate() == null ? "NA" : fam.getDivorcedDate(),
+					fam.getHusbandId() == null ? "NULL" : fam.getHusbandId(), husbandName,
+					fam.getWifeId() == null ? "NULL" : fam.getWifeId(), wifeName,
+					fam.getChildId().isEmpty() ? "NA" : "{'" + String.join("', '", fam.getChildId()) + "'}");
+		}
+		System.out.format(
+				"+------+----------------+----------------+--------------+-----------------------+--------------+-----------------------+-----------------------------------------------------------------------------------------------------------------+%n");
+		System.out.println();
+	}
 
 	public static void main(String[] args) throws IOException, ParseException {
 		FamilyTreeParser Ftp = new FamilyTreeParser();
@@ -308,6 +360,8 @@ public class GedComTree {
 		printListOfRecentBirths(Ftp);
 		printListOfRecentDeaths(Ftp);
 		printListOfUpcomingAnniversary(Ftp);
+		printListOfUpcomingBirthdays(Ftp);
+		printListOfCouplesWithHighAgeDifference(Ftp);
 	}
 
 }
