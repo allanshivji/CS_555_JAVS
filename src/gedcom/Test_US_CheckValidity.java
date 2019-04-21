@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.junit.*;
 
@@ -204,6 +205,108 @@ public class Test_US_CheckValidity {
 
 		assertNotEquals(US_CheckValidity.check_multiple_births(children1, "F01").size(), 0);
 		assertEquals(US_CheckValidity.check_multiple_births(children2, "F01").size(), 0);
+
+	}
+
+	@Test
+	public void test_check_male_last_name() {
+		Individual indi_father = new Individual();
+		indi_father.setId("F01");
+		indi_father.setName("father liu");
+
+		Individual indi_child1 = new Individual();
+		indi_child1.setId("I01");
+		indi_child1.setName("child1 liu");
+		indi_child1.setBirthDate("1 JAN 1980");
+
+		Individual indi_child2 = new Individual();
+		indi_child2.setId("I02");
+		indi_child2.setName("child2 liu");
+		indi_child2.setBirthDate("1 JAN 1980");
+
+		Individual indi_child3 = new Individual();
+		indi_child3.setId("I03");
+		indi_child3.setName("child3 liu");
+		indi_child3.setBirthDate("1 JAN 1980");
+
+		Individual indi_child4 = new Individual();
+		indi_child4.setId("I04");
+		indi_child4.setName("child4 liu");
+		indi_child4.setBirthDate("1 JAN 1980");
+
+		Individual indi_child5 = new Individual();
+		indi_child5.setId("I05");
+		indi_child5.setName("child5 liu");
+		indi_child5.setBirthDate("1 JAN 1980");
+
+		Individual indi_child6 = new Individual();
+		indi_child6.setId("I06");
+		indi_child6.setName("child6 li");
+		indi_child6.setBirthDate("1 JAN 1980");
+
+		ArrayList<Individual> children1 = new ArrayList<Individual>();
+		children1.add(indi_child1);
+		children1.add(indi_child2);
+		children1.add(indi_child3);
+		children1.add(indi_child4);
+		children1.add(indi_child5);
+
+		ArrayList<Individual> children2 = new ArrayList<Individual>();
+		children1.add(indi_child1);
+		children1.add(indi_child2);
+		children1.add(indi_child3);
+		children1.add(indi_child4);
+		children1.add(indi_child5);
+		children1.add(indi_child6);
+
+		assertNotEquals(US_CheckValidity.check_male_last_name(children1, indi_father, "F01").size(), 0);
+		assertEquals(US_CheckValidity.check_male_last_name(children2, indi_father, "F01").size(), 0);
+
+	}
+
+	@Test
+	public void test_check_unique_name_birthdate() {
+		HashMap<String, Individual> testIndividualMap1 = new HashMap<String, Individual>();
+		HashMap<String, Individual> testIndividualMap2 = new HashMap<String, Individual>();
+		HashMap<String, Individual> testIndividualMap3 = new HashMap<String, Individual>();
+		ArrayList<Family> testFamilyList = new ArrayList<Family>();
+
+
+
+		Individual indi1 = new Individual();
+		indi1.setId("F01");
+		indi1.setName("Jiayuan liu");
+		indi1.setBirthDate("1 JAN 1980");
+		testIndividualMap1.put("F01", indi1);
+		testIndividualMap2.put("F01", indi1);
+		testIndividualMap3.put("F01", indi1);
+
+		Individual indi2 = new Individual();
+		indi2.setId("F02");
+		indi2.setName("Jay Chou");
+		indi2.setBirthDate("1 JAN 1980");
+		testIndividualMap1.put("F02", indi2);
+
+		Individual indi3 = new Individual();
+		indi3.setId("F03");
+		indi3.setName("Jiayuan liu");
+		indi3.setBirthDate("1 JAN 1981");
+		testIndividualMap2.put("F03", indi3);
+
+		Individual indi4 = new Individual();
+		indi4.setId("F04");
+		indi4.setName("Jiayuan liu");
+		indi4.setBirthDate("1 JAN 1980");
+		testIndividualMap3.put("F04", indi4);
+
+		FamilyTreeParser Ftp1 = new FamilyTreeParser(testIndividualMap1, testFamilyList);
+		FamilyTreeParser Ftp2 = new FamilyTreeParser(testIndividualMap2, testFamilyList);
+		FamilyTreeParser Ftp3 = new FamilyTreeParser(testIndividualMap3, testFamilyList);
+
+		assertEquals(US_CheckValidity.check_unique_name_birthdate(Ftp1).size(), 0);
+		assertEquals(US_CheckValidity.check_unique_name_birthdate(Ftp2).size(), 0);
+		assertNotEquals(US_CheckValidity.check_unique_name_birthdate(Ftp3).size(), 0);
+
 
 	}
 

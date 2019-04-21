@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
@@ -25,6 +26,7 @@ public class US_CheckValidity {
 			if (check_marriage_age(indi) != null)
 				errorList.add(check_marriage_age(indi));
 		}
+		errorList.addAll(check_unique_name_birthdate(Ftp));
 
 		// check Family
 		for (Family familyRecord : Ftp.familyList) {
@@ -56,6 +58,7 @@ public class US_CheckValidity {
 //					}
 //					errorList.addAll(tmp_list);
 //				}
+
 				// US12
 				errorList.addAll(check_parents_not_too_old(husband, wife, children, familyRecord.getId()));
 				// US17
@@ -67,8 +70,13 @@ public class US_CheckValidity {
 				if (children.size() > 5) {
 					errorList.addAll(check_multiple_births(children, familyRecord.getId()));
 				}
+				// US16
+				if (children.size() > 0) {
+					errorList.addAll(check_male_last_name(children, husband, familyRecord.getId()));
+				}
 			}
 		}
+
 		return errorList;
 	}
 
@@ -190,7 +198,7 @@ public class US_CheckValidity {
 //		return true;
 //	}
 
-	// Jiayuan Liu: Sprint2 US06 divorce before death
+	// Jiayuan Liu: Sprint3 US06 divorce before death
 	// divorce can only occur before death of both spouse
 	public static ArrayList<ErrorData> check_divorce_before_death(Individual husband, Individual wife,
 			Family familyRecord) {
@@ -213,7 +221,7 @@ public class US_CheckValidity {
 		return errorList;
 	}
 
-	// Jiayuan Liu:Sprint2 US14 Multiple births <= 5.
+	// Jiayuan Liu:Sprint3 US14 Multiple births <= 5.
 	// No more than five siblings should be born at the same time
 	public static ArrayList<ErrorData> check_multiple_births(ArrayList<Individual> children, String familyID) {
 		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
@@ -237,6 +245,63 @@ public class US_CheckValidity {
 			ErrorData error = new ErrorData("ERROR", "FAMILY", familyID, "US14",
 					"More than five siblings were born at the same time.");
 			errorList.add(error);
+		}
+		return errorList;
+	}
+
+	// Jiayuan Liu: Sprint4 US16 Male last name
+	// All male members of a family should have the same last name
+	public static ArrayList<ErrorData> check_male_last_name(ArrayList<Individual> children, Individual husband, String familyID) {
+		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
+		String lastname_father = husband.getName().split(" ")[1];
+		boolean flag = false;
+		for (Individual child : children) {
+			String lastname_child = child.getName().split(" ")[1];
+			if (!lastname_father.equals(lastname_child)) {
+				flag = true;
+				break;
+			}
+		}
+		if(flag) {
+			ErrorData error = new ErrorData("ERROR", "FAMILY", familyID, "US16",
+					"All male members of a family don't have the same last name");
+			errorList.add(error);
+		}
+		return errorList;
+	}
+
+	// Jiayuan Liu: Sprint4 US23 Unique name and birth date
+	// No more than one individual with the same name and birth date should appear in a GEDCOM file
+	public static ArrayList<ErrorData> check_unique_name_birthdate(FamilyTreeParser Ftp) {
+		ArrayList<ErrorData> errorList = new ArrayList<ErrorData>();
+		Map<String, Individual> treeMap = new TreeMap<String, Individual>(Ftp.individualMap);
+		// name+birthdate & ID
+		Map<String, String> mapIndi = new HashMap<String, String>();
+		boolean flag = false;
+
+		// check Individual
+		for (Map.Entry<String, Individual> entry : treeMap.entrySet()) {
+			Individual indi = entry.getValue();
+
+			// splice name and birth date as key
+			String name = indi.getName();
+			LocalDate birthdate = indi.getBirthDate();
+			DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			String str_birthdate = df.format(birthdate);
+			String name_birthdate = name + " " + str_birthdate;
+
+			String id = mapIndi.get(name_birthdate);
+			if (id == null) {
+				mapIndi.put(name_birthdate, indi.getId());
+			} else {
+				flag = true;
+			}
+			if (flag) {
+				ErrorData error = new ErrorData("ERROR", "INDIVIDUAL", "US23", id + "&" + indi.getId(),
+						"Two individuals with the same name and birth date(" + name_birthdate + ").");
+				errorList.add(error);
+				flag = false;
+			}
 		}
 		return errorList;
 	}
