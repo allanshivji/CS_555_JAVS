@@ -454,7 +454,6 @@ public class Test_CheckList {
 		testFamilyList.add(family1);
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
 		ArrayList<Family> couples = US_All_Lists.US34_listOfCouplesWithLargeAgeDifference(Ftp);
-//					System.out.println(couples);
 		assertTrue(couples.size() == 1);
 	}
 	@Test
@@ -481,7 +480,6 @@ public class Test_CheckList {
 		testIndividualMap.put("I1104", individual);
 		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
 		ArrayList<Individual> birthdays = US_All_Lists.US38_listOfUpcomingBirthdays(Ftp);
-//					System.out.println(couples);
 		assertTrue(birthdays.size() == 2);
 	}
 }
