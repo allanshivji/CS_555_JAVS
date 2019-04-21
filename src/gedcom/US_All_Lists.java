@@ -169,10 +169,11 @@ public class US_All_Lists {
 		ArrayList<Family> listofCouples = new ArrayList<Family>();
 		HashMap<String, Individual> individualMap = Ftp.individualMap;
 		for(Family famrec: family) {
+			
 			LocalDate marrDate = famrec.getMarriageDate();
 			if(marrDate!=null) {
-				int husbandsAge = Period.between(marrDate, individualMap.get(famrec.getHusbandId()).getBirthDate()).getYears();
-				int wifesAge = Period.between(marrDate, individualMap.get(famrec.getWifeId()).getBirthDate()).getYears();
+				int husbandsAge = Math.abs(Period.between(marrDate, individualMap.get(famrec.getHusbandId()).getBirthDate()).getYears());
+				int wifesAge = Math.abs(Period.between(marrDate, individualMap.get(famrec.getWifeId()).getBirthDate()).getYears());
 				int higherage  = husbandsAge>=wifesAge?husbandsAge:wifesAge;
 				if(higherage>= 2*(Math.abs(husbandsAge - wifesAge))) {
 					listofCouples.add(famrec);

@@ -415,5 +415,73 @@ public class Test_CheckList {
 		assertEquals(recentDeaths.size(), 0);
 
 	}
+	@Test
+	public void test_US34listCouplesWithLargeAgeDifferrence() {
+	
+		Individual individual = new Individual();
+		individual.setId("I1100");
+		individual.setBirthDate("12 APR 2001");
+		testIndividualMap.put("I1100", individual);
 
+		individual = new Individual();
+		individual.setId("I1101");
+		individual.setBirthDate("12 APR 1985");
+		testIndividualMap.put("I1101", individual);
+
+		individual = new Individual();
+		individual.setId("I1103");
+		individual.setBirthDate("12 APR 1980");
+		testIndividualMap.put("I1103", individual);
+
+		individual = new Individual();
+		individual.setId("I1104");
+		individual.setBirthDate("12 APR 1980");
+		testIndividualMap.put("I1104", individual);
+
+		Family family = new Family();
+		family.setId("F1101");
+		family.setHusbandId("I1100");
+		family.setWifeId("I1101");
+		family.setMarriageDate("25 DEC 2006");
+		testFamilyList.add(family);
+
+		Family family1 = new Family();
+		family1.setId("F1102");
+		family1.setHusbandId("I1103");
+		family1.setWifeId("I1104");
+		family1.setMarriageDate("25 DEC 2016");
+		family1.setChildId("I1103");
+		testFamilyList.add(family1);
+		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
+		ArrayList<Family> couples = US_All_Lists.US34_listOfCouplesWithLargeAgeDifference(Ftp);
+//					System.out.println(couples);
+		assertTrue(couples.size() == 1);
+	}
+	@Test
+	public void test_US38listOfUpcomingBirthdays() {
+	
+		Individual individual = new Individual();
+		individual.setId("I1100");
+		individual.setBirthDate("12 APR 2001");
+		testIndividualMap.put("I1100", individual);
+
+		individual = new Individual();
+		individual.setId("I1101");
+		individual.setBirthDate("30 APR 1985");
+		testIndividualMap.put("I1101", individual);
+
+		individual = new Individual();
+		individual.setId("I1103");
+		individual.setBirthDate("12 MAY 1980");
+		testIndividualMap.put("I1103", individual);
+
+		individual = new Individual();
+		individual.setId("I1104");
+		individual.setBirthDate("12 APR 1980");
+		testIndividualMap.put("I1104", individual);
+		FamilyTreeParser Ftp = new FamilyTreeParser(testIndividualMap, testFamilyList);
+		ArrayList<Individual> birthdays = US_All_Lists.US38_listOfUpcomingBirthdays(Ftp);
+//					System.out.println(couples);
+		assertTrue(birthdays.size() == 2);
+	}
 }
