@@ -282,23 +282,15 @@ public class Test_CheckList {
 
 	@Test
 	public void test_US35ListOfRecentBirthsSuccess() {
-		// DateTimeFormatter dateFormat = new
-		// DateTimeFormatterBuilder().parseCaseInsensitive().appendPattern("dd MMM
-		// yyyy").toFormatter(Locale.ENGLISH);
-		// LocalDate birthDate;
-		// birthDate = LocalDate.now().minusDays(10);
-		// String ob = (birthDate).format(dateFormat);
-		// System.out.println(ob);
-
 		Individual indi = new Individual();
 		indi.setId("I100");
 		indi.setName("Isaac Stark");
-		indi.setBirthDate("16 APR 2019");
+		indi.setBirthDate("18 APR 2019");
 		testIndividualMap.put("I100", indi);
 
 		indi.setId("I101");
 		indi.setName("Liana Stark");
-		indi.setBirthDate("18 APR 2019");
+		indi.setBirthDate("20 APR 2019");
 		testIndividualMap.put("I101", indi);
 
 		Family family = new Family();
@@ -357,12 +349,12 @@ public class Test_CheckList {
 		Individual indi = new Individual();
 		indi.setId("I100");
 		indi.setName("Sean Stark");
-		indi.setDeathDate("16 APR 2019");
+		indi.setDeathDate("20 APR 2019");
 		testIndividualMap.put("I100", indi);
 
 		indi.setId("I101");
 		indi.setName("Leena Stark");
-		indi.setBirthDate("18 APR 2019");
+		indi.setBirthDate("22 APR 2019");
 		testIndividualMap.put("I101", indi);
 
 		Family family = new Family();
