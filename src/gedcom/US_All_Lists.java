@@ -63,12 +63,6 @@ public class US_All_Lists {
 		}
 		return upcommingAnniversaries;
 	}
-
-	// Allan: Sprint 4 
-	public static ArrayList<Individual> listOfUniqueFirstNames(FamilyTreeParser Ftp){
-		ArrayList<Individual> upcommingAnniversaries = new ArrayList<Individual>();
-		return upcommingAnniversaries;
-	}
 	
 
 	// Shreesh Chavan: Sprint 2 US29 check list of Deceased

@@ -108,6 +108,8 @@ public class GedComTree {
 		allErrors.addAll(US_DatesCheckInFamily.US09_findBirthBeforeDeathOfParents(Ftp));
 
 		// -----------------------------------Sprint04--------------------------------------------//
+		
+		allErrors.addAll(US_Unique_Names.US25_Unique_Names_BirthDate(Ftp));
 
 		for (int i = 0; i < allErrors.size(); i++) {
 			ErrorData error = allErrors.get(i);
@@ -316,7 +318,7 @@ public class GedComTree {
 	private static void printListOfCouplesWithHighAgeDifference(FamilyTreeParser Ftp) {
 
 		// For Families
-		System.out.println("lisy of Families with high age difference between spouses at the time of marraige");
+		System.out.println("List of Families with high age difference between spouses at the time of marraige");
 		String familyOutputFormat = "|%1$-6s|%2$-16s|%3$-16s|%4$-14s|%5$-23s|%6$-14s|%7$-23s|%8$-113s|%n";
 		System.out.format(
 				"+------+----------------+----------------+--------------+-----------------------+--------------+-----------------------+-----------------------------------------------------------------------------------------------------------------+%n");
