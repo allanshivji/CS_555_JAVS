@@ -46,7 +46,6 @@ public class US_Unique_Names {
 				}
 			}
 		}
-
 		return errorList;
 	}
 }
