@@ -315,6 +315,7 @@ public class GedComTree {
 				"+------+--------------------+----------+------------+-------+---------+------------+----------+----------+%n");
 		System.out.println();
 	}
+	
 	private static void printListOfCouplesWithHighAgeDifference(FamilyTreeParser Ftp) {
 
 		// For Families

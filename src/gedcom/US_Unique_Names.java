@@ -36,7 +36,7 @@ public class US_Unique_Names {
 							error.setRecordType("FAMILY");
 							error.setIndividualId(familyRecord.getId());
 							error.setUserStoryNumber("US25");
-							error.setErrorDetails("Name and Birthdate of childrens ("
+							error.setErrorDetails("First Name and Birthdate of childrens ("
 									+ Ftp.individualMap.get(childrens.get(i)).getId() + ", "
 									+ Ftp.individualMap.get(childrens.get(j)).getId() + ") in the family "
 									+ familyRecord.getId() + " are same");

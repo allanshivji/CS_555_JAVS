@@ -58,7 +58,6 @@ public class US_All_Lists {
 					upcommingAnniversaries.add(Ftp.individualMap.get(husbId));
 					upcommingAnniversaries.add(Ftp.individualMap.get(wifeId));
 				}
-
 			}
 		}
 		return upcommingAnniversaries;

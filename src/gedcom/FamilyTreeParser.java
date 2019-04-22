@@ -163,7 +163,7 @@ public class FamilyTreeParser {
 			}
 
 		} catch (Exception e) {
-			System.out.println(e);
+			System.out.println();
 		}
 	}
 
