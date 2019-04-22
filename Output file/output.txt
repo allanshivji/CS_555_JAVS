@@ -1,0 +1,307 @@
+
+Individuals
++------+--------------------+----------+------------+-------+---------+------------+----------+----------+
+|  ID  |       Name         |  Gender  |  Birthday  |  Age  |  Alive  |    Death   |   Child  |  Spouse  |
++------+--------------------+----------+------------+-------+---------+------------+----------+----------+
+|I1    |Emily /Williams/    |F         |1791-12-04  |227    |True     |NA          |{'F2'}    |{'F1'}    |
+|I10   |Sara /Robinson/     |F         |1898-10-01  |46     |False    |1945-07-07  |NA        |{'F7'}    |
+|I11   |Jack /Jones/        |M         |1888-01-15  |40     |False    |1928-07-16  |NA        |{'F6'}    |
+|I12   |Zoe /White/         |F         |1892-02-03  |38     |False    |1930-04-02  |NA        |{'F6'}    |
+|I13   |Alexander /Williams/|M         |1920-05-10  |150    |False    |2070-09-16  |NA        |{'F8'}    |
+|I14   |Isabel /Williams/   |F         |1926-10-28  |92     |True     |NA          |{'F9'}    |{'F3'}    |
+|I15   |Rose /Green/        |F         |1925-12-02  |19     |False    |1945-01-02  |NA        |{'F8'}    |
+|I16   |Jonathan /Williams/ |M         |1946-07-10  |60     |False    |2006-10-18  |{'F8'}    |NA        |
+|I17   |Noah /Williams/     |M         |1887-11-13  |46     |False    |1934-10-02  |NA        |{'F9'}    |
+|I18   |Zara /Lewis/        |F         |1888-01-30  |47     |False    |1935-10-07  |NA        |{'F9'}    |
+|I19   |Daniel /Jones/      |M         |1958-07-10  |60     |True     |NA          |{'F4'}    |NA        |
+|I2    |Steve /Williams/    |M         |1954-12-25  |64     |True     |NA          |{'F3'}    |{'F2'}    |
+|I20   |Eliza /Jones/       |F         |1971-08-14  |47     |True     |NA          |{'F4'}    |NA        |
+|I21   |Dexter /Taylor/     |M         |2017-10-14  |1      |True     |NA          |{'F1'}    |NA        |
+|I22   |Hollie /Taylor/     |F         |2017-10-14  |1      |True     |NA          |{'F1'}    |NA        |
+|I23   |Ryan /Taylor/       |M         |2018-10-24  |0      |True     |NA          |{'F1'}    |NA        |
+|I24   |James /Smith/       |M         |1980-10-12  |38     |True     |NA          |{'F1'}    |{'F10'}   |
+|I25   |Mary /Smith/        |F         |1982-07-22  |36     |True     |NA          |{'F2'}    |{'F10'}   |
+|I26   |Michael  /Smith/    |M         |2004-05-02  |14     |True     |NA          |{'F10'}   |NA        |
+|I27   |James /Smith/       |M         |1980-10-12  |38     |True     |NA          |{'F1'}    |{'F10'}   |
+|I28   |Samuel /Morris/     |M         |1981-10-12  |37     |True     |NA          |{'F4'}    |{'F11'}   |
+|I29   |Nancy /Morris/      |M         |1984-10-02  |34     |True     |NA          |{'F6'}    |{'F11'}   |
+|I3    |Sophia /Jones/      |F         |1956-06-28  |62     |True     |NA          |{'F4'}    |{'F2'}    |
+|I30   |Kelly /Morris/      |F         |2014-01-24  |5      |True     |NA          |{'F11'}   |NA        |
+|I31   |Kelly /Morris/      |F         |2014-01-24  |5      |True     |NA          |{'F11'}   |NA        |
+|I32   |Charlie /Scott/     |M         |1992-10-02  |26     |True     |NA          |{'F6'}    |{'F12'}   |
+|I33   |Mia /Scott/         |F         |1993-06-29  |25     |True     |NA          |{'F7'}    |{'F12'}   |
+|I34   |Ian /Hamm/          |M         |1973-06-19  |45     |True     |NA          |{'F7'}    |{'F13'}   |
+|I35   |Sheila /Hamm/       |F         |1976-06-19  |42     |True     |NA          |{'F5'}    |{'F13'}   |
+|I36   |Roger /Sterling/    |F         |1976-06-19  |42     |True     |NA          |{'F5'}    |{'F17'}   |
+|I37   |Joan /Sterling/     |F         |1978-06-19  |40     |True     |NA          |{'F4'}    |{'F17'}   |
+|I38   |Josh /Sterling/     |M         |2000-06-19  |18     |True     |NA          |{'F17'}   |NA        |
+|I39   |Bosh /Sterling/     |M         |2001-06-19  |17     |True     |NA          |{'F17'}   |NA        |
+|I4    |Henry /Taylor/      |M         |1989-05-01  |29     |True     |NA          |NA        |{'F1'}    |
+|I40   |Dosh /Sterling/     |M         |2002-06-19  |16     |True     |NA          |{'F17'}   |NA        |
+|I41   |Hosh /Sterling/     |M         |2003-06-19  |15     |True     |NA          |{'F17'}   |NA        |
+|I42   |Jon /Sterling/      |F         |2004-06-19  |14     |True     |NA          |{'F17'}   |NA        |
+|I43   |Peter /Sterling/    |M         |2006-06-19  |12     |True     |NA          |{'F17'}   |NA        |
+|I44   |Henry /Sterling/    |M         |2007-06-19  |11     |True     |NA          |{'F17'}   |NA        |
+|I45   |Harry /Sterling/    |M         |2008-06-19  |10     |True     |NA          |{'F17'}   |NA        |
+|I46   |Ken /Sterling/      |M         |2009-06-19  |9      |True     |NA          |{'F17'}   |NA        |
+|I47   |Henry /Sterling/    |M         |2010-06-19  |8      |True     |NA          |{'F17'}   |NA        |
+|I48   |Sally /Sterling/    |F         |2011-06-19  |7      |True     |NA          |{'F17'}   |NA        |
+|I49   |Bobby /Sterling/    |M         |2012-06-19  |6      |True     |NA          |{'F17'}   |NA        |
+|I5    |Emma /Williams/     |F         |1985-03-21  |34     |True     |NA          |{'F2'}    |{'F5'}    |
+|I50   |Megan /Sterling/    |F         |2013-06-19  |5      |True     |NA          |{'F17'}   |NA        |
+|I51   |Kevin /Sterling/    |M         |2014-06-19  |4      |True     |NA          |{'F17'}   |NA        |
+|I52   |Gabby /Sterling/    |F         |2015-06-19  |3      |True     |NA          |{'F17'}   |NA        |
+|I53   |Gabby /Sterling/    |F         |2015-06-19  |3      |True     |NA          |{'F17'}   |NA        |
+|I54   |Nima /Niba/         |F         |1899-12-04  |119    |True     |NA          |NA        |{'F18'}   |
+|I55   |Hehe /Cao/          |M         |1901-12-05  |117    |True     |NA          |{'F18'}   |{'F18'}   |
+|I56   |Dd /Liu/            |F         |1995-12-18  |23     |True     |NA          |{'F19'}   |NA        |
+|I57   |Bb /Liu/            |M         |1995-12-18  |23     |True     |NA          |{'F19'}   |NA        |
+|I58   |Aa /Liu/            |F         |1995-12-18  |23     |True     |NA          |{'F19'}   |NA        |
+|I59   |Cc /Liu/            |F         |1995-12-18  |23     |True     |NA          |{'F19'}   |NA        |
+|I6    |George /Thomas/     |M         |1983-11-12  |35     |True     |NA          |NA        |{'F5'}    |
+|I60   |Ee /Liu/            |F         |1995-12-18  |23     |True     |NA          |{'F19'}   |NA        |
+|I61   |Ff /Liu/            |M         |1995-12-18  |23     |True     |NA          |{'F19'}   |NA        |
+|I62   |Ju /Liu/            |M         |1965-12-18  |53     |True     |NA          |NA        |{'F19'}   |
+|I63   |Ze /Ma/             |F         |1966-12-18  |52     |True     |NA          |NA        |{'F19'}   |
+|I64   |Erica /Jonas/       |F         |2019-04-21  |0      |True     |NA          |{'F19'}   |NA        |
+|I65   |David /Jonas/       |F         |1950-08-11  |68     |False    |2019-04-10  |{'F5'}    |NA        |
+|I66   |Ju /Liu/            |M         |1965-12-18  |53     |True     |NA          |NA        |{'F19'}   |
+|I67   |Ze /Ma/             |F         |1965-12-18  |53     |True     |NA          |NA        |{'F19'}   |
+|I68   |Jia /Liu/           |M         |1995-05-20  |23     |True     |NA          |NA        |NA        |
+|I69   |Jia /Liu/           |F         |1995-05-20  |23     |True     |NA          |NA        |NA        |
+|I7    |Oscar /Jones/       |M         |1924-03-01  |-8     |False    |1915-04-10  |{'F6'}    |{'F4'}    |
+|I70   |Junn /Liu/          |M         |1935-12-18  |83     |True     |NA          |NA        |{'F20'}   |
+|I71   |Zeeee /Liu/         |F         |1937-12-18  |81     |True     |NA          |NA        |{'F20'}   |
+|I72   |Jy /Li/             |M         |1965-12-18  |53     |True     |NA          |{'F20'}   |NA        |
+|I8    |Harriet /Wright/    |F         |1930-06-02  |57     |False    |1988-05-11  |{'F7'}    |{'F4'}    |
+|I9    |Jacob /Wright/      |M         |1895-04-26  |40     |False    |1935-09-16  |NA        |{'F7'}    |
++------+--------------------+----------+------------+-------+---------+------------+----------+----------+
+
+Families
++------+----------------+----------------+--------------+-----------------------+--------------+-----------------------+-----------------------------------------------------------------------------------------------------------------+
+|  ID  |    Married     |    Divorced    |  Husband Id  |      Husband Name     |    Wife Id   |      Wife Name        |      Children                                                                                                   |
++------+----------------+----------------+--------------+-----------------------+--------------+-----------------------+-----------------------------------------------------------------------------------------------------------------+
+|F1    |2020-12-09      |NA              |I4            |Henry /Taylor/         |I1            |Emily /Williams/       |{'I21', 'I22', 'I23'}                                                                                            |
+|F2    |1984-05-04      |NA              |I2            |Steve /Williams/       |I3            |Sophia /Jones/         |{'I1', 'I5'}                                                                                                     |
+|F3    |1975-04-07      |NA              |I13           |Alexander /Williams/   |I14           |Isabel /Williams/      |{'I2'}                                                                                                           |
+|F8    |1945-04-10      |1995-08-12      |I13           |Alexander /Williams/   |I15           |Rose /Green/           |{'I16'}                                                                                                          |
+|F4    |1950-10-17      |2018-08-12      |I7            |Oscar /Jones/          |I8            |Harriet /Wright/       |{'I3', 'I19', 'I20'}                                                                                             |
+|F5    |1920-04-24      |NA              |I6            |George /Thomas/        |I5            |Emma /Williams/        |NA                                                                                                               |
+|F6    |NA              |NA              |I11           |Jack /Jones/           |I12           |Zoe /White/            |{'I7'}                                                                                                           |
+|F7    |1928-07-30      |NA              |I9            |Jacob /Wright/         |I10           |Sara /Robinson/        |{'I8'}                                                                                                           |
+|F9    |NA              |NA              |I17           |Noah /Williams/        |I18           |Zara /Lewis/           |{'I14'}                                                                                                          |
+|F10   |2005-12-31      |2018-08-12      |I24           |James /Smith/          |I25           |Mary /Smith/           |{'I26'}                                                                                                          |
+|F11   |2006-11-21      |2013-04-23      |I28           |Samuel /Morris/        |I29           |Nancy /Morris/         |{'I30'}                                                                                                          |
+|F12   |2019-01-21      |NA              |I32           |Charlie /Scott/        |I33           |Mia /Scott/            |NA                                                                                                               |
+|F13   |2000-04-21      |1999-08-12      |I34           |Ian /Hamm/             |I35           |Sheila /Hamm/          |NA                                                                                                               |
+|F13   |2000-04-21      |1999-08-12      |I34           |Ian /Hamm/             |I35           |Sheila /Hamm/          |NA                                                                                                               |
+|F15   |2018-04-21      |NA              |I21           |Dexter /Taylor/        |I22           |Hollie /Taylor/        |NA                                                                                                               |
+|F16   |2019-03-21      |NA              |I2            |Steve /Williams/       |I16           |Jonathan /Williams/    |NA                                                                                                               |
+|F17   |1996-03-21      |NA              |I36           |Roger /Sterling/       |I37           |Joan /Sterling/        |{'I38', 'I39', 'I40', 'I41', 'I42', 'I43', 'I44', 'I45', 'I46', 'I47', 'I48', 'I49', 'I50', 'I51', 'I52', 'I53'} |
+|F18   |1900-11-21      |1903-04-23      |I55           |Hehe /Cao/             |I54           |Nima /Niba/            |{'I55'}                                                                                                          |
+|F19   |1985-12-28      |NA              |I62           |Ju /Liu/               |I63           |Ze /Ma/                |{'I61', 'I60', 'I59', 'I58', 'I57', 'I56'}                                                                       |
+|F20   |2018-12-28      |NA              |I66           |Ju /Liu/               |I67           |Ze /Ma/                |{'I68'}                                                                                                          |
++------+----------------+----------------+--------------+-----------------------+--------------+-----------------------+-----------------------------------------------------------------------------------------------------------------+
+
+ERROR : FAMILY : US05 : I13 : MarriageDate 1945-04-10 for I13 is after his wife's (I15) death date 1945-01-02
+ERROR : FAMILY : US05 : I8 : MarriageDate 1950-10-17 for I8 is after her husband's (I7) death date 1915-04-10
+ERROR : FAMILY : US05 : I2 : MarriageDate 2019-03-21 for I2 is after his wife's (I16) death date 2006-10-18
+ERROR : INDIVIDUAL : US01 : I4 : MarriageDate 2020-12-09 for I4 is after today's date.
+ERROR : INDIVIDUAL : US01 : I1 : MarriageDate 2020-12-09 for I1 is after today's date.
+ERROR : INDIVIDUAL : US01 : I13 : DeathDate 2070-09-16 for I13 is after today's date.
+ERROR : INDIVIDUAL : US11 : I13 : I13 has married without seperation from previous spouse.
+ERROR : INDIVIDUAL : US11 : I2 : I2 has married without seperation from previous spouse.
+ERROR : FAMILY : US08 : I21 : The child I21 having birth date 2017-10-14 was born before the marriage date 2020-12-09 of parents
+ERROR : FAMILY : US08 : I22 : The child I22 having birth date 2017-10-14 was born before the marriage date 2020-12-09 of parents
+ERROR : FAMILY : US08 : I23 : The child I23 having birth date 2018-10-24 was born before the marriage date 2020-12-09 of parents
+ERROR : FAMILY : US08 : I1 : The child I1 having birth date 1791-12-04 was born before the marriage date 1984-05-04 of parents
+ERROR : FAMILY : US08 : I2 : The child I2 having birth date 1954-12-25 was born before the marriage date 1975-04-07 of parents
+ERROR : FAMILY : US08 : I26 : The child I26 having birth date 2004-05-02 was born before the marriage date 2005-12-31 of parents
+ERROR : FAMILY : US08 : I30 : The child I30 having birth date 2014-01-24 was born 9 months after the divorce date 2013-04-23 of parents
+ERROR : FAMILY : US08 : I68 : The child I68 having birth date 1995-05-20 was born before the marriage date 2018-12-28 of parents
+ERROR : INDIVIDUAL : US03 : I7 : Birthdate 1924-03-01 of Oscar /Jones/ (I7) is after Death Date 1915-04-10
+ERROR : INDIVIDUAL : US02 : I6 : MarriageDate 1920-04-24 of George /Thomas/ (I6) is after Birth date 1983-11-12
+ERROR : INDIVIDUAL : US02 : I5 : MarriageDate 1920-04-24 of Emma /Williams/ (I5) is after Birth date 1985-03-21
+ERROR : INDIVIDUAL : US02 : I55 : MarriageDate 1900-11-21 of Hehe /Cao/ (I55) is after Birth date 1901-12-05
+ERROR : INDIVIDUAL : US07 : I1 : Age of Emily /Williams/(I1) is more then 150 years old.
+ERROR : INDIVIDUAL : US07 : I13 : Age of Alexander /Williams/(I13) is more then 150 years old.
+ERROR : INDIVIDUAL : US10 : I7 : Oscar /Jones/(I7) got married before 14 years old.
+ERROR : INDIVIDUAL : US23 : I24&I27 : Two individuals with the same name and birth date(James /Smith/ 1980-10-12).
+ERROR : INDIVIDUAL : US23 : I30&I31 : Two individuals with the same name and birth date(Kelly /Morris/ 2014-01-24).
+ERROR : INDIVIDUAL : US23 : I52&I53 : Two individuals with the same name and birth date(Gabby /Sterling/ 2015-06-19).
+ERROR : INDIVIDUAL : US23 : I62&I66 : Two individuals with the same name and birth date(Ju /Liu/ 1965-12-18).
+ERROR : INDIVIDUAL : US23 : I68&I69 : Two individuals with the same name and birth date(Jia /Liu/ 1995-05-20).
+ERROR : FAMILY : F1 : US12 : mother I1 Emily /Williams/is more than 60 years older than his childI21 Dexter /Taylor/
+ERROR : FAMILY : F1 : US12 : mother I1 Emily /Williams/is more than 60 years older than his childI22 Hollie /Taylor/
+ERROR : FAMILY : F3 : US12 : father I13 Alexander /Williams/is more than 80 years older than his childrenI2 Steve /Williams/
+ERROR : FAMILY : F8 : US12 : father I13 Alexander /Williams/is more than 80 years older than his childrenI16 Jonathan /Williams/
+ERROR : FAMILY : F8 : US06 : wife I15 Rose /Green/ divorced after death.
+ERROR : FAMILY : F4 : US06 : husband I7 Oscar /Jones/ divorced after death.
+ERROR : FAMILY : F4 : US06 : wife I8 Harriet /Wright/ divorced after death.
+ERROR : FAMILY : F10 : US16 : All male members of a family don't have the same last name
+ERROR : FAMILY : F18 : US17 : mother I54 Nima /Niba/married with her childI55 Hehe /Cao/
+ERROR : FAMILY : F19 : US14 : More than five siblings were born at the same time.
+ERROR : FAMILY : US21 : I28 : Gender of Husband Samuel /Morris/ of family F11 is M
+ERROR : FAMILY : US21 : I29 : Gender of Wife Nancy /Morris/ of family F11 is M
+ERROR : FAMILY : US21 : I2 : Gender of Husband Steve /Williams/ of family F16 is M
+ERROR : FAMILY : US21 : I16 : Gender of Wife Jonathan /Williams/ of family F16 is M
+ERROR : FAMILY : US21 : I36 : Gender of Husband Roger /Sterling/ of family F17 is F
+ERROR : FAMILY : US21 : I37 : Gender of Wife Joan /Sterling/ of family F17 is F
+WARNING : INDIVIDUAL : US22 : I43 : The person  Peggy /Sterling/ (I43) is replaced because of duplicate id
+ERROR : FAMILY : US22 : F13 : Family id F13 is duplicated.
+ERROR : FAMILY : US04 : I34 : Marriage Date 2000-04-21 in the family F13 is after the divorce date 1999-08-12
+ERROR : FAMILY : US04 : I34 : Marriage Date 2000-04-21 in the family F13 is after the divorce date 1999-08-12
+ANOMALY : FAMILY : US15 : F17 : The child I38 (Josh /Sterling/) has more than 15 siblings
+ERROR : FAMILY : US18 : F15 : I21 and I22 are married siblings.
+ERROR : FAMILY : US24 : F13 : The husband Ian /Hamm/(I34) and wife Sheila /Hamm/(I35) have more than one family record with the same marriage date 2000-04-21
+ERROR : FAMILY : US09 : I16 : The birthdate 1946-07-10 of Jonathan /Williams/ (I16) is after the death date 1945-01-02 of mother(I15)
+ERROR : FAMILY : US09 : I3 : The birthdate 1956-06-28 of Sophia /Jones/ (I3) is nine months after the death date 1915-04-10 of father(I7)
+ERROR : FAMILY : US09 : I19 : The birthdate 1958-07-10 of Daniel /Jones/ (I19) is nine months after the death date 1915-04-10 of father(I7)
+ERROR : FAMILY : US09 : I20 : The birthdate 1971-08-14 of Eliza /Jones/ (I20) is nine months after the death date 1915-04-10 of father(I7)
+ERROR : FAMILY : US25 : F17 : First Name and Birthdate of childrens (I52, I53) in the family F17 are same
+
+List of Deceased
++------+--------------------+----------+------------+-------+---------+------------+----------+----------+
+|  ID  |       Name         |  Gender  |  Birthday  |  Age  |  Alive  |    Death   |   Child  |  Spouse  |
++------+--------------------+----------+------------+-------+---------+------------+----------+----------+
+|I7    |Oscar /Jones/       |M         |1924-03-01  |-8     |False    |1915-04-10  |{'F6'}    |{'F4'}    |
+|I8    |Harriet /Wright/    |F         |1930-06-02  |57     |False    |1988-05-11  |{'F7'}    |{'F4'}    |
+|I9    |Jacob /Wright/      |M         |1895-04-26  |40     |False    |1935-09-16  |NA        |{'F7'}    |
+|I11   |Jack /Jones/        |M         |1888-01-15  |40     |False    |1928-07-16  |NA        |{'F6'}    |
+|I10   |Sara /Robinson/     |F         |1898-10-01  |46     |False    |1945-07-07  |NA        |{'F7'}    |
+|I13   |Alexander /Williams/|M         |1920-05-10  |150    |False    |2070-09-16  |NA        |{'F8'}    |
+|I12   |Zoe /White/         |F         |1892-02-03  |38     |False    |1930-04-02  |NA        |{'F6'}    |
+|I15   |Rose /Green/        |F         |1925-12-02  |19     |False    |1945-01-02  |NA        |{'F8'}    |
+|I17   |Noah /Williams/     |M         |1887-11-13  |46     |False    |1934-10-02  |NA        |{'F9'}    |
+|I16   |Jonathan /Williams/ |M         |1946-07-10  |60     |False    |2006-10-18  |{'F8'}    |NA        |
+|I18   |Zara /Lewis/        |F         |1888-01-30  |47     |False    |1935-10-07  |NA        |{'F9'}    |
+|I65   |David /Jonas/       |F         |1950-08-11  |68     |False    |2019-04-10  |{'F5'}    |NA        |
++------+--------------------+----------+------------+-------+---------+------------+----------+----------+
+
+List of Orphans
++------+--------------------+----------+------------+-------+---------+------------+----------+----------+
+|  ID  |       Name         |  Gender  |  Birthday  |  Age  |  Alive  |    Death   |   Child  |  Spouse  |
++------+--------------------+----------+------------+-------+---------+------------+----------+----------+
+|I7    |Oscar /Jones/       |M         |1924-03-01  |-8     |False    |1915-04-10  |{'F6'}    |{'F4'}    |
++------+--------------------+----------+------------+-------+---------+------------+----------+----------+
+
+List of Singles
++------+--------------------+----------+------------+-------+---------+------------+----------+----------+
+|  ID  |       Name         |  Gender  |  Birthday  |  Age  |  Alive  |    Death   |   Child  |  Spouse  |
++------+--------------------+----------+------------+-------+---------+------------+----------+----------+
+|I1    |Emily /Williams/    |F         |1791-12-04  |227    |True     |NA          |{'F2'}    |{'F1'}    |
+|I2    |Steve /Williams/    |M         |1954-12-25  |64     |True     |NA          |{'F3'}    |{'F2'}    |
+|I3    |Sophia /Jones/      |F         |1956-06-28  |62     |True     |NA          |{'F4'}    |{'F2'}    |
+|I5    |Emma /Williams/     |F         |1985-03-21  |34     |True     |NA          |{'F2'}    |{'F5'}    |
+|I6    |George /Thomas/     |M         |1983-11-12  |35     |True     |NA          |NA        |{'F5'}    |
+|I55   |Hehe /Cao/          |M         |1901-12-05  |117    |True     |NA          |{'F18'}   |{'F18'}   |
+|I54   |Nima /Niba/         |F         |1899-12-04  |119    |True     |NA          |NA        |{'F18'}   |
+|I14   |Isabel /Williams/   |F         |1926-10-28  |92     |True     |NA          |{'F9'}    |{'F3'}    |
+|I19   |Daniel /Jones/      |M         |1958-07-10  |60     |True     |NA          |{'F4'}    |NA        |
+|I62   |Ju /Liu/            |M         |1965-12-18  |53     |True     |NA          |NA        |{'F19'}   |
+|I20   |Eliza /Jones/       |F         |1971-08-14  |47     |True     |NA          |{'F4'}    |NA        |
+|I63   |Ze /Ma/             |F         |1966-12-18  |52     |True     |NA          |NA        |{'F19'}   |
+|I66   |Ju /Liu/            |M         |1965-12-18  |53     |True     |NA          |NA        |{'F19'}   |
+|I24   |James /Smith/       |M         |1980-10-12  |38     |True     |NA          |{'F1'}    |{'F10'}   |
+|I67   |Ze /Ma/             |F         |1965-12-18  |53     |True     |NA          |NA        |{'F19'}   |
+|I25   |Mary /Smith/        |F         |1982-07-22  |36     |True     |NA          |{'F2'}    |{'F10'}   |
+|I28   |Samuel /Morris/     |M         |1981-10-12  |37     |True     |NA          |{'F4'}    |{'F11'}   |
+|I27   |James /Smith/       |M         |1980-10-12  |38     |True     |NA          |{'F1'}    |{'F10'}   |
+|I29   |Nancy /Morris/      |M         |1984-10-02  |34     |True     |NA          |{'F6'}    |{'F11'}   |
+|I71   |Zeeee /Liu/         |F         |1937-12-18  |81     |True     |NA          |NA        |{'F20'}   |
+|I70   |Junn /Liu/          |M         |1935-12-18  |83     |True     |NA          |NA        |{'F20'}   |
+|I72   |Jy /Li/             |M         |1965-12-18  |53     |True     |NA          |{'F20'}   |NA        |
+|I35   |Sheila /Hamm/       |F         |1976-06-19  |42     |True     |NA          |{'F5'}    |{'F13'}   |
+|I34   |Ian /Hamm/          |M         |1973-06-19  |45     |True     |NA          |{'F7'}    |{'F13'}   |
+|I37   |Joan /Sterling/     |F         |1978-06-19  |40     |True     |NA          |{'F4'}    |{'F17'}   |
+|I36   |Roger /Sterling/    |F         |1976-06-19  |42     |True     |NA          |{'F5'}    |{'F17'}   |
++------+--------------------+----------+------------+-------+---------+------------+----------+----------+
+
+List of Living Married
++------+--------------------+----------+------------+-------+---------+------------+----------+----------+
+|  ID  |       Name         |  Gender  |  Birthday  |  Age  |  Alive  |    Death   |   Child  |  Spouse  |
++------+--------------------+----------+------------+-------+---------+------------+----------+----------+
+|I4    |Henry /Taylor/      |M         |1989-05-01  |29     |True     |NA          |NA        |{'F1'}    |
+|I1    |Emily /Williams/    |F         |1791-12-04  |227    |True     |NA          |{'F2'}    |{'F1'}    |
+|I2    |Steve /Williams/    |M         |1954-12-25  |64     |True     |NA          |{'F3'}    |{'F2'}    |
+|I3    |Sophia /Jones/      |F         |1956-06-28  |62     |True     |NA          |{'F4'}    |{'F2'}    |
+|I6    |George /Thomas/     |M         |1983-11-12  |35     |True     |NA          |NA        |{'F5'}    |
+|I5    |Emma /Williams/     |F         |1985-03-21  |34     |True     |NA          |{'F2'}    |{'F5'}    |
+|I24   |James /Smith/       |M         |1980-10-12  |38     |True     |NA          |{'F1'}    |{'F10'}   |
+|I25   |Mary /Smith/        |F         |1982-07-22  |36     |True     |NA          |{'F2'}    |{'F10'}   |
+|I28   |Samuel /Morris/     |M         |1981-10-12  |37     |True     |NA          |{'F4'}    |{'F11'}   |
+|I29   |Nancy /Morris/      |M         |1984-10-02  |34     |True     |NA          |{'F6'}    |{'F11'}   |
+|I32   |Charlie /Scott/     |M         |1992-10-02  |26     |True     |NA          |{'F6'}    |{'F12'}   |
+|I33   |Mia /Scott/         |F         |1993-06-29  |25     |True     |NA          |{'F7'}    |{'F12'}   |
+|I34   |Ian /Hamm/          |M         |1973-06-19  |45     |True     |NA          |{'F7'}    |{'F13'}   |
+|I35   |Sheila /Hamm/       |F         |1976-06-19  |42     |True     |NA          |{'F5'}    |{'F13'}   |
+|I34   |Ian /Hamm/          |M         |1973-06-19  |45     |True     |NA          |{'F7'}    |{'F13'}   |
+|I35   |Sheila /Hamm/       |F         |1976-06-19  |42     |True     |NA          |{'F5'}    |{'F13'}   |
+|I21   |Dexter /Taylor/     |M         |2017-10-14  |1      |True     |NA          |{'F1'}    |NA        |
+|I22   |Hollie /Taylor/     |F         |2017-10-14  |1      |True     |NA          |{'F1'}    |NA        |
+|I36   |Roger /Sterling/    |F         |1976-06-19  |42     |True     |NA          |{'F5'}    |{'F17'}   |
+|I37   |Joan /Sterling/     |F         |1978-06-19  |40     |True     |NA          |{'F4'}    |{'F17'}   |
+|I55   |Hehe /Cao/          |M         |1901-12-05  |117    |True     |NA          |{'F18'}   |{'F18'}   |
+|I54   |Nima /Niba/         |F         |1899-12-04  |119    |True     |NA          |NA        |{'F18'}   |
+|I62   |Ju /Liu/            |M         |1965-12-18  |53     |True     |NA          |NA        |{'F19'}   |
+|I63   |Ze /Ma/             |F         |1966-12-18  |52     |True     |NA          |NA        |{'F19'}   |
+|I66   |Ju /Liu/            |M         |1965-12-18  |53     |True     |NA          |NA        |{'F19'}   |
+|I67   |Ze /Ma/             |F         |1965-12-18  |53     |True     |NA          |NA        |{'F19'}   |
++------+--------------------+----------+------------+-------+---------+------------+----------+----------+
+
+US35: List of recent births
++------+--------------------+----------+------------+-------+---------+------------+----------+----------+
+|  ID  |       Name         |  Gender  |  Birthday  |  Age  |  Alive  |    Death   |   Child  |  Spouse  |
++------+--------------------+----------+------------+-------+---------+------------+----------+----------+
+|I64   |Erica /Jonas/       |F         |2019-04-21  |0      |True     |NA          |{'F19'}   |NA        |
++------+--------------------+----------+------------+-------+---------+------------+----------+----------+
+
+US36: List of recent deaths
++------+--------------------+----------+------------+-------+---------+------------+----------+----------+
+|  ID  |       Name         |  Gender  |  Birthday  |  Age  |  Alive  |    Death   |   Child  |  Spouse  |
++------+--------------------+----------+------------+-------+---------+------------+----------+----------+
+|I65   |David /Jonas/       |F         |1950-08-11  |68     |False    |2019-04-10  |{'F5'}    |NA        |
++------+--------------------+----------+------------+-------+---------+------------+----------+----------+
+
+List of Living Couple Upcoming Anniversaries within 30 days
++------+--------------------+----------+------------+-------+---------+------------+----------+----------+
+|  ID  |       Name         |  Gender  |  Birthday  |  Age  |  Alive  |    Death   |   Child  |  Spouse  |
++------+--------------------+----------+------------+-------+---------+------------+----------+----------+
+|I2    |Steve /Williams/    |M         |1954-12-25  |64     |True     |NA          |{'F3'}    |{'F2'}    |
+|I3    |Sophia /Jones/      |F         |1956-06-28  |62     |True     |NA          |{'F4'}    |{'F2'}    |
+|I6    |George /Thomas/     |M         |1983-11-12  |35     |True     |NA          |NA        |{'F5'}    |
+|I5    |Emma /Williams/     |F         |1985-03-21  |34     |True     |NA          |{'F2'}    |{'F5'}    |
++------+--------------------+----------+------------+-------+---------+------------+----------+----------+
+
+List of individuals with Upcoming Birthdays within 30 days
++------+--------------------+----------+------------+-------+---------+------------+----------+----------+
+|  ID  |       Name         |  Gender  |  Birthday  |  Age  |  Alive  |    Death   |   Child  |  Spouse  |
++------+--------------------+----------+------------+-------+---------+------------+----------+----------+
+|I4    |Henry /Taylor/      |M         |1989-05-01  |29     |True     |NA          |NA        |{'F1'}    |
+|I68   |Jia /Liu/           |M         |1995-05-20  |23     |True     |NA          |NA        |NA        |
+|I26   |Michael  /Smith/    |M         |2004-05-02  |14     |True     |NA          |{'F10'}   |NA        |
+|I69   |Jia /Liu/           |F         |1995-05-20  |23     |True     |NA          |NA        |NA        |
++------+--------------------+----------+------------+-------+---------+------------+----------+----------+
+
+List of Families with high age difference between spouses at the time of marraige
++------+----------------+----------------+--------------+-----------------------+--------------+-----------------------+-----------------------------------------------------------------------------------------------------------------+
+|  ID  |    Married     |    Divorced    |  Husband Id  |      Husband Name     |    Wife Id   |      Wife Name        |      Children                                                                                                   |
++------+----------------+----------------+--------------+-----------------------+--------------+-----------------------+-----------------------------------------------------------------------------------------------------------------+
+|F2    |1984-05-04      |NA              |I2            |Steve /Williams/       |I3            |Sophia /Jones/         |{'I1', 'I5'}                                                                                                     |
+|F3    |1975-04-07      |NA              |I13           |Alexander /Williams/   |I14           |Isabel /Williams/      |{'I2'}                                                                                                           |
+|F8    |1945-04-10      |1995-08-12      |I13           |Alexander /Williams/   |I15           |Rose /Green/           |{'I16'}                                                                                                          |
+|F4    |1950-10-17      |2018-08-12      |I7            |Oscar /Jones/          |I8            |Harriet /Wright/       |{'I3', 'I19', 'I20'}                                                                                             |
+|F5    |1920-04-24      |NA              |I6            |George /Thomas/        |I5            |Emma /Williams/        |NA                                                                                                               |
+|F7    |1928-07-30      |NA              |I9            |Jacob /Wright/         |I10           |Sara /Robinson/        |{'I8'}                                                                                                           |
+|F10   |2005-12-31      |2018-08-12      |I24           |James /Smith/          |I25           |Mary /Smith/           |{'I26'}                                                                                                          |
+|F11   |2006-11-21      |2013-04-23      |I28           |Samuel /Morris/        |I29           |Nancy /Morris/         |{'I30'}                                                                                                          |
+|F12   |2019-01-21      |NA              |I32           |Charlie /Scott/        |I33           |Mia /Scott/            |NA                                                                                                               |
+|F13   |2000-04-21      |1999-08-12      |I34           |Ian /Hamm/             |I35           |Sheila /Hamm/          |NA                                                                                                               |
+|F13   |2000-04-21      |1999-08-12      |I34           |Ian /Hamm/             |I35           |Sheila /Hamm/          |NA                                                                                                               |
+|F15   |2018-04-21      |NA              |I21           |Dexter /Taylor/        |I22           |Hollie /Taylor/        |NA                                                                                                               |
+|F16   |2019-03-21      |NA              |I2            |Steve /Williams/       |I16           |Jonathan /Williams/    |NA                                                                                                               |
+|F17   |1996-03-21      |NA              |I36           |Roger /Sterling/       |I37           |Joan /Sterling/        |{'I38', 'I39', 'I40', 'I41', 'I42', 'I43', 'I44', 'I45', 'I46', 'I47', 'I48', 'I49', 'I50', 'I51', 'I52', 'I53'} |
+|F19   |1985-12-28      |NA              |I62           |Ju /Liu/               |I63           |Ze /Ma/                |{'I61', 'I60', 'I59', 'I58', 'I57', 'I56'}                                                                       |
+|F20   |2018-12-28      |NA              |I66           |Ju /Liu/               |I67           |Ze /Ma/                |{'I68'}                                                                                                          |
++------+----------------+----------------+--------------+-----------------------+--------------+-----------------------+-----------------------------------------------------------------------------------------------------------------+
+
